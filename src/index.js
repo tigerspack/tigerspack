@@ -1,1 +1,2 @@
-console.log('Hello Tigers Pack');
+export { default as Button } from './Button';
+export * from './Button';
