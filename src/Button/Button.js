@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-export const styles = theme => ({
+export const styles = () => ({
   btn: {
     borderRadius: '4px',
     boxSizing: 'border-box',
@@ -31,7 +31,7 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-  }
+  },
 });
 
 const Button = (props) => {
