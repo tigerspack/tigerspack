@@ -7,8 +7,8 @@
     "build": "webpack --mode production",
     "lint": "eslint --report-unused-disable-directives src",
     "fix": "eslint --fix --report-unused-disable-directives src",
-    "test": "jest",
-    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+    "test": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
