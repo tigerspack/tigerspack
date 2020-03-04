@@ -1,5 +1,4 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -23,32 +22,8 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
       },
-      {
-        test: /\.(sass|scss)$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 2,
-              modules: {
-                mode: 'local',
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-              },
-            },
-          },
-          'sass-loader',
-        ],
-      },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: './[name].css',
-    }),
-  ],
   externals: {
     react: {
       commonjs: 'react',
