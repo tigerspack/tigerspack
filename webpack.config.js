@@ -14,7 +14,7 @@ module.exports = {
     modules: ['node_modules'],
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   module: {
     rules: [
