@@ -1,2 +1,5 @@
-export { default as Button } from './Button';
-export * from './Button';
+import ButtonComponent from './components/Button';
+
+export const Button = ButtonComponent;
+
+export default null;

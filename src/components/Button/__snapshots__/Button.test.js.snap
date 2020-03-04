@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render correctly 1`] = `
+<div
+  onClick={[MockFunction]}
+  style={
+    Object {
+      ":hover": Object {
+        "backgroundColor": "rgba(61, 94, 97, .8)",
+        "textDecoration": "none",
+      },
+      "backgroundColor": "rgba(61, 94, 97, .9)",
+      "backgroundImage": "none",
+      "border": "1px solid transparent",
+      "borderRadius": "4px",
+      "boxSizing": "border-box",
+      "color": "#fff",
+      "cursor": "pointer",
+      "display": "inline-block",
+      "fontSize": "14px",
+      "fontWeight": 500,
+      "lineHeight": 1.52857143,
+      "marginBottom": 0,
+      "outline": "none",
+      "padding": "6px 16px",
+      "position": "relative",
+      "textAlign": "center",
+      "transition": "all 0.1s",
+      "userSelect": "none",
+      "verticalAlign": "middle",
+      "whiteSpace": "nowrap",
+    }
+  }
+>
+  Test button
+</div>
+`;
