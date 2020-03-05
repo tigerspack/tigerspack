@@ -12,9 +12,9 @@ export const colors = {
     hoverText: '#596977',
   },
   danger: {
-    color: '#E55934',
+    color: '#D15130',
     text: '#fff',
-    hoverColor: '#EC866B',
+    hoverColor: '#E76846',
     hoverText: '#fff',
   },
   warning: {
@@ -46,7 +46,7 @@ export const colors = {
     text: '#304355',
     hoverColor: '#EEF0F2',
     hoverText: '#596977',
-  }
+  },
 };
 
 export const colorsArray = ['primary', 'danger', 'success'];
