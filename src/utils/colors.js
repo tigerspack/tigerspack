@@ -49,4 +49,8 @@ export const colors = {
   },
 };
 
-export const colorsArray = ['primary', 'danger', 'success'];
+export const setColor = (scheme) => {
+  Object.keys(scheme).forEach((theme) => {
+    colors[theme] = { ...colors[theme], ...scheme[theme] };
+  });
+};

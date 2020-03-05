@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-import { colors, colorsArray } from '../../utils/colors';
+import { colors } from '../../utils/colors';
 
 const Button = (props) => {
   const palette = colors[props.theme] ? colors[props.theme] : colors.primary;
@@ -42,7 +42,7 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
-  theme: PropTypes.oneOf(colorsArray),
+  theme: PropTypes.string,
   children: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
 };
