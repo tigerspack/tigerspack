@@ -1,8 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should render correctly 1`] = `
+.button {
+  border-radius: 4px !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  font-size: 14px !important;
+  outline: none !important;
+  -webkit-transition: all 0.1s !important;
+  -moz-transition: all 0.1s !important;
+  transition: all 0.1s !important;
+  display: inline-block !important;
+  margin-bottom: 0px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
+  background-image: none !important;
+  border: 1px solid transparent !important;
+  white-space: nowrap !important;
+  padding: 6px 16px !important;
+  line-height: 1.52857143 !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  background-color: #3F88C5 !important;
+  color: #fff !important;
+}
+
+.button:hover {
+  text-decoration: none !important;
+  background-color: #619DCF !important;
+}
+
 <div
-  className="button_1agpomz"
+  className="button"
   onClick={[MockFunction]}
 >
   Test button
