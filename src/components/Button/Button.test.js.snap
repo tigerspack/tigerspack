@@ -2,7 +2,7 @@
 
 exports[`Button should render correctly 1`] = `
 <div
-  className="button_2pkh6p"
+  className="button_1agpomz"
   onClick={[MockFunction]}
 >
   Test button
