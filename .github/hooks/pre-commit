@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.jsx\?$')
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM src/| grep '\.jsx\?$')
 BIN_PATH="$(git rev-parse --show-toplevel)/node_modules/.bin"
 
 eslint() {
