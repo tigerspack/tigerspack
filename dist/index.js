@@ -89,6 +89,22 @@ module.exports =
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+if (false) { var throwOnDirectAccess, ReactIs; } else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(4)();
+}
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -110,7 +126,7 @@ function hash(str) {
 module.exports = hash;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -184,22 +200,6 @@ RawTask.prototype.call = function () {
     freeTasks[freeTasks.length] = this;
   }
 };
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-if (false) { var throwOnDirectAccess, ReactIs; } else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(4)();
-}
 
 /***/ }),
 /* 3 */
@@ -545,15 +545,15 @@ var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_re
 var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_commonjs2_react_amd_React_root_React_);
 
 // EXTERNAL MODULE: ../node_modules/prop-types/index.js
-var prop_types = __webpack_require__(2);
+var prop_types = __webpack_require__(0);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ../node_modules/string-hash/index.js
-var string_hash = __webpack_require__(0);
+var string_hash = __webpack_require__(1);
 var string_hash_default = /*#__PURE__*/__webpack_require__.n(string_hash);
 
 // EXTERNAL MODULE: ../node_modules/asap/browser-asap.js
-var browser_asap = __webpack_require__(1);
+var browser_asap = __webpack_require__(2);
 var browser_asap_default = /*#__PURE__*/__webpack_require__.n(browser_asap);
 
 // CONCATENATED MODULE: ../node_modules/aphrodite/es/chunk-febce46b.js
@@ -2771,40 +2771,64 @@ var es_StyleSheet = Aphrodite.StyleSheet,
     es_reset = Aphrodite.reset,
     es_resetInjectedStyle = Aphrodite.resetInjectedStyle;
 
+// CONCATENATED MODULE: ./utils/colors.js
+var colors = {
+  primary: {
+    color: '#0092e6',
+    text: '#fff',
+    hoverColor: '#00a1e6',
+    hoverText: '#fff'
+  },
+  danger: {
+    color: '#db3933',
+    text: '#fff',
+    hoverColor: '#e04245',
+    hoverText: '#fff'
+  },
+  success: {
+    color: '#43cc58',
+    text: '#fff',
+    hoverColor: '#57c766',
+    hoverText: '#fff'
+  }
+};
+var colorsArray = ['primary', 'danger', 'success'];
 // CONCATENATED MODULE: ./components/Button/Button.js
 
 
 
-var styles = es_StyleSheet.create({
-  button: {
-    borderRadius: '4px',
-    boxSizing: 'border-box',
-    position: 'relative',
-    fontSize: '14px',
-    outline: 'none',
-    transition: 'all 0.1s',
-    display: 'inline-block',
-    marginBottom: 0,
-    fontWeight: 500,
-    textAlign: 'center',
-    verticalAlign: 'middle',
-    cursor: 'pointer',
-    backgroundImage: 'none',
-    border: '1px solid transparent',
-    whiteSpace: 'nowrap',
-    padding: '6px 16px',
-    lineHeight: 1.52857143,
-    userSelect: 'none',
-    backgroundColor: 'rgba(61, 94, 97, .9)',
-    color: '#fff',
-    ':hover': {
-      textDecoration: 'none',
-      backgroundColor: 'rgba(61, 94, 97, .8)'
-    }
-  }
-});
+
 
 var Button_Button = function Button(props) {
+  var palette = colors[props.theme] ? colors[props.theme] : colors['primary'];
+  var styles = es_StyleSheet.create({
+    button: {
+      borderRadius: '4px',
+      boxSizing: 'border-box',
+      position: 'relative',
+      fontSize: '14px',
+      outline: 'none',
+      transition: 'all 0.1s',
+      display: 'inline-block',
+      marginBottom: 0,
+      fontWeight: 500,
+      textAlign: 'center',
+      verticalAlign: 'middle',
+      cursor: 'pointer',
+      backgroundImage: 'none',
+      border: '1px solid transparent',
+      whiteSpace: 'nowrap',
+      padding: '6px 16px',
+      lineHeight: 1.52857143,
+      userSelect: 'none',
+      backgroundColor: palette.color,
+      color: palette.text,
+      ':hover': {
+        textDecoration: 'none',
+        backgroundColor: palette.hoverColor
+      }
+    }
+  });
   var children = props.children,
       onClick = props.onClick;
   return external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -2814,8 +2838,12 @@ var Button_Button = function Button(props) {
 };
 
 Button_Button.propTypes = {
+  theme: prop_types_default.a.oneOf(colorsArray),
   children: prop_types_default.a.any.isRequired,
   onClick: prop_types_default.a.func.isRequired
+};
+Button_Button.defaultProps = {
+  theme: 'primary'
 };
 /* harmony default export */ var components_Button_Button = (Button_Button);
 // CONCATENATED MODULE: ./components/Button/index.js
