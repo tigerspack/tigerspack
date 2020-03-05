@@ -1,37 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: '4px',
-    boxSizing: 'border-box',
-    position: 'relative',
-    fontSize: '14px',
-    outline: 'none',
-    transition: 'all 0.1s',
-    display: 'inline-block',
-    marginBottom: 0,
-    fontWeight: 500,
-    textAlign: 'center',
-    verticalAlign: 'middle',
-    cursor: 'pointer',
-    backgroundImage: 'none',
-    border: '1px solid transparent',
-    whiteSpace: 'nowrap',
-    padding: '6px 16px',
-    lineHeight: 1.52857143,
-    userSelect: 'none',
-    backgroundColor: 'rgba(61, 94, 97, .9)',
-    color: '#fff',
-    ':hover': {
-      textDecoration: 'none',
-      backgroundColor: 'rgba(61, 94, 97, .8)',
-    },
-  },
-});
+import { colors, colorsArray } from '../../utils/colors';
 
 const Button = (props) => {
+  const palette = colors[props.theme] ? colors[props.theme] : colors.primary;
+  const styles = StyleSheet.create({
+    button: {
+      borderRadius: '4px',
+      boxSizing: 'border-box',
+      position: 'relative',
+      fontSize: '14px',
+      outline: 'none',
+      transition: 'all 0.1s',
+      display: 'inline-block',
+      marginBottom: 0,
+      fontWeight: 500,
+      textAlign: 'center',
+      verticalAlign: 'middle',
+      cursor: 'pointer',
+      backgroundImage: 'none',
+      border: '1px solid transparent',
+      whiteSpace: 'nowrap',
+      padding: '6px 16px',
+      lineHeight: 1.52857143,
+      userSelect: 'none',
+      backgroundColor: palette.color,
+      color: palette.text,
+      ':hover': {
+        textDecoration: 'none',
+        backgroundColor: palette.hoverColor,
+      },
+    },
+  });
   const { children, onClick } = props;
   return (
     <div className={css(styles.button)} onClick={onClick}>
@@ -41,8 +42,13 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
+  theme: PropTypes.oneOf(colorsArray),
   children: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
+};
+
+Button.defaultProps = {
+  theme: 'primary',
 };
 
 export default Button;
