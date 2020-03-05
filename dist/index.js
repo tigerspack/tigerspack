@@ -2786,9 +2786,9 @@ var colors = {
     hoverText: '#596977'
   },
   danger: {
-    color: '#E55934',
+    color: '#D15130',
     text: '#fff',
-    hoverColor: '#EC866B',
+    hoverColor: '#E76846',
     hoverText: '#fff'
   },
   warning: {
