@@ -2772,6 +2772,12 @@ var es_StyleSheet = Aphrodite.StyleSheet,
     es_resetInjectedStyle = Aphrodite.resetInjectedStyle;
 
 // CONCATENATED MODULE: ./utils/colors.js
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function colors_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { colors_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function colors_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var colors = {
   primary: {
     color: '#3F88C5',
@@ -2822,7 +2828,11 @@ var colors = {
     hoverText: '#596977'
   }
 };
-var colorsArray = ['primary', 'danger', 'success'];
+function setColor(scheme) {
+  Object.keys(scheme).forEach(function (theme) {
+    colors[theme] = colors_objectSpread({}, colors[theme], {}, scheme[theme]);
+  });
+}
 // CONCATENATED MODULE: ./components/Button/Button.js
 
 
@@ -2868,7 +2878,7 @@ var Button_Button = function Button(props) {
 };
 
 Button_Button.propTypes = {
-  theme: prop_types_default.a.oneOf(colorsArray),
+  theme: prop_types_default.a.string,
   children: prop_types_default.a.any.isRequired,
   onClick: prop_types_default.a.func.isRequired
 };
@@ -2881,8 +2891,14 @@ Button_Button.defaultProps = {
 /* harmony default export */ var components_Button = (components_Button_Button);
 // CONCATENATED MODULE: ./index.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return index_Button; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setColorScheme", function() { return setColorScheme; });
 
-var index_Button = components_Button;
+ // Components
+
+var index_Button = components_Button; // Method
+
+var setColorScheme = setColor; // Default export
+
 /* harmony default export */ var index = __webpack_exports__["default"] = (null);
 
 /***/ })
