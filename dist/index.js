@@ -2828,11 +2828,11 @@ var colors = {
     hoverText: '#596977'
   }
 };
-function setColor(scheme) {
+var setColor = function setColor(scheme) {
   Object.keys(scheme).forEach(function (theme) {
     colors[theme] = colors_objectSpread({}, colors[theme], {}, scheme[theme]);
   });
-}
+};
 // CONCATENATED MODULE: ./components/Button/Button.js
 
 
