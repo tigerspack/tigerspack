@@ -54,6 +54,12 @@ const siteConfig = {
       blog: true,
       label: 'Blog',
     },
+    {
+      search: true,
+    },
+    {
+      languages: true,
+    },
   ],
 
   // If you have users set above, you add it here:
@@ -66,8 +72,8 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#72a36c',
-    secondaryColor: '#4f724b',
+    primaryColor: '#304355',
+    secondaryColor: '#2C3D4E',
   },
 
   /* Custom fonts for website */
@@ -83,6 +89,9 @@ const siteConfig = {
     ]
   },
   */
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap',
+  ],
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} Tigerspack`,
