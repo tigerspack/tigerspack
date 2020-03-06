@@ -5,9 +5,8 @@
     "previous": "Previous",
     "tagline": "Fastest React UI Framework",
     "docs": {
-      "doc1": {
-        "title": "Latin-ish",
-        "sidebar_label": "Example Page"
+      "button": {
+        "title": "Button"
       },
       "doc2": {
         "title": "document number 2"
@@ -15,23 +14,23 @@
       "doc3": {
         "title": "This is document number 3"
       },
-      "doc4": {
-        "title": "Other Document"
-      },
       "doc5": {
         "title": "Fifth Document"
+      },
+      "installation": {
+        "title": "Installation",
+        "sidebar_label": "Installation"
       }
     },
     "links": {
       "Docs": "Docs",
-      "API": "API",
+      "Components": "Components",
       "Help": "Help",
       "Blog": "Blog"
     },
     "categories": {
-      "Docusaurus": "Docusaurus",
-      "First Category": "First Category",
-      "Second Category": "Second Category"
+      "Getting Started": "Getting Started",
+      "Components": "Components"
     }
   },
   "pages-strings": {
