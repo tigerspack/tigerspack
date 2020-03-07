@@ -5,23 +5,25 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 const React = require('react');
 
+// eslint-disable-next-line import/no-unresolved
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const Container = CompLibrary.Container;
+const { Container } = CompLibrary;
 
 class Users extends React.Component {
   render() {
-    const {config: siteConfig} = this.props;
+    const { config: siteConfig } = this.props;
     if ((siteConfig.users || []).length === 0) {
       return null;
     }
 
     const editUrl = `${siteConfig.repoUrl}/edit/master/website/siteConfig.js`;
-    const showcase = siteConfig.users.map(user => (
+    const showcase = siteConfig.users.map((user) => (
       <a href={user.infoLink} key={user.infoLink}>
-        <img src={user.image} alt={user.caption} title={user.caption} />
+        <img src={user.image} alt={user.caption} title={user.caption}/>
       </a>
     ));
 
