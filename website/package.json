@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "docusaurus": "^1.14.4"
+  },
+  "dependencies": {
+    "aphrodite": "^2.4.0",
+    "tigerspack": "^0.0.3"
   }
 }

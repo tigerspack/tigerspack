@@ -1,8 +1,6 @@
 {
   "docs": {
-    "Getting Started": ["installation"]
-  },
-  "docs-other": {
+    "Getting Started": ["installation"],
     "Components": ["button", "doc5"]
   }
 }
