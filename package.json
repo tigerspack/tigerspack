@@ -2,7 +2,7 @@
   "name": "tigerspack",
   "version": "0.0.3",
   "description": "UI Framework",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack --mode production",
     "start": "cd website && yarn start",

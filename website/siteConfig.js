@@ -43,7 +43,7 @@ const siteConfig = {
       label: 'Docs',
     },
     {
-      doc: 'button',
+      page: 'components',
       label: 'Components',
     },
     {
