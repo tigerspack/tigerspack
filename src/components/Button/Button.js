@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { StyleSheet, css } from 'aphrodite';
 import { colors } from '../../utils/colors';
 
 const Button = (props) => {
   const palette = colors[props.theme] ? colors[props.theme] : colors.primary;
-  const styles = {
+  const styles = StyleSheet.create({
     button: {
       borderRadius: '4px',
       boxSizing: 'border-box',
@@ -31,10 +32,10 @@ const Button = (props) => {
         backgroundColor: palette.hoverColor,
       },
     },
-  };
+  });
   const { children, onClick } = props;
   return (
-    <div style={styles.button} onClick={onClick}>
+    <div className={css(styles.button)} onClick={onClick}>
       {children}
     </div>
   );
