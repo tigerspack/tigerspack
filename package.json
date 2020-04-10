@@ -1,6 +1,6 @@
 {
   "name": "tigerspack",
-  "version": "0.0.12",
+  "version": "0.0.5",
   "description": "UI Framework",
   "main": "dist/index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-react": "^7.17.0",
     "jest": "^25.1.0",
+    "jest-aphrodite-react": "^2.2.0",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^16.2.1",
     "react": "^16.13.0",
@@ -46,6 +47,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "aphrodite": "^2.4.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
@@ -68,9 +70,13 @@
       "src"
     ],
     "snapshotResolver": "<rootDir>/spec/jestSnapshotResolver",
+    "snapshotSerializers": [
+      "jest-aphrodite-react"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/node_modules/jest-enzyme/lib/index.js",
-      "<rootDir>/spec/jestSetupTests.js"
+      "<rootDir>/spec/jestSetupTests.js",
+      "<rootDir>/spec/jestSetupJsDom.js"
     ]
   }
 }
