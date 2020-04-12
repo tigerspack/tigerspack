@@ -538,7 +538,12 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "Button", function() { return /* binding */ index_Button; });
+__webpack_require__.d(__webpack_exports__, "setColorScheme", function() { return /* binding */ setColorScheme; });
 
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
 var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_require__(3);
@@ -809,9 +814,7 @@ var importantify = function importantify(string
 
 var MAP_EXISTS = typeof Map !== 'undefined';
 
-var OrderedElements =
-/*#__PURE__*/
-function () {
+var OrderedElements = /*#__PURE__*/function () {
   /* ::
   elements: {[string]: any};
   keyOrder: string[];
@@ -1661,9 +1664,7 @@ function hyphenateStyleName(name) {
   return cache[name] = msPattern.test(hName) ? '-' + hName : hName;
 }
 
-var hyphenateStyleName$1 =
-/*#__PURE__*/
-Object.freeze({
+var hyphenateStyleName$1 = /*#__PURE__*/Object.freeze({
   default: hyphenateStyleName
 });
 
@@ -2840,13 +2841,75 @@ var setColor = function setColor(scheme) {
 
 
 var Button_Button = function Button(props) {
+  var children = props.children,
+      onClick = props.onClick,
+      disabled = props.disabled,
+      size = props.size,
+      type = props.type;
   var palette = colors[props.theme] ? colors[props.theme] : colors.primary;
+  var dynamicStyles = {};
+
+  switch (type) {
+    case 'text':
+      {
+        dynamicStyles.background = 'transparent';
+        dynamicStyles.backgroundHover = palette.color;
+        dynamicStyles.color = palette.color;
+        dynamicStyles.colorHover = palette.hoverText;
+        break;
+      }
+
+    case 'outline':
+      {
+        dynamicStyles.background = 'transparent';
+        dynamicStyles.border = "1px solid ".concat(palette.color);
+        dynamicStyles.backgroundHover = palette.color;
+        dynamicStyles.color = palette.color;
+        dynamicStyles.colorHover = palette.hoverText;
+        break;
+      }
+
+    default:
+      {
+        dynamicStyles.background = palette.color;
+        dynamicStyles.border = '1px solid transparent';
+        dynamicStyles.backgroundHover = palette.hoverColor;
+        dynamicStyles.color = palette.text;
+        dynamicStyles.colorHover = palette.text;
+        break;
+      }
+  }
+
+  switch (size) {
+    case 'small':
+      {
+        dynamicStyles.padding = '4px 10px';
+        dynamicStyles.fontSize = '12px';
+        dynamicStyles.lineHeight = 1.5;
+        break;
+      }
+
+    case 'large':
+      {
+        dynamicStyles.padding = '10px 16px';
+        dynamicStyles.fontSize = '18px';
+        dynamicStyles.lineHeight = 1.3333333;
+        break;
+      }
+
+    default:
+      {
+        dynamicStyles.padding = '6px 16px';
+        dynamicStyles.fontSize = '14px';
+        dynamicStyles.lineHeight = 1.52857143;
+        break;
+      }
+  }
+
   var styles = es_StyleSheet.create({
     button: {
-      borderRadius: '4px',
       boxSizing: 'border-box',
       position: 'relative',
-      fontSize: '14px',
       outline: 'none',
       transition: 'all 0.1s',
       display: 'inline-block',
@@ -2854,33 +2917,38 @@ var Button_Button = function Button(props) {
       fontWeight: 500,
       textAlign: 'center',
       verticalAlign: 'middle',
-      cursor: 'pointer',
       backgroundImage: 'none',
-      border: '1px solid transparent',
       whiteSpace: 'nowrap',
-      padding: '6px 16px',
-      lineHeight: 1.52857143,
       userSelect: 'none',
-      backgroundColor: palette.color,
-      color: palette.text,
+      borderRadius: type !== 'rounded' ? '4px' : '20px',
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      opacity: disabled ? 0.7 : 1,
+      backgroundColor: dynamicStyles.background,
+      border: dynamicStyles.border,
+      color: dynamicStyles.color,
+      fontSize: dynamicStyles.fontSize,
+      lineHeight: dynamicStyles.lineHeight,
+      padding: dynamicStyles.padding,
       ':hover': {
+        color: !disabled && dynamicStyles.colorHover,
         textDecoration: 'none',
-        backgroundColor: palette.hoverColor
+        backgroundColor: !disabled && dynamicStyles.backgroundHover
       }
     }
   });
-  var children = props.children,
-      onClick = props.onClick;
   return external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
     className: css(styles.button),
-    onClick: onClick
+    onClick: disabled ? function () {} : onClick
   }, children);
 };
 
 Button_Button.propTypes = {
   theme: prop_types_default.a.string,
   children: prop_types_default.a.any.isRequired,
-  onClick: prop_types_default.a.func.isRequired
+  onClick: prop_types_default.a.func.isRequired,
+  size: prop_types_default.a.string,
+  type: prop_types_default.a.string,
+  disabled: prop_types_default.a.bool
 };
 Button_Button.defaultProps = {
   theme: 'primary'
@@ -2890,8 +2958,6 @@ Button_Button.defaultProps = {
 
 /* harmony default export */ var components_Button = (components_Button_Button);
 // CONCATENATED MODULE: ./index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Button", function() { return index_Button; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setColorScheme", function() { return setColorScheme; });
 
  // Components
 
