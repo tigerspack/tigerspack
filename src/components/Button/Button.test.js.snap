@@ -2,11 +2,9 @@
 
 exports[`Button should render correctly 1`] = `
 .button {
-  border-radius: 4px !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
   position: relative !important;
-  font-size: 14px !important;
   outline: none !important;
   -webkit-transition: all 0.1s !important;
   -moz-transition: all 0.1s !important;
@@ -16,21 +14,25 @@ exports[`Button should render correctly 1`] = `
   font-weight: 500 !important;
   text-align: center !important;
   vertical-align: middle !important;
-  cursor: pointer !important;
   background-image: none !important;
-  border: 1px solid transparent !important;
   white-space: nowrap !important;
-  padding: 6px 16px !important;
-  line-height: 1.52857143 !important;
   -webkit-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
   background-color: #3F88C5 !important;
+  border: 1px solid transparent !important;
   color: #fff !important;
+  font-size: 14px !important;
+  line-height: 1.52857143 !important;
+  padding: 6px 16px !important;
 }
 
 .button:hover {
+  color: #fff !important;
   text-decoration: none !important;
   background-color: #619DCF !important;
 }
