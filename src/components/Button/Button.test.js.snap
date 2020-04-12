@@ -1,14 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Button large outline button 1`] = `
+.button {
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  outline: none !important;
+  -webkit-transition: all 0.5s !important;
+  -moz-transition: all 0.5s !important;
+  transition: all 0.5s !important;
+  display: inline-block !important;
+  margin-bottom: 0px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  background-image: none !important;
+  white-space: nowrap !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  background-color: transparent !important;
+  border: 1px solid #3F88C5 !important;
+  color: #3F88C5 !important;
+  font-size: 18px !important;
+  line-height: 1.3333333 !important;
+  padding: 10px 16px !important;
+}
+
+.button:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+  background-color: #3F88C5 !important;
+}
+
+<div
+  className="button"
+  onClick={[MockFunction]}
+>
+  Test button
+</div>
+`;
+
 exports[`Button should render correctly 1`] = `
 .button {
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
   position: relative !important;
   outline: none !important;
-  -webkit-transition: all 0.1s !important;
-  -moz-transition: all 0.1s !important;
-  transition: all 0.1s !important;
+  -webkit-transition: all 0.5s !important;
+  -moz-transition: all 0.5s !important;
+  transition: all 0.5s !important;
   display: inline-block !important;
   margin-bottom: 0px !important;
   font-weight: 500 !important;
@@ -35,6 +80,51 @@ exports[`Button should render correctly 1`] = `
   color: #fff !important;
   text-decoration: none !important;
   background-color: #619DCF !important;
+}
+
+<div
+  className="button"
+  onClick={[MockFunction]}
+>
+  Test button
+</div>
+`;
+
+exports[`Button small text button 1`] = `
+.button {
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  outline: none !important;
+  -webkit-transition: all 0.5s !important;
+  -moz-transition: all 0.5s !important;
+  transition: all 0.5s !important;
+  display: inline-block !important;
+  margin-bottom: 0px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  background-image: none !important;
+  white-space: nowrap !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  background-color: transparent !important;
+  border: undefined !important;
+  color: #3F88C5 !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  padding: 4px 10px !important;
+}
+
+.button:hover {
+  color: #fff !important;
+  text-decoration: none !important;
+  background-color: #3F88C5 !important;
 }
 
 <div
