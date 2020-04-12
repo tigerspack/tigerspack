@@ -2844,6 +2844,7 @@ var Button_Button = function Button(props) {
   var children = props.children,
       onClick = props.onClick,
       disabled = props.disabled,
+      icon = props.icon,
       size = props.size,
       type = props.type;
   var palette = colors[props.theme] ? colors[props.theme] : colors.primary;
@@ -2884,6 +2885,7 @@ var Button_Button = function Button(props) {
     case 'small':
       {
         dynamicStyles.padding = '4px 10px';
+        dynamicStyles.iconMargin = 6;
         dynamicStyles.fontSize = '12px';
         dynamicStyles.lineHeight = 1.5;
         break;
@@ -2892,6 +2894,7 @@ var Button_Button = function Button(props) {
     case 'large':
       {
         dynamicStyles.padding = '10px 16px';
+        dynamicStyles.iconMargin = 8;
         dynamicStyles.fontSize = '18px';
         dynamicStyles.lineHeight = 1.3333333;
         break;
@@ -2900,6 +2903,7 @@ var Button_Button = function Button(props) {
     default:
       {
         dynamicStyles.padding = '6px 16px';
+        dynamicStyles.iconMargin = 8;
         dynamicStyles.fontSize = '14px';
         dynamicStyles.lineHeight = 1.52857143;
         break;
@@ -2934,12 +2938,18 @@ var Button_Button = function Button(props) {
         textDecoration: 'none',
         backgroundColor: !disabled && dynamicStyles.backgroundHover
       }
+    },
+    icon: {
+      marginLeft: "-".concat(dynamicStyles.iconMargin / 2, "px"),
+      marginRight: children ? "".concat(dynamicStyles.iconMargin, "px") : "-".concat(dynamicStyles.iconMargin / 2, "px")
     }
   });
   return external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
     className: css(styles.button),
     onClick: disabled ? function () {} : onClick
-  }, children);
+  }, icon ? external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+    className: css(styles.icon)
+  }, icon) : '', children);
 };
 
 Button_Button.propTypes = {
@@ -2948,7 +2958,8 @@ Button_Button.propTypes = {
   onClick: prop_types_default.a.func.isRequired,
   size: prop_types_default.a.string,
   type: prop_types_default.a.string,
-  disabled: prop_types_default.a.bool
+  disabled: prop_types_default.a.bool,
+  icon: prop_types_default.a.any
 };
 Button_Button.defaultProps = {
   theme: 'primary'
