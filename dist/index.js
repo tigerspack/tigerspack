@@ -2915,7 +2915,7 @@ var Button_Button = function Button(props) {
       boxSizing: 'border-box',
       position: 'relative',
       outline: 'none',
-      transition: 'all 0.1s',
+      transition: 'all 0.5s',
       display: 'inline-block',
       marginBottom: 0,
       fontWeight: 500,

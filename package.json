@@ -58,7 +58,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}",
       "!src/**/index.{js,jsx,mjs}",
-      "!src/index.js"
+      "!src/index.js",
+      "!src/utils/**/*.{js,jsx,mjs}"
     ],
     "testEnvironment": "node",
     "moduleFileExtensions": [
