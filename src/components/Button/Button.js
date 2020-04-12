@@ -8,6 +8,7 @@ const Button = (props) => {
     children,
     onClick,
     disabled,
+    icon,
     size,
     type,
   } = props;
@@ -41,18 +42,21 @@ const Button = (props) => {
   switch (size) {
     case 'small': {
       dynamicStyles.padding = '4px 10px';
+      dynamicStyles.iconMargin = 6;
       dynamicStyles.fontSize = '12px';
       dynamicStyles.lineHeight = 1.5;
       break;
     }
     case 'large': {
       dynamicStyles.padding = '10px 16px';
+      dynamicStyles.iconMargin = 8;
       dynamicStyles.fontSize = '18px';
       dynamicStyles.lineHeight = 1.3333333;
       break;
     }
     default: {
       dynamicStyles.padding = '6px 16px';
+      dynamicStyles.iconMargin = 8;
       dynamicStyles.fontSize = '14px';
       dynamicStyles.lineHeight = 1.52857143;
       break;
@@ -87,9 +91,14 @@ const Button = (props) => {
         backgroundColor: !disabled && dynamicStyles.backgroundHover,
       },
     },
+    icon: {
+      marginLeft: `-${dynamicStyles.iconMargin / 2}px`,
+      marginRight: children ? `${dynamicStyles.iconMargin}px` : `-${dynamicStyles.iconMargin / 2}px`,
+    },
   });
   return (
     <div className={css(styles.button)} onClick={disabled ? () => {} : onClick}>
+      {icon ? <span className={css(styles.icon)}>{icon}</span> : ''}
       {children}
     </div>
   );
@@ -102,6 +111,7 @@ Button.propTypes = {
   size: PropTypes.string,
   type: PropTypes.string,
   disabled: PropTypes.bool,
+  icon: PropTypes.any,
 };
 
 Button.defaultProps = {
