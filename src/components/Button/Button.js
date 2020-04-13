@@ -10,9 +10,10 @@ const Button = (props) => {
     disabled,
     icon,
     size,
+    theme,
     type,
   } = props;
-  const palette = colors[props.theme] ? colors[props.theme] : colors.primary;
+  const palette = colors[theme] ? colors[theme] : colors.primary;
   const dynamicStyles = {};
   switch (type) {
     case 'text': {
