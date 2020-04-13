@@ -4,14 +4,10 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: './index.js',
   output: {
-    path: __dirname + '/dist',
+    path: `${__dirname}/dist`,
     filename: './index.js',
     publicPath: '/',
     libraryTarget: 'commonjs2',
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['node_modules'],
   },
   optimization: {
     minimize: false,
