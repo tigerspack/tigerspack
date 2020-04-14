@@ -14,7 +14,6 @@ The fastest UI framework for React
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tigerspack/tigerspack/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
 [![Tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-[![Last commit](https://img.shields.io/github/last-commit/tigerspack/tigerspack)](https://github.com/tigerspack/tigerspack/commits/master)
 
 </div>
 
