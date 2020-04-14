@@ -1,6 +1,6 @@
 {
   "name": "tigerspack",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "UI Framework",
   "main": "dist/index.js",
   "scripts": {
