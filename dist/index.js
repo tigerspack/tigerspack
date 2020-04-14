@@ -2917,7 +2917,6 @@ Alert_Alert.propTypes = {
   padding: prop_types_default.a.number
 };
 Alert_Alert.defaultProps = {
-  theme: 'primary',
   closeIconSize: 28,
   padding: 15
 };
@@ -2937,8 +2936,9 @@ var Button_Button = function Button(props) {
       disabled = props.disabled,
       icon = props.icon,
       size = props.size,
+      theme = props.theme,
       type = props.type;
-  var palette = colors[props.theme] ? colors[props.theme] : colors.primary;
+  var palette = colors[theme] ? colors[theme] : colors.primary;
   var dynamicStyles = {};
 
   switch (type) {

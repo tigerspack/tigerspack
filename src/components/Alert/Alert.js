@@ -64,7 +64,6 @@ Alert.propTypes = {
 };
 
 Alert.defaultProps = {
-  theme: 'primary',
   closeIconSize: 28,
   padding: 15,
 };
