@@ -3047,8 +3047,8 @@ Button_Button.propTypes = {
   theme: prop_types_default.a.string,
   children: prop_types_default.a.any.isRequired,
   onClick: prop_types_default.a.func.isRequired,
-  size: prop_types_default.a.string,
-  type: prop_types_default.a.string,
+  size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
+  type: prop_types_default.a.oneOf(['text', 'outline', 'large']),
   disabled: prop_types_default.a.bool,
   icon: prop_types_default.a.any
 };

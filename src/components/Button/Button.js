@@ -109,8 +109,8 @@ Button.propTypes = {
   theme: PropTypes.string,
   children: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
-  size: PropTypes.string,
-  type: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  type: PropTypes.oneOf(['text', 'outline', 'large']),
   disabled: PropTypes.bool,
   icon: PropTypes.any,
 };
