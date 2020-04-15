@@ -3046,15 +3046,12 @@ var Button_Button = function Button(props) {
 
 Button_Button.propTypes = {
   theme: prop_types_default.a.string,
-  children: prop_types_default.a.any.isRequired,
+  children: prop_types_default.a.any,
   onClick: prop_types_default.a.func.isRequired,
   size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
-  type: prop_types_default.a.oneOf(['text', 'outline', 'large']),
+  type: prop_types_default.a.oneOf(['text', 'outline', 'rounded']),
   disabled: prop_types_default.a.bool,
   icon: prop_types_default.a.any
-};
-Button_Button.defaultProps = {
-  theme: 'primary'
 };
 /* harmony default export */ var components_Button_Button = (Button_Button);
 // CONCATENATED MODULE: ./components/Button/index.js
@@ -3117,7 +3114,7 @@ var Card_Card = function Card(props) {
 
 Card_Card.propTypes = {
   children: prop_types_default.a.any.isRequired,
-  icon: prop_types_default.a.string,
+  icon: prop_types_default.a.any,
   withoutContainer: prop_types_default.a.bool,
   padding: prop_types_default.a.number,
   outline: prop_types_default.a.bool,
