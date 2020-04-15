@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { StyleSheet, css } from 'aphrodite';
 import { colors } from '../../utils/colors';
 
 const Card = (props) => {
   const {
     children,
+    className,
     title,
     icon,
     theme,
@@ -44,7 +46,7 @@ const Card = (props) => {
     },
   });
   return (
-    <div className={css(styles.card)}>
+    <div className={classNames(css(styles.card), { [className]: className })}>
       {title && <div className={css(styles.title)}>
         {icon && <span className={css(styles.icon)}>{icon}</span>}
         {title}
@@ -56,6 +58,7 @@ const Card = (props) => {
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
   icon: PropTypes.any,
   withoutContainer: PropTypes.bool,
   padding: PropTypes.number,
