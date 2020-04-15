@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { StyleSheet, css } from 'aphrodite';
 import { colors } from '../../utils/colors';
 
 const Button = (props) => {
   const {
     children,
+    className,
     onClick,
     disabled,
     icon,
@@ -98,7 +100,8 @@ const Button = (props) => {
     },
   });
   return (
-    <div className={css(styles.button)} onClick={disabled ? () => {} : onClick}>
+    <div className={classNames(css(styles.button), { [className]: className })}
+         onClick={disabled ? () => {} : onClick}>
       {icon ? <span className={css(styles.icon)}>{icon}</span> : ''}
       {children}
     </div>
@@ -108,6 +111,7 @@ const Button = (props) => {
 Button.propTypes = {
   theme: PropTypes.string,
   children: PropTypes.any,
+  className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   type: PropTypes.oneOf(['text', 'outline', 'rounded']),
