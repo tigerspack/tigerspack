@@ -3164,7 +3164,7 @@ var Card_Card = function Card(props) {
     title: {
       borderBottom: '2px solid #e7eaec',
       background: !outline ? palette.color : '',
-      color: !outline ? palette.text : '',
+      color: !outline ? palette.text : palette.color,
       width: '100%',
       boxSizing: 'border-box',
       padding: "".concat(padding, "px"),
