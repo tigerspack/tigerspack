@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 13.2.0
+  - 13
   - 12
   - 10
 branches:
@@ -15,5 +15,3 @@ script:
   - yarn lint
   - yarn build
   - yarn test
-after_script:
-  - yarn coveralls
