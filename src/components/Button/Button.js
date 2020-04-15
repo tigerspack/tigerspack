@@ -107,16 +107,12 @@ const Button = (props) => {
 
 Button.propTypes = {
   theme: PropTypes.string,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
   onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  type: PropTypes.oneOf(['text', 'outline', 'large']),
+  type: PropTypes.oneOf(['text', 'outline', 'rounded']),
   disabled: PropTypes.bool,
   icon: PropTypes.any,
-};
-
-Button.defaultProps = {
-  theme: 'primary',
 };
 
 export default Button;
