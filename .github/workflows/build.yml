@@ -1,6 +1,9 @@
-name: Deploy
+name: Build
 on:
   push:
+    branches:
+      - master
+  pull_request:
     branches:
       - master
 jobs:
@@ -11,12 +14,12 @@ jobs:
         node-version: [13.x]
     steps:
       - uses: actions/checkout@master
-      - name: install, build, and test
+      - name: install, lint, build and test
         run: |
           yarn install
           yarn lint
           yarn build
-          yarn test --coverage
+          yarn test
         env:
           CI: true
       - name: Coveralls
