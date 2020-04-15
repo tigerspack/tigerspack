@@ -56,7 +56,7 @@ const Card = (props) => {
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,
-  icon: PropTypes.string,
+  icon: PropTypes.any,
   withoutContainer: PropTypes.bool,
   padding: PropTypes.number,
   outline: PropTypes.bool,
