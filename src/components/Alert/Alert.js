@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { StyleSheet, css } from 'aphrodite';
 import { colors } from '../../utils/colors';
 
 const Alert = (props) => {
   const {
     children,
+    className,
     dismissible,
     outline,
     theme,
@@ -47,7 +49,7 @@ const Alert = (props) => {
   });
   const [alertState, setAlertState] = useState(false);
   return (
-    <div className={css(styles.alert)} style={{ display: alertState ? 'none' : 'block' }}>
+    <div className={classNames(css(styles.alert), { [className]: className })} style={{ display: alertState ? 'none' : 'block' }}>
       {dismissible ? <div className={css(styles.close)} onClick={() => setAlertState(true)}>+</div> : ''}
       {children}
     </div>
@@ -57,6 +59,7 @@ const Alert = (props) => {
 Alert.propTypes = {
   theme: PropTypes.string,
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
   dismissible: PropTypes.bool,
   outline: PropTypes.bool,
   closeIconSize: PropTypes.number,

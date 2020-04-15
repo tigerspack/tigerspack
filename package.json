@@ -1,8 +1,17 @@
 {
   "name": "tigerspack",
-  "version": "0.0.18",
-  "description": "UI Framework",
+  "version": "0.0.19",
+  "description": "The fastest UI framework for React",
   "main": "dist/index.js",
+  "keywords": [
+    "tigerspack",
+    "ui-framework",
+    "ui-components",
+    "ui-kit",
+    "react",
+    "react-components",
+    "design-system"
+  ],
   "scripts": {
     "build": "webpack --mode production",
     "start": "cd website && yarn start",
@@ -48,6 +57,7 @@
   },
   "dependencies": {
     "aphrodite": "^2.4.0",
+    "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
