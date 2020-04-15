@@ -22,7 +22,7 @@ exports[`Card Card with icon 1`] = `
 .title {
   border-bottom: 2px solid #e7eaec !important;
   background: !important;
-  color: !important;
+  color: #D15130 !important;
   width: 100% !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
@@ -77,7 +77,7 @@ exports[`Card Card without container 1`] = `
 .title {
   border-bottom: 2px solid #e7eaec !important;
   background: !important;
-  color: !important;
+  color: #D15130 !important;
   width: 100% !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
@@ -162,7 +162,7 @@ exports[`Card Outline Card 1`] = `
 .title {
   border-bottom: 2px solid #e7eaec !important;
   background: !important;
-  color: !important;
+  color: #D15130 !important;
   width: 100% !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
