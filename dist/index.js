@@ -544,6 +544,7 @@ __webpack_require__.r(__webpack_exports__);
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "Alert", function() { return /* binding */ index_Alert; });
 __webpack_require__.d(__webpack_exports__, "Button", function() { return /* binding */ index_Button; });
+__webpack_require__.d(__webpack_exports__, "Card", function() { return /* binding */ index_Card; });
 __webpack_require__.d(__webpack_exports__, "setColorScheme", function() { return /* binding */ setColorScheme; });
 
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
@@ -3059,13 +3060,86 @@ Button_Button.defaultProps = {
 // CONCATENATED MODULE: ./components/Button/index.js
 
 /* harmony default export */ var components_Button = (components_Button_Button);
+// CONCATENATED MODULE: ./components/Card/Card.js
+
+
+
+
+
+var Card_Card = function Card(props) {
+  var children = props.children,
+      title = props.title,
+      icon = props.icon,
+      theme = props.theme,
+      outline = props.outline,
+      padding = props.padding,
+      withoutContainer = props.withoutContainer;
+  var palette = colors[theme] ? colors[theme] : colors.primary;
+  var styles = es_StyleSheet.create({
+    card: {
+      borderTop: outline && "3px solid ".concat(palette.color),
+      background: '#fff',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
+      boxSizing: 'border-box',
+      transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
+      borderRadius: '3px',
+      marginBottom: "".concat(padding, "px"),
+      overflow: 'hidden'
+    },
+    title: {
+      borderBottom: '2px solid #e7eaec',
+      background: !outline ? palette.color : '',
+      color: !outline ? palette.text : '',
+      width: '100%',
+      boxSizing: 'border-box',
+      padding: "".concat(padding, "px"),
+      fontSize: '14px',
+      fontWeight: '600',
+      textTransform: 'uppercase'
+    },
+    content: {
+      padding: "".concat(padding, "px")
+    },
+    icon: {
+      marginRight: '10px'
+    }
+  });
+  return external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    className: css(styles.card)
+  }, title && external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    className: css(styles.title)
+  }, icon && external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
+    className: css(styles.icon)
+  }, icon), title), !withoutContainer ? external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    className: css(styles.content)
+  }, children) : children);
+};
+
+Card_Card.propTypes = {
+  children: prop_types_default.a.any.isRequired,
+  icon: prop_types_default.a.string,
+  withoutContainer: prop_types_default.a.bool,
+  padding: prop_types_default.a.number,
+  outline: prop_types_default.a.bool,
+  title: prop_types_default.a.string,
+  theme: prop_types_default.a.string
+};
+Card_Card.defaultProps = {
+  padding: 15
+};
+/* harmony default export */ var components_Card_Card = (Card_Card);
+// CONCATENATED MODULE: ./components/Card/index.js
+
+/* harmony default export */ var components_Card = (components_Card_Card);
 // CONCATENATED MODULE: ./index.js
+
 
 
  // Components
 
 var index_Alert = components_Alert;
-var index_Button = components_Button; // Method
+var index_Button = components_Button;
+var index_Card = components_Card; // Method
 
 var setColorScheme = setColor; // Default export
 
