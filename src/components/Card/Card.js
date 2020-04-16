@@ -18,6 +18,7 @@ const Card = (props) => {
   const palette = colors[theme] ? colors[theme] : colors.primary;
   const styles = StyleSheet.create({
     card: {
+      border: outline ? 'none' : `1px solid ${palette.color}`,
       borderTop: outline && `3px solid ${palette.color}`,
       background: '#fff',
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
@@ -28,7 +29,7 @@ const Card = (props) => {
       overflow: 'hidden',
     },
     title: {
-      borderBottom: '2px solid #e7eaec',
+      borderBottom: outline && '2px solid #e7eaec',
       background: !outline ? palette.color : '',
       color: !outline ? palette.text : palette.color,
       width: '100%',
