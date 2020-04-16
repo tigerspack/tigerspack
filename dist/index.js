@@ -3152,6 +3152,7 @@ var Card_Card = function Card(props) {
   var palette = colors[theme] ? colors[theme] : colors.primary;
   var styles = es_StyleSheet.create({
     card: {
+      border: outline ? 'none' : "1px solid ".concat(palette.color),
       borderTop: outline && "3px solid ".concat(palette.color),
       background: '#fff',
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
@@ -3162,7 +3163,7 @@ var Card_Card = function Card(props) {
       overflow: 'hidden'
     },
     title: {
-      borderBottom: '2px solid #e7eaec',
+      borderBottom: outline && '2px solid #e7eaec',
       background: !outline ? palette.color : '',
       color: !outline ? palette.text : palette.color,
       width: '100%',
