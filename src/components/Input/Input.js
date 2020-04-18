@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { StyleSheet, css } from 'aphrodite';
+import { css } from 'emotion';
 // import { colors } from '../../utils/colors';
 
 const Input = (props) => {
@@ -10,7 +10,7 @@ const Input = (props) => {
     placeholder,
   } = props;
   // const palette = colors[theme] ? colors[theme] : colors.primary;
-  const styles = StyleSheet.create({
+  const styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
@@ -40,7 +40,7 @@ const Input = (props) => {
       padding: '17px 14px',
       boxSizing: 'border-box',
     },
-  });
+  };
   return (
     <div className={classNames(css(styles.input), { [className]: className })}>
       { placeholder ? <div className={css(styles.label)}>{placeholder}</div> : '' }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { StyleSheet, css } from 'aphrodite';
+import { css } from 'emotion';
 import { colors } from '../../utils/colors';
 
 const Alert = (props) => {
@@ -15,7 +15,7 @@ const Alert = (props) => {
     padding,
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
-  const styles = StyleSheet.create({
+  const styles = {
     alert: {
       padding: `${padding}px`,
       background: outline ? palette.hoverColor : palette.color,
@@ -46,7 +46,7 @@ const Alert = (props) => {
         opacity: 1,
       },
     },
-  });
+  };
   const [alertState, setAlertState] = useState(false);
   return (
     <div className={classNames(css(styles.alert), { [className]: className })} style={{ display: alertState ? 'none' : 'block' }}>
