@@ -81,9 +81,6 @@
       "src"
     ],
     "snapshotResolver": "<rootDir>/spec/jestSnapshotResolver",
-    "snapshotSerializers": [
-      "jest-aphrodite-react"
-    ],
     "setupFilesAfterEnv": [
       "<rootDir>/node_modules/jest-enzyme/lib/index.js",
       "<rootDir>/spec/jestSetupTests.js",
