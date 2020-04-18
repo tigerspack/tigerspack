@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { css } from 'emotion';
 import { colors } from '../../utils/colors';
 
 const Card = (props) => {
@@ -47,12 +45,12 @@ const Card = (props) => {
     },
   };
   return (
-    <div className={classNames(css(styles.card), { [className]: className })}>
-      {title && <div className={css(styles.title)}>
-        {icon && <span className={css(styles.icon)}>{icon}</span>}
+    <div css={styles.card} className={className}>
+      {title && <div css={styles.title}>
+        {icon && <span css={styles.icon}>{icon}</span>}
         {title}
       </div>}
-      {!withoutContainer ? <div className={css(styles.content)}>{children}</div> : children}
+      {!withoutContainer ? <div css={styles.content}>{children}</div> : children}
     </div>
   );
 };

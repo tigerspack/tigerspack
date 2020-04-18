@@ -17,7 +17,7 @@ describe('Alert', () => {
   });
   it('Dismissible Alert close function', () => {
     const component = shallow(<Alert dismissible>Test alert</Alert>);
-    component.find(`.${component.get(0).props.children[0].props.className}`).simulate('click');
+    component.childAt(0).simulate('click');
     expect(component.get(0).props.style.display).toEqual('none');
   });
 });
