@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { css } from 'emotion';
 import { colors } from '../../utils/colors';
 
 const Alert = (props) => {
@@ -49,8 +47,8 @@ const Alert = (props) => {
   };
   const [alertState, setAlertState] = useState(false);
   return (
-    <div className={classNames(css(styles.alert), { [className]: className })} style={{ display: alertState ? 'none' : 'block' }}>
-      {dismissible ? <div className={css(styles.close)} onClick={() => setAlertState(true)}>+</div> : ''}
+    <div css={styles.alert} className={className} style={{ display: alertState ? 'none' : 'block' }}>
+      {dismissible ? <div css={styles.close} onClick={() => setAlertState(true)}>+</div> : ''}
       {children}
     </div>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { css } from 'emotion';
+// import classNames from 'classnames';
 // import { colors } from '../../utils/colors';
 
 const Input = (props) => {
@@ -42,9 +41,9 @@ const Input = (props) => {
     },
   };
   return (
-    <div className={classNames(css(styles.input), { [className]: className })}>
-      { placeholder ? <div className={css(styles.label)}>{placeholder}</div> : '' }
-      <input className={css(styles.control)} autoComplete="off" placeholder={placeholder} />
+    <div css={styles.input} className={className}>
+      { placeholder ? <div css={styles.label}>{placeholder}</div> : '' }
+      <input css={styles.control} autoComplete="off" placeholder={placeholder} />
     </div>
   );
 };

@@ -109,59 +109,15 @@ module.exports = require("react");
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
 
-/* global define */
-(function () {
-  'use strict';
-
-  var hasOwn = {}.hasOwnProperty;
-
-  function classNames() {
-    var classes = [];
-
-    for (var i = 0; i < arguments.length; i++) {
-      var arg = arguments[i];
-      if (!arg) continue;
-      var argType = typeof arg;
-
-      if (argType === 'string' || argType === 'number') {
-        classes.push(arg);
-      } else if (Array.isArray(arg) && arg.length) {
-        var inner = classNames.apply(null, arg);
-
-        if (inner) {
-          classes.push(inner);
-        }
-      } else if (argType === 'object') {
-        for (var key in arg) {
-          if (hasOwn.call(arg, key) && arg[key]) {
-            classes.push(key);
-          }
-        }
-      }
-    }
-
-    return classes.join(' ');
-  }
-
-  if ( true && module.exports) {
-    classNames.default = classNames;
-    module.exports = classNames;
-  } else if (true) {
-    // register as 'classnames', consistent with npm package name
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-      return classNames;
-    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
-})();
+module.exports = _inheritsLoose;
 
 /***/ }),
 /* 3 */
@@ -257,23 +213,84 @@ module.exports = ReactPropTypesSecret;
 __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
-__webpack_require__.d(__webpack_exports__, "Alert", function() { return /* binding */ index_Alert; });
-__webpack_require__.d(__webpack_exports__, "Button", function() { return /* binding */ index_Button; });
-__webpack_require__.d(__webpack_exports__, "Card", function() { return /* binding */ index_Card; });
-__webpack_require__.d(__webpack_exports__, "Input", function() { return /* binding */ index_Input; });
-__webpack_require__.d(__webpack_exports__, "setColorScheme", function() { return /* binding */ setColorScheme; });
+__webpack_require__.d(__webpack_exports__, "Alert", function() { return /* reexport */ components_Alert; });
+__webpack_require__.d(__webpack_exports__, "Button", function() { return /* reexport */ components_Button; });
+__webpack_require__.d(__webpack_exports__, "Card", function() { return /* reexport */ components_Card; });
+__webpack_require__.d(__webpack_exports__, "Input", function() { return /* reexport */ components_Input; });
+__webpack_require__.d(__webpack_exports__, "setColor", function() { return /* reexport */ setColor; });
 
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
 var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_require__(1);
-var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_commonjs2_react_amd_React_root_React_);
 
 // EXTERNAL MODULE: ../node_modules/prop-types/index.js
 var prop_types = __webpack_require__(0);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
-// EXTERNAL MODULE: ../node_modules/classnames/index.js
-var classnames = __webpack_require__(2);
-var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
+// CONCATENATED MODULE: ./utils/colors.js
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var colors = {
+  primary: {
+    color: '#3F88C5',
+    text: '#fff',
+    hoverColor: '#619DCF',
+    hoverText: '#fff'
+  },
+  yellow: {
+    color: '#FDE74C',
+    text: '#304355',
+    hoverColor: '#FDEF8D',
+    hoverText: '#596977'
+  },
+  danger: {
+    color: '#D15130',
+    text: '#fff',
+    hoverColor: '#E76846',
+    hoverText: '#fff'
+  },
+  warning: {
+    color: '#FA7921',
+    text: '#fff',
+    hoverColor: '#FB9D5D',
+    hoverText: '#fff'
+  },
+  success: {
+    color: '#9BC53D',
+    text: '#fff',
+    hoverColor: '#B6D471',
+    hoverText: '#fff'
+  },
+  info: {
+    color: '#5BC0EB',
+    text: '#fff',
+    hoverColor: '#87D1F0',
+    hoverText: '#fff'
+  },
+  dark: {
+    color: '#304355',
+    text: '#fff',
+    hoverColor: '#596977',
+    hoverText: '#fff'
+  },
+  light: {
+    color: '#E5E8EC',
+    text: '#304355',
+    hoverColor: '#EEF0F2',
+    hoverText: '#596977'
+  }
+};
+var setColor = function setColor(scheme) {
+  Object.keys(scheme).forEach(function (theme) {
+    colors[theme] = _objectSpread({}, colors[theme], {}, scheme[theme]);
+  });
+};
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/inheritsLoose.js
+var inheritsLoose = __webpack_require__(2);
+var inheritsLoose_default = /*#__PURE__*/__webpack_require__.n(inheritsLoose);
 
 // CONCATENATED MODULE: ../node_modules/@emotion/sheet/dist/sheet.browser.esm.js
 /*
@@ -1191,6 +1208,48 @@ var cache_browser_esm_createCache = function createCache(options) {
 };
 
 /* harmony default export */ var cache_browser_esm = (cache_browser_esm_createCache);
+// CONCATENATED MODULE: ../node_modules/@emotion/utils/dist/utils.browser.esm.js
+var isBrowser = "object" !== 'undefined';
+
+function getRegisteredStyles(registered, registeredStyles, classNames) {
+  var rawClassName = '';
+  classNames.split(' ').forEach(function (className) {
+    if (registered[className] !== undefined) {
+      registeredStyles.push(registered[className]);
+    } else {
+      rawClassName += className + " ";
+    }
+  });
+  return rawClassName;
+}
+
+var insertStyles = function insertStyles(cache, serialized, isStringTag) {
+  var className = cache.key + "-" + serialized.name;
+
+  if ( // we only need to add the styles to the registered cache if the
+  // class name could be used further down
+  // the tree but if it's a string tag, we know it won't
+  // so we don't have to add it to registered cache.
+  // this improves memory usage since we can avoid storing the whole style string
+  (isStringTag === false || // we need to always store it if we're in compat mode and
+  // in node since emotion-server relies on whether a style is in
+  // the registered cache to know whether a style is global or not
+  // also, note that this check will be dead code eliminated in the browser
+  isBrowser === false && cache.compat !== undefined) && cache.registered[className] === undefined) {
+    cache.registered[className] = serialized.styles;
+  }
+
+  if (cache.inserted[serialized.name] === undefined) {
+    var current = serialized;
+
+    do {
+      var maybeStyles = cache.insert("." + className, current, cache.sheet, true);
+      current = current.next;
+    } while (current !== undefined);
+  }
+};
+
+
 // CONCATENATED MODULE: ../node_modules/@emotion/hash/dist/hash.browser.esm.js
 /* eslint-disable */
 // Inspired by https://github.com/garycourt/murmurhash-js
@@ -1560,149 +1619,252 @@ var serialize_browser_esm_serializeStyles = function serializeStyles(args, regis
 };
 
 
-// CONCATENATED MODULE: ../node_modules/@emotion/utils/dist/utils.browser.esm.js
-var isBrowser = "object" !== 'undefined';
+// CONCATENATED MODULE: ../node_modules/@emotion/css/dist/css.browser.esm.js
 
-function getRegisteredStyles(registered, registeredStyles, classNames) {
-  var rawClassName = '';
-  classNames.split(' ').forEach(function (className) {
-    if (registered[className] !== undefined) {
-      registeredStyles.push(registered[className]);
-    } else {
-      rawClassName += className + " ";
-    }
-  });
-  return rawClassName;
+
+function css_browser_esm_css() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return serialize_browser_esm_serializeStyles(args);
 }
 
-var insertStyles = function insertStyles(cache, serialized, isStringTag) {
-  var className = cache.key + "-" + serialized.name;
+/* harmony default export */ var css_browser_esm = (css_browser_esm_css);
+// CONCATENATED MODULE: ../node_modules/@emotion/core/dist/core.browser.esm.js
 
-  if ( // we only need to add the styles to the registered cache if the
-  // class name could be used further down
-  // the tree but if it's a string tag, we know it won't
-  // so we don't have to add it to registered cache.
-  // this improves memory usage since we can avoid storing the whole style string
-  (isStringTag === false || // we need to always store it if we're in compat mode and
-  // in node since emotion-server relies on whether a style is in
-  // the registered cache to know whether a style is global or not
-  // also, note that this check will be dead code eliminated in the browser
-  isBrowser === false && cache.compat !== undefined) && cache.registered[className] === undefined) {
-    cache.registered[className] = serialized.styles;
-  }
 
-  if (cache.inserted[serialized.name] === undefined) {
-    var current = serialized;
 
-    do {
-      var maybeStyles = cache.insert("." + className, current, cache.sheet, true);
-      current = current.next;
-    } while (current !== undefined);
-  }
+
+
+
+
+
+var EmotionCacheContext = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createContext"])( // we're doing this to avoid preconstruct's dead code elimination in this one case
+// because this module is primarily intended for the browser and node
+// but it's also required in react native and similar environments sometimes
+// and we could have a special build just for that
+// but this is much easier and the native packages
+// might use a different theme context in the future anyway
+typeof HTMLElement !== 'undefined' ? cache_browser_esm() : null);
+var ThemeContext = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createContext"])({});
+var CacheProvider = EmotionCacheContext.Provider;
+
+var core_browser_esm_withEmotionCache = function withEmotionCache(func) {
+  var render = function render(props, ref) {
+    return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(EmotionCacheContext.Consumer, null, function (cache) {
+      return func(props, cache, ref);
+    });
+  }; // $FlowFixMe
+
+
+  return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["forwardRef"])(render);
+}; // thus we only need to replace what is a valid character for JS, but not for CSS
+
+
+var sanitizeIdentifier = function sanitizeIdentifier(identifier) {
+  return identifier.replace(/\$/g, '-');
 };
 
+var typePropName = '__EMOTION_TYPE_PLEASE_DO_NOT_USE__';
+var labelPropName = '__EMOTION_LABEL_PLEASE_DO_NOT_USE__';
+var core_browser_esm_hasOwnProperty = Object.prototype.hasOwnProperty;
 
-// CONCATENATED MODULE: ../node_modules/create-emotion/dist/create-emotion.browser.esm.js
+var core_browser_esm_render = function render(cache, props, theme, ref) {
+  var cssProp = theme === null ? props.css : props.css(theme); // so that using `css` from `emotion` and passing the result to the css prop works
+  // not passing the registered cache to serializeStyles because it would
+  // make certain babel optimisations not possible
 
-
-
-
-function insertWithoutScoping(cache, serialized) {
-  if (cache.inserted[serialized.name] === undefined) {
-    return cache.insert('', serialized, cache.sheet, true);
-  }
-}
-
-function merge(registered, css, className) {
-  var registeredStyles = [];
-  var rawClassName = getRegisteredStyles(registered, registeredStyles, className);
-
-  if (registeredStyles.length < 2) {
-    return className;
+  if (typeof cssProp === 'string' && cache.registered[cssProp] !== undefined) {
+    cssProp = cache.registered[cssProp];
   }
 
-  return rawClassName + css(registeredStyles);
-}
+  var type = props[typePropName];
+  var registeredStyles = [cssProp];
+  var className = '';
 
-var create_emotion_browser_esm_createEmotion = function createEmotion(options) {
-  var cache = cache_browser_esm(options); // $FlowFixMe
+  if (typeof props.className === 'string') {
+    className = getRegisteredStyles(cache.registered, registeredStyles, props.className);
+  } else if (props.className != null) {
+    className = props.className + " ";
+  }
 
-  cache.sheet.speedy = function (value) {
-    if (false) {}
+  var serialized = serialize_browser_esm_serializeStyles(registeredStyles);
 
-    this.isSpeedy = value;
-  };
+  if (false) { var labelFromStack; }
 
-  cache.compat = true;
+  var rules = insertStyles(cache, serialized, typeof type === 'string');
+  className += cache.key + "-" + serialized.name;
+  var newProps = {};
 
-  var css = function css() {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+  for (var key in props) {
+    if (core_browser_esm_hasOwnProperty.call(props, key) && key !== 'css' && key !== typePropName && ( true || false)) {
+      newProps[key] = props[key];
     }
+  }
 
-    var serialized = serialize_browser_esm_serializeStyles(args, cache.registered, undefined);
-    insertStyles(cache, serialized, false);
-    return cache.key + "-" + serialized.name;
-  };
+  newProps.ref = ref;
+  newProps.className = className;
+  var ele = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(type, newProps);
+  return ele;
+};
 
-  var keyframes = function keyframes() {
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
-    }
-
-    var serialized = serialize_browser_esm_serializeStyles(args, cache.registered);
-    var animation = "animation-" + serialized.name;
-    insertWithoutScoping(cache, {
-      name: serialized.name,
-      styles: "@keyframes " + animation + "{" + serialized.styles + "}"
+var Emotion = /* #__PURE__ */core_browser_esm_withEmotionCache(function (props, cache, ref) {
+  // use Context.read for the theme when it's stable
+  if (typeof props.css === 'function') {
+    return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(ThemeContext.Consumer, null, function (theme) {
+      return core_browser_esm_render(cache, props, theme, ref);
     });
-    return animation;
-  };
+  }
 
-  var injectGlobal = function injectGlobal() {
-    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-      args[_key3] = arguments[_key3];
+  return core_browser_esm_render(cache, props, null, ref);
+});
+
+if (false) {} // $FlowFixMe
+
+
+var core_browser_esm_jsx = function jsx(type, props) {
+  var args = arguments;
+
+  if (props == null || !core_browser_esm_hasOwnProperty.call(props, 'css')) {
+    // $FlowFixMe
+    return external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"].apply(undefined, args);
+  }
+
+  if (false) {}
+
+  var argsLength = args.length;
+  var createElementArgArray = new Array(argsLength);
+  createElementArgArray[0] = Emotion;
+  var newProps = {};
+
+  for (var key in props) {
+    if (core_browser_esm_hasOwnProperty.call(props, key)) {
+      newProps[key] = props[key];
+    }
+  }
+
+  newProps[typePropName] = type;
+
+  if (false) { var match, error; }
+
+  createElementArgArray[1] = newProps;
+
+  for (var i = 2; i < argsLength; i++) {
+    createElementArgArray[i] = args[i];
+  } // $FlowFixMe
+
+
+  return external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"].apply(null, createElementArgArray);
+};
+
+var warnedAboutCssPropForGlobal = false;
+var Global = /* #__PURE__ */core_browser_esm_withEmotionCache(function (props, cache) {
+  if (false) {}
+
+  var styles = props.styles;
+
+  if (typeof styles === 'function') {
+    return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(ThemeContext.Consumer, null, function (theme) {
+      var serialized = serialize_browser_esm_serializeStyles([styles(theme)]);
+      return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(core_browser_esm_InnerGlobal, {
+        serialized: serialized,
+        cache: cache
+      });
+    });
+  }
+
+  var serialized = serialize_browser_esm_serializeStyles([styles]);
+  return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(core_browser_esm_InnerGlobal, {
+    serialized: serialized,
+    cache: cache
+  });
+}); // maintain place over rerenders.
+// initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
+// initial client-side render from SSR, use place of hydrating tag
+
+var core_browser_esm_InnerGlobal = /*#__PURE__*/function (_React$Component) {
+  inheritsLoose_default()(InnerGlobal, _React$Component);
+
+  function InnerGlobal(props, context, updater) {
+    return _React$Component.call(this, props, context, updater) || this;
+  }
+
+  var _proto = InnerGlobal.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.sheet = new StyleSheet({
+      key: this.props.cache.key + "-global",
+      nonce: this.props.cache.sheet.nonce,
+      container: this.props.cache.sheet.container
+    }); // $FlowFixMe
+
+    var node = document.querySelector("style[data-emotion-" + this.props.cache.key + "=\"" + this.props.serialized.name + "\"]");
+
+    if (node !== null) {
+      this.sheet.tags.push(node);
     }
 
-    var serialized = serialize_browser_esm_serializeStyles(args, cache.registered);
-    insertWithoutScoping(cache, serialized);
-  };
-
-  var cx = function cx() {
-    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-      args[_key4] = arguments[_key4];
+    if (this.props.cache.sheet.tags.length) {
+      this.sheet.before = this.props.cache.sheet.tags[0];
     }
 
-    return merge(cache.registered, css, create_emotion_browser_esm_classnames(args));
+    this.insertStyles();
   };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    if (prevProps.serialized.name !== this.props.serialized.name) {
+      this.insertStyles();
+    }
+  };
+
+  _proto.insertStyles = function insertStyles$1() {
+    if (this.props.serialized.next !== undefined) {
+      // insert keyframes
+      insertStyles(this.props.cache, this.props.serialized.next, true);
+    }
+
+    if (this.sheet.tags.length) {
+      // if this doesn't exist then it will be null so the style element will be appended
+      var element = this.sheet.tags[this.sheet.tags.length - 1].nextElementSibling;
+      this.sheet.before = element;
+      this.sheet.flush();
+    }
+
+    this.props.cache.insert("", this.props.serialized, this.sheet, false);
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.sheet.flush();
+  };
+
+  _proto.render = function render() {
+    return null;
+  };
+
+  return InnerGlobal;
+}(external_commonjs_react_commonjs2_react_amd_React_root_React_["Component"]);
+
+var core_browser_esm_keyframes = function keyframes() {
+  var insertable = css_browser_esm.apply(void 0, arguments);
+  var name = "animation-" + insertable.name; // $FlowFixMe
 
   return {
-    css: css,
-    cx: cx,
-    injectGlobal: injectGlobal,
-    keyframes: keyframes,
-    hydrate: function hydrate(ids) {
-      ids.forEach(function (key) {
-        cache.inserted[key] = true;
-      });
-    },
-    flush: function flush() {
-      cache.registered = {};
-      cache.inserted = {};
-      cache.sheet.flush();
-    },
-    // $FlowFixMe
-    sheet: cache.sheet,
-    cache: cache,
-    getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),
-    merge: merge.bind(null, cache.registered, css)
+    name: name,
+    styles: "@keyframes " + name + "{" + insertable.styles + "}",
+    anim: 1,
+    toString: function toString() {
+      return "_EMO_" + this.name + "_" + this.styles + "_EMO_";
+    }
   };
 };
 
-var create_emotion_browser_esm_classnames = function classnames(args) {
+var classnames = function classnames(args) {
+  var len = args.length;
+  var i = 0;
   var cls = '';
 
-  for (var i = 0; i < args.length; i++) {
+  for (; i < len; i++) {
     var arg = args[i];
     if (arg == null) continue;
     var toAdd = void 0;
@@ -1744,88 +1906,61 @@ var create_emotion_browser_esm_classnames = function classnames(args) {
   return cls;
 };
 
-/* harmony default export */ var create_emotion_browser_esm = (create_emotion_browser_esm_createEmotion);
-// CONCATENATED MODULE: ../node_modules/emotion/dist/emotion.esm.js
+function merge(registered, css, className) {
+  var registeredStyles = [];
+  var rawClassName = getRegisteredStyles(registered, registeredStyles, className);
 
-
-var _createEmotion = create_emotion_browser_esm(),
-    flush = _createEmotion.flush,
-    hydrate = _createEmotion.hydrate,
-    emotion_esm_cx = _createEmotion.cx,
-    emotion_esm_merge = _createEmotion.merge,
-    emotion_esm_getRegisteredStyles = _createEmotion.getRegisteredStyles,
-    emotion_esm_injectGlobal = _createEmotion.injectGlobal,
-    emotion_esm_keyframes = _createEmotion.keyframes,
-    emotion_esm_css = _createEmotion.css,
-    sheet = _createEmotion.sheet,
-    emotion_esm_cache = _createEmotion.cache;
-
-
-// CONCATENATED MODULE: ./utils/colors.js
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var colors = {
-  primary: {
-    color: '#3F88C5',
-    text: '#fff',
-    hoverColor: '#619DCF',
-    hoverText: '#fff'
-  },
-  yellow: {
-    color: '#FDE74C',
-    text: '#304355',
-    hoverColor: '#FDEF8D',
-    hoverText: '#596977'
-  },
-  danger: {
-    color: '#D15130',
-    text: '#fff',
-    hoverColor: '#E76846',
-    hoverText: '#fff'
-  },
-  warning: {
-    color: '#FA7921',
-    text: '#fff',
-    hoverColor: '#FB9D5D',
-    hoverText: '#fff'
-  },
-  success: {
-    color: '#9BC53D',
-    text: '#fff',
-    hoverColor: '#B6D471',
-    hoverText: '#fff'
-  },
-  info: {
-    color: '#5BC0EB',
-    text: '#fff',
-    hoverColor: '#87D1F0',
-    hoverText: '#fff'
-  },
-  dark: {
-    color: '#304355',
-    text: '#fff',
-    hoverColor: '#596977',
-    hoverText: '#fff'
-  },
-  light: {
-    color: '#E5E8EC',
-    text: '#304355',
-    hoverColor: '#EEF0F2',
-    hoverText: '#596977'
+  if (registeredStyles.length < 2) {
+    return className;
   }
-};
-var setColor = function setColor(scheme) {
-  Object.keys(scheme).forEach(function (theme) {
-    colors[theme] = _objectSpread({}, colors[theme], {}, scheme[theme]);
-  });
-};
-// CONCATENATED MODULE: ./components/Alert/Alert.js
-function Alert_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+  return rawClassName + css(registeredStyles);
+}
+
+var ClassNames = core_browser_esm_withEmotionCache(function (props, context) {
+  return Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["createElement"])(ThemeContext.Consumer, null, function (theme) {
+    var hasRendered = false;
+
+    var css = function css() {
+      if (hasRendered && "production" !== 'production') {
+        throw new Error('css can only be used during render');
+      }
+
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      var serialized = serialize_browser_esm_serializeStyles(args, context.registered);
+      {
+        insertStyles(context, serialized, false);
+      }
+      return context.key + "-" + serialized.name;
+    };
+
+    var cx = function cx() {
+      if (hasRendered && "production" !== 'production') {
+        throw new Error('cx can only be used during render');
+      }
+
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return merge(context.registered, css, classnames(args));
+    };
+
+    var content = {
+      css: css,
+      cx: cx,
+      theme: theme
+    };
+    var ele = props.children(content);
+    hasRendered = true;
+    return ele;
+  });
+});
+
+// CONCATENATED MODULE: ./components/Alert/Alert.js
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1837,7 +1972,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -1891,13 +2025,14 @@ var Alert_Alert = function Alert(props) {
       alertState = _useState2[0],
       setAlertState = _useState2[1];
 
-  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(emotion_esm_css(styles.alert), Alert_defineProperty({}, className, className)),
+  return core_browser_esm_jsx("div", {
+    css: styles.alert,
+    className: className,
     style: {
       display: alertState ? 'none' : 'block'
     }
-  }, dismissible ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: emotion_esm_css(styles.close),
+  }, dismissible ? core_browser_esm_jsx("div", {
+    css: styles.close,
     onClick: function onClick() {
       return setAlertState(true);
     }
@@ -1922,9 +2057,6 @@ Alert_Alert.defaultProps = {
 
 /* harmony default export */ var components_Alert = (components_Alert_Alert);
 // CONCATENATED MODULE: ./components/Button/Button.js
-function Button_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 
@@ -2036,11 +2168,12 @@ var Button_Button = function Button(props) {
       marginRight: children ? "".concat(dynamicStyles.iconMargin, "px") : "-".concat(dynamicStyles.iconMargin / 2, "px")
     }
   };
-  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(emotion_esm_css(styles.button), Button_defineProperty({}, className, className)),
+  return core_browser_esm_jsx("div", {
+    css: styles.button,
+    className: className,
     onClick: disabled ? function () {} : onClick
-  }, icon ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-    className: emotion_esm_css(styles.icon)
+  }, icon ? core_browser_esm_jsx("span", {
+    css: styles.icon
   }, icon) : '', children);
 };
 
@@ -2059,9 +2192,6 @@ Button_Button.propTypes = {
 
 /* harmony default export */ var components_Button = (components_Button_Button);
 // CONCATENATED MODULE: ./components/Card/Card.js
-function Card_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 
@@ -2107,14 +2237,15 @@ var Card_Card = function Card(props) {
       marginRight: '10px'
     }
   };
-  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(emotion_esm_css(styles.card), Card_defineProperty({}, className, className))
-  }, title && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: emotion_esm_css(styles.title)
-  }, icon && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-    className: emotion_esm_css(styles.icon)
-  }, icon), title), !withoutContainer ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: emotion_esm_css(styles.content)
+  return core_browser_esm_jsx("div", {
+    css: styles.card,
+    className: className
+  }, title && core_browser_esm_jsx("div", {
+    css: styles.title
+  }, icon && core_browser_esm_jsx("span", {
+    css: styles.icon
+  }, icon), title), !withoutContainer ? core_browser_esm_jsx("div", {
+    css: styles.content
   }, children) : children);
 };
 
@@ -2136,12 +2267,11 @@ Card_Card.defaultProps = {
 
 /* harmony default export */ var components_Card = (components_Card_Card);
 // CONCATENATED MODULE: ./components/Input/Input.js
-function Input_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+ // import classNames from 'classnames';
+// import { colors } from '../../utils/colors';
 
 
-
-
- // import { colors } from '../../utils/colors';
 
 var Input_Input = function Input(props) {
   var className = props.className,
@@ -2178,12 +2308,13 @@ var Input_Input = function Input(props) {
       boxSizing: 'border-box'
     }
   };
-  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(emotion_esm_css(styles.input), Input_defineProperty({}, className, className))
-  }, placeholder ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: emotion_esm_css(styles.label)
-  }, placeholder) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
-    className: emotion_esm_css(styles.control),
+  return core_browser_esm_jsx("div", {
+    css: styles.input,
+    className: className
+  }, placeholder ? core_browser_esm_jsx("div", {
+    css: styles.label
+  }, placeholder) : '', core_browser_esm_jsx("input", {
+    css: styles.control,
     autoComplete: "off",
     placeholder: placeholder
   }));
@@ -2204,14 +2335,7 @@ Input_Input.propTypes = {
 
  // Components
 
-var index_Alert = components_Alert;
-var index_Button = components_Button;
-var index_Card = components_Card;
-var index_Input = components_Input; // Method
 
-var setColorScheme = setColor; // Default export
-
-/* harmony default export */ var index = __webpack_exports__["default"] = (null);
 
 /***/ })
 /******/ ]);

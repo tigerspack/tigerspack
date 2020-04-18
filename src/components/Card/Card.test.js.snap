@@ -1,74 +1,202 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Card Card with icon 1`] = `
-<div
-  className="css-1w9w0k"
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "none",
+      "borderRadius": "3px",
+      "borderTop": "3px solid #D15130",
+      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxSizing": "border-box",
+      "marginBottom": "15px",
+      "overflow": "hidden",
+      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+    }
+  }
 >
-  <div
-    className="css-ms1gmv"
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "background": "",
+        "borderBottom": "2px solid #e7eaec",
+        "boxSizing": "border-box",
+        "color": "#D15130",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "padding": "15px",
+        "textTransform": "uppercase",
+        "width": "100%",
+      }
+    }
   >
-    <span
-      className="css-lvyu5j"
+    <EmotionCssPropInternal
+      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+      __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
+      css={
+        Object {
+          "marginRight": "10px",
+        }
+      }
     >
       <span>
         icon
       </span>
-    </span>
+    </EmotionCssPropInternal>
     Test title
-  </div>
-  <div
-    className="css-1v1qs4"
+  </EmotionCssPropInternal>
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "padding": "15px",
+      }
+    }
   >
     Test Card
-  </div>
-</div>
+  </EmotionCssPropInternal>
+</EmotionCssPropInternal>
 `;
 
 exports[`Card Card without container 1`] = `
-<div
-  className="css-1w9w0k"
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "none",
+      "borderRadius": "3px",
+      "borderTop": "3px solid #D15130",
+      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxSizing": "border-box",
+      "marginBottom": "15px",
+      "overflow": "hidden",
+      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+    }
+  }
 >
-  <div
-    className="css-ms1gmv"
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "background": "",
+        "borderBottom": "2px solid #e7eaec",
+        "boxSizing": "border-box",
+        "color": "#D15130",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "padding": "15px",
+        "textTransform": "uppercase",
+        "width": "100%",
+      }
+    }
   >
-    <span
-      className="css-lvyu5j"
+    <EmotionCssPropInternal
+      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+      __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
+      css={
+        Object {
+          "marginRight": "10px",
+        }
+      }
     >
       <span>
         icon
       </span>
-    </span>
+    </EmotionCssPropInternal>
     Test title
-  </div>
+  </EmotionCssPropInternal>
   Test Card
-</div>
+</EmotionCssPropInternal>
 `;
 
 exports[`Card Default Card 1`] = `
-<div
-  className="css-y3qx6d"
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "1px solid #3F88C5",
+      "borderRadius": "3px",
+      "borderTop": undefined,
+      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxSizing": "border-box",
+      "marginBottom": "15px",
+      "overflow": "hidden",
+      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+    }
+  }
 >
-  <div
-    className="css-1v1qs4"
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "padding": "15px",
+      }
+    }
   >
     Test alert
-  </div>
-</div>
+  </EmotionCssPropInternal>
+</EmotionCssPropInternal>
 `;
 
 exports[`Card Outline Card 1`] = `
-<div
-  className="css-1w9w0k"
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "none",
+      "borderRadius": "3px",
+      "borderTop": "3px solid #D15130",
+      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxSizing": "border-box",
+      "marginBottom": "15px",
+      "overflow": "hidden",
+      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+    }
+  }
 >
-  <div
-    className="css-ms1gmv"
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "background": "",
+        "borderBottom": "2px solid #e7eaec",
+        "boxSizing": "border-box",
+        "color": "#D15130",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "padding": "15px",
+        "textTransform": "uppercase",
+        "width": "100%",
+      }
+    }
   >
     Test title
-  </div>
-  <div
-    className="css-1v1qs4"
+  </EmotionCssPropInternal>
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "padding": "15px",
+      }
+    }
   >
     Test Card
-  </div>
-</div>
+  </EmotionCssPropInternal>
+</EmotionCssPropInternal>
 `;
