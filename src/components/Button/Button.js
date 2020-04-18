@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { css } from 'emotion';
 import { colors } from '../../utils/colors';
 
 const Button = (props) => {
@@ -100,9 +98,8 @@ const Button = (props) => {
     },
   };
   return (
-    <div className={classNames(css(styles.button), { [className]: className })}
-         onClick={disabled ? () => {} : onClick}>
-      {icon ? <span className={css(styles.icon)}>{icon}</span> : ''}
+    <div css={styles.button} className={className} onClick={disabled ? () => {} : onClick}>
+      {icon ? <span css={styles.icon}>{icon}</span> : ''}
       {children}
     </div>
   );

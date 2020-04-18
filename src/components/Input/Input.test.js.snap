@@ -1,18 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input Input default 1`] = `
-<div
-  className="css-1gp52g3"
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "2px solid #cfd1d7",
+      "borderRadius": "7px",
+      "boxSizing": "border-box",
+      "marginBottom": "25px",
+      "position": "relative",
+    }
+  }
 >
-  <div
-    className="css-1pi2e8z"
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+    css={
+      Object {
+        "background": "#fff",
+        "color": "#cfd1d7",
+        "display": "none",
+        "fontSize": "12px",
+        "fontWeight": "600",
+        "left": "15px",
+        "padding": "0 3px",
+        "position": "absolute",
+        "top": "-8px",
+        "transition": "display .4s, color .4s ease",
+      }
+    }
   >
     Test
-  </div>
-  <input
+  </EmotionCssPropInternal>
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="input"
     autoComplete="off"
-    className="css-18shtbw"
+    css={
+      Object {
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "fontSize": "16px",
+        "outline": "none",
+        "padding": "17px 14px",
+        "width": "100%",
+      }
+    }
     placeholder="Test"
   />
-</div>
+</EmotionCssPropInternal>
 `;

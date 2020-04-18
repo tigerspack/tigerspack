@@ -1,6 +1,6 @@
 {
   "name": "tigerspack",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "The fastest UI framework for React",
   "main": "dist/index.js",
   "keywords": [
@@ -56,8 +56,8 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "emotion": "^10.0.27",
+    "@emotion/babel-preset-css-prop": "^10.0.27",
+    "@emotion/core": "^10.0.28",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
