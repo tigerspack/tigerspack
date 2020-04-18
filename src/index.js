@@ -1,17 +1,10 @@
-import AlertComponent from './components/Alert';
-import ButtonComponent from './components/Button';
-import CardComponent from './components/Card';
-import InputComponent from './components/Input';
+import Alert from './components/Alert';
+import Button from './components/Button';
+import Card from './components/Card';
+import Input from './components/Input';
 import { setColor } from './utils/colors';
 
 // Components
-export const Alert = AlertComponent;
-export const Button = ButtonComponent;
-export const Card = CardComponent;
-export const Input = InputComponent;
-
-// Method
-export const setColorScheme = setColor;
-
-// Default export
-export default null;
+export {
+  Alert, Button, Card, Input, setColor,
+};
