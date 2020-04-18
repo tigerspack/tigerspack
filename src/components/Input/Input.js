@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { StyleSheet, css } from 'aphrodite';
-import { colors } from '../../utils/colors';
+// import { colors } from '../../utils/colors';
 
 const Input = (props) => {
   const {
