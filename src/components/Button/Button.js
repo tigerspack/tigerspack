@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { StyleSheet, css } from 'aphrodite';
+import { css } from 'emotion';
 import { colors } from '../../utils/colors';
 
 const Button = (props) => {
@@ -65,7 +65,7 @@ const Button = (props) => {
       break;
     }
   }
-  const styles = StyleSheet.create({
+  const styles = {
     button: {
       boxSizing: 'border-box',
       position: 'relative',
@@ -98,7 +98,7 @@ const Button = (props) => {
       marginLeft: `-${dynamicStyles.iconMargin / 2}px`,
       marginRight: children ? `${dynamicStyles.iconMargin}px` : `-${dynamicStyles.iconMargin / 2}px`,
     },
-  });
+  };
   return (
     <div className={classNames(css(styles.button), { [className]: className })}
          onClick={disabled ? () => {} : onClick}>

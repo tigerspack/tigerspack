@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { StyleSheet, css } from 'aphrodite';
+import { css } from 'emotion';
 import { colors } from '../../utils/colors';
 
 const Card = (props) => {
@@ -16,7 +16,7 @@ const Card = (props) => {
     withoutContainer,
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
-  const styles = StyleSheet.create({
+  const styles = {
     card: {
       border: outline ? 'none' : `1px solid ${palette.color}`,
       borderTop: outline && `3px solid ${palette.color}`,
@@ -45,7 +45,7 @@ const Card = (props) => {
     icon: {
       marginRight: '10px',
     },
-  });
+  };
   return (
     <div className={classNames(css(styles.card), { [className]: className })}>
       {title && <div className={css(styles.title)}>
