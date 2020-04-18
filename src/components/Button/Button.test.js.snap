@@ -1,44 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button Button default 1`] = `
-.button {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  outline: none !important;
-  -webkit-transition: all 0.5s !important;
-  -moz-transition: all 0.5s !important;
-  transition: all 0.5s !important;
-  display: inline-block !important;
-  margin-bottom: 0px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  background-image: none !important;
-  white-space: nowrap !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  border-radius: 4px !important;
-  cursor: pointer !important;
-  opacity: 1 !important;
-  background-color: #3F88C5 !important;
-  border: 1px solid transparent !important;
-  color: #fff !important;
-  font-size: 14px !important;
-  line-height: 1.52857143 !important;
-  padding: 6px 16px !important;
-}
-
-.button:hover {
-  color: #fff !important;
-  text-decoration: none !important;
-  background-color: #619DCF !important;
-}
-
 <div
-  className="button"
+  className="css-w7u49k"
   onClick={[MockFunction]}
 >
   Test button
@@ -46,49 +10,8 @@ exports[`Button Button default 1`] = `
 `;
 
 exports[`Button button with icon only 1`] = `
-.button {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  outline: none !important;
-  -webkit-transition: all 0.5s !important;
-  -moz-transition: all 0.5s !important;
-  transition: all 0.5s !important;
-  display: inline-block !important;
-  margin-bottom: 0px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  background-image: none !important;
-  white-space: nowrap !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  border-radius: 4px !important;
-  cursor: pointer !important;
-  opacity: 1 !important;
-  background-color: #5BC0EB !important;
-  border: 1px solid transparent !important;
-  color: #fff !important;
-  font-size: 14px !important;
-  line-height: 1.52857143 !important;
-  padding: 6px 16px !important;
-}
-
-.button:hover {
-  color: #fff !important;
-  text-decoration: none !important;
-  background-color: #87D1F0 !important;
-}
-
-.icon {
-  margin-left: -4px !important;
-  margin-right: -4px !important;
-}
-
 <div
-  className="button"
+  className="css-iitg9g"
   onClick={
     [MockFunction] {
       "calls": Array [
@@ -104,7 +27,7 @@ exports[`Button button with icon only 1`] = `
   }
 >
   <span
-    className="icon"
+    className="css-1elqj97"
   >
     <span>
       icon
@@ -114,44 +37,8 @@ exports[`Button button with icon only 1`] = `
 `;
 
 exports[`Button disabled button 1`] = `
-.button {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  outline: none !important;
-  -webkit-transition: all 0.5s !important;
-  -moz-transition: all 0.5s !important;
-  transition: all 0.5s !important;
-  display: inline-block !important;
-  margin-bottom: 0px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  background-image: none !important;
-  white-space: nowrap !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  border-radius: 4px !important;
-  cursor: not-allowed !important;
-  opacity: 0.7 !important;
-  background-color: #3F88C5 !important;
-  border: 1px solid transparent !important;
-  color: #fff !important;
-  font-size: 14px !important;
-  line-height: 1.52857143 !important;
-  padding: 6px 16px !important;
-}
-
-.button:hover {
-  color: false !important;
-  text-decoration: none !important;
-  background-color: false !important;
-}
-
 <div
-  className="button"
+  className="css-wbiefi"
   onClick={[Function]}
 >
   Test button
@@ -159,44 +46,8 @@ exports[`Button disabled button 1`] = `
 `;
 
 exports[`Button large outline button 1`] = `
-.button {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  outline: none !important;
-  -webkit-transition: all 0.5s !important;
-  -moz-transition: all 0.5s !important;
-  transition: all 0.5s !important;
-  display: inline-block !important;
-  margin-bottom: 0px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  background-image: none !important;
-  white-space: nowrap !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  border-radius: 4px !important;
-  cursor: pointer !important;
-  opacity: 1 !important;
-  background-color: transparent !important;
-  border: 1px solid #3F88C5 !important;
-  color: #3F88C5 !important;
-  font-size: 18px !important;
-  line-height: 1.3333333 !important;
-  padding: 10px 16px !important;
-}
-
-.button:hover {
-  color: #fff !important;
-  text-decoration: none !important;
-  background-color: #3F88C5 !important;
-}
-
 <div
-  className="button"
+  className="css-o8eveq"
   onClick={
     [MockFunction] {
       "calls": Array [
@@ -216,49 +67,8 @@ exports[`Button large outline button 1`] = `
 `;
 
 exports[`Button rounded button with icon 1`] = `
-.button {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  outline: none !important;
-  -webkit-transition: all 0.5s !important;
-  -moz-transition: all 0.5s !important;
-  transition: all 0.5s !important;
-  display: inline-block !important;
-  margin-bottom: 0px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  background-image: none !important;
-  white-space: nowrap !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  border-radius: 20px !important;
-  cursor: pointer !important;
-  opacity: 1 !important;
-  background-color: #D15130 !important;
-  border: 1px solid transparent !important;
-  color: #fff !important;
-  font-size: 14px !important;
-  line-height: 1.52857143 !important;
-  padding: 6px 16px !important;
-}
-
-.button:hover {
-  color: #fff !important;
-  text-decoration: none !important;
-  background-color: #E76846 !important;
-}
-
-.icon {
-  margin-left: -4px !important;
-  margin-right: 8px !important;
-}
-
 <div
-  className="button"
+  className="css-6umef6"
   onClick={
     [MockFunction] {
       "calls": Array [
@@ -274,7 +84,7 @@ exports[`Button rounded button with icon 1`] = `
   }
 >
   <span
-    className="icon"
+    className="css-1dl6nox"
   >
     <span>
       icon
@@ -285,44 +95,8 @@ exports[`Button rounded button with icon 1`] = `
 `;
 
 exports[`Button small text button 1`] = `
-.button {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  position: relative !important;
-  outline: none !important;
-  -webkit-transition: all 0.5s !important;
-  -moz-transition: all 0.5s !important;
-  transition: all 0.5s !important;
-  display: inline-block !important;
-  margin-bottom: 0px !important;
-  font-weight: 500 !important;
-  text-align: center !important;
-  vertical-align: middle !important;
-  background-image: none !important;
-  white-space: nowrap !important;
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  border-radius: 4px !important;
-  cursor: pointer !important;
-  opacity: 1 !important;
-  background-color: transparent !important;
-  border: undefined !important;
-  color: #3F88C5 !important;
-  font-size: 12px !important;
-  line-height: 1.5 !important;
-  padding: 4px 10px !important;
-}
-
-.button:hover {
-  color: #fff !important;
-  text-decoration: none !important;
-  background-color: #3F88C5 !important;
-}
-
 <div
-  className="button"
+  className="css-402bfi"
   onClick={
     [MockFunction] {
       "calls": Array [

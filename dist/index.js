@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -98,7 +98,7 @@ module.exports =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(5)();
+  module.exports = __webpack_require__(3)();
 }
 
 /***/ }),
@@ -168,106 +168,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-function hash(str) {
-  var hash = 5381,
-      i = str.length;
-
-  while (i) {
-    hash = hash * 33 ^ str.charCodeAt(--i);
-  }
-  /* JavaScript does bitwise operations (like XOR, above) on 32-bit signed
-   * integers. Since we want the results to be always positive, convert the
-   * signed int to an unsigned by doing an unsigned bitshift. */
-
-
-  return hash >>> 0;
-}
-
-module.exports = hash;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
- // rawAsap provides everything we need except exception management.
-
-var rawAsap = __webpack_require__(7); // RawTasks are recycled to reduce GC churn.
-
-
-var freeTasks = []; // We queue errors to ensure they are thrown in right order (FIFO).
-// Array-as-queue is good enough here, since we are just dealing with exceptions.
-
-var pendingErrors = [];
-var requestErrorThrow = rawAsap.makeRequestCallFromTimer(throwFirstError);
-
-function throwFirstError() {
-  if (pendingErrors.length) {
-    throw pendingErrors.shift();
-  }
-}
-/**
- * Calls a task as soon as possible after returning, in its own event, with priority
- * over other events like animation, reflow, and repaint. An error thrown from an
- * event will not interrupt, nor even substantially slow down the processing of
- * other events, but will be rather postponed to a lower priority event.
- * @param {{call}} task A callable object, typically a function that takes no
- * arguments.
- */
-
-
-module.exports = asap;
-
-function asap(task) {
-  var rawTask;
-
-  if (freeTasks.length) {
-    rawTask = freeTasks.pop();
-  } else {
-    rawTask = new RawTask();
-  }
-
-  rawTask.task = task;
-  rawAsap(rawTask);
-} // We wrap tasks with recyclable task objects.  A task object implements
-// `call`, just like a function.
-
-
-function RawTask() {
-  this.task = null;
-} // The sole purpose of wrapping the task is to catch the exception and recycle
-// the task object after its single use.
-
-
-RawTask.prototype.call = function () {
-  try {
-    this.task.call();
-  } catch (error) {
-    if (asap.onerror) {
-      // This hook exists purely for testing purposes.
-      // Its name will be periodically randomized to break any code that
-      // depends on its existence.
-      asap.onerror(error);
-    } else {
-      // In a web browser, exceptions are not fatal. However, to avoid
-      // slowing down the queue of pending tasks, we rethrow the error in a
-      // lower priority turn.
-      pendingErrors.push(error);
-      requestErrorThrow();
-    }
-  } finally {
-    this.task = null;
-    freeTasks[freeTasks.length] = this;
-  }
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -276,7 +176,7 @@ RawTask.prototype.call = function () {
  */
 
 
-var ReactPropTypesSecret = __webpack_require__(6);
+var ReactPropTypesSecret = __webpack_require__(4);
 
 function emptyFunction() {}
 
@@ -333,7 +233,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -349,248 +249,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) { // Use the fastest means possible to execute a task in its own turn, with
-// priority over other events including IO, animation, reflow, and redraw
-// events in browsers.
-//
-// An exception thrown by a task will permanently interrupt the processing of
-// subsequent tasks. The higher level `asap` function ensures that if an
-// exception is thrown by a task, that the task queue will continue flushing as
-// soon as possible, but if you use `rawAsap` directly, you are responsible to
-// either ensure that no exceptions are thrown from your task, or to manually
-// call `rawAsap.requestFlush` if an exception is thrown.
-
-module.exports = rawAsap;
-
-function rawAsap(task) {
-  if (!queue.length) {
-    requestFlush();
-    flushing = true;
-  } // Equivalent to push, but avoids a function call.
-
-
-  queue[queue.length] = task;
-}
-
-var queue = []; // Once a flush has been requested, no further calls to `requestFlush` are
-// necessary until the next `flush` completes.
-
-var flushing = false; // `requestFlush` is an implementation-specific method that attempts to kick
-// off a `flush` event as quickly as possible. `flush` will attempt to exhaust
-// the event queue before yielding to the browser's own event loop.
-
-var requestFlush; // The position of the next task to execute in the task queue. This is
-// preserved between calls to `flush` so that it can be resumed if
-// a task throws an exception.
-
-var index = 0; // If a task schedules additional tasks recursively, the task queue can grow
-// unbounded. To prevent memory exhaustion, the task queue will periodically
-// truncate already-completed tasks.
-
-var capacity = 1024; // The flush function processes all tasks that have been scheduled with
-// `rawAsap` unless and until one of those tasks throws an exception.
-// If a task throws an exception, `flush` ensures that its state will remain
-// consistent and will resume where it left off when called again.
-// However, `flush` does not make any arrangements to be called again if an
-// exception is thrown.
-
-function flush() {
-  while (index < queue.length) {
-    var currentIndex = index; // Advance the index before calling the task. This ensures that we will
-    // begin flushing on the next task the task throws an error.
-
-    index = index + 1;
-    queue[currentIndex].call(); // Prevent leaking memory for long chains of recursive calls to `asap`.
-    // If we call `asap` within tasks scheduled by `asap`, the queue will
-    // grow, but to avoid an O(n) walk for every task we execute, we don't
-    // shift tasks off the queue after they have been executed.
-    // Instead, we periodically shift 1024 tasks off the queue.
-
-    if (index > capacity) {
-      // Manually shift all values starting at the index back to the
-      // beginning of the queue.
-      for (var scan = 0, newLength = queue.length - index; scan < newLength; scan++) {
-        queue[scan] = queue[scan + index];
-      }
-
-      queue.length -= index;
-      index = 0;
-    }
-  }
-
-  queue.length = 0;
-  index = 0;
-  flushing = false;
-} // `requestFlush` is implemented using a strategy based on data collected from
-// every available SauceLabs Selenium web driver worker at time of writing.
-// https://docs.google.com/spreadsheets/d/1mG-5UYGup5qxGdEMWkhP6BWCz053NUb2E1QoUTU16uA/edit#gid=783724593
-// Safari 6 and 6.1 for desktop, iPad, and iPhone are the only browsers that
-// have WebKitMutationObserver but not un-prefixed MutationObserver.
-// Must use `global` or `self` instead of `window` to work in both frames and web
-// workers. `global` is a provision of Browserify, Mr, Mrs, or Mop.
-
-/* globals self */
-
-
-var scope = typeof global !== "undefined" ? global : self;
-var BrowserMutationObserver = scope.MutationObserver || scope.WebKitMutationObserver; // MutationObservers are desirable because they have high priority and work
-// reliably everywhere they are implemented.
-// They are implemented in all modern browsers.
-//
-// - Android 4-4.3
-// - Chrome 26-34
-// - Firefox 14-29
-// - Internet Explorer 11
-// - iPad Safari 6-7.1
-// - iPhone Safari 7-7.1
-// - Safari 6-7
-
-if (typeof BrowserMutationObserver === "function") {
-  requestFlush = makeRequestCallFromMutationObserver(flush); // MessageChannels are desirable because they give direct access to the HTML
-  // task queue, are implemented in Internet Explorer 10, Safari 5.0-1, and Opera
-  // 11-12, and in web workers in many engines.
-  // Although message channels yield to any queued rendering and IO tasks, they
-  // would be better than imposing the 4ms delay of timers.
-  // However, they do not work reliably in Internet Explorer or Safari.
-  // Internet Explorer 10 is the only browser that has setImmediate but does
-  // not have MutationObservers.
-  // Although setImmediate yields to the browser's renderer, it would be
-  // preferrable to falling back to setTimeout since it does not have
-  // the minimum 4ms penalty.
-  // Unfortunately there appears to be a bug in Internet Explorer 10 Mobile (and
-  // Desktop to a lesser extent) that renders both setImmediate and
-  // MessageChannel useless for the purposes of ASAP.
-  // https://github.com/kriskowal/q/issues/396
-  // Timers are implemented universally.
-  // We fall back to timers in workers in most engines, and in foreground
-  // contexts in the following browsers.
-  // However, note that even this simple case requires nuances to operate in a
-  // broad spectrum of browsers.
-  //
-  // - Firefox 3-13
-  // - Internet Explorer 6-9
-  // - iPad Safari 4.3
-  // - Lynx 2.8.7
-} else {
-  requestFlush = makeRequestCallFromTimer(flush);
-} // `requestFlush` requests that the high priority event queue be flushed as
-// soon as possible.
-// This is useful to prevent an error thrown in a task from stalling the event
-// queue if the exception handled by Node.js’s
-// `process.on("uncaughtException")` or by a domain.
-
-
-rawAsap.requestFlush = requestFlush; // To request a high priority event, we induce a mutation observer by toggling
-// the text of a text node between "1" and "-1".
-
-function makeRequestCallFromMutationObserver(callback) {
-  var toggle = 1;
-  var observer = new BrowserMutationObserver(callback);
-  var node = document.createTextNode("");
-  observer.observe(node, {
-    characterData: true
-  });
-  return function requestCall() {
-    toggle = -toggle;
-    node.data = toggle;
-  };
-} // The message channel technique was discovered by Malte Ubl and was the
-// original foundation for this library.
-// http://www.nonblocking.io/2011/06/windownexttick.html
-// Safari 6.0.5 (at least) intermittently fails to create message ports on a
-// page's first load. Thankfully, this version of Safari supports
-// MutationObservers, so we don't need to fall back in that case.
-// function makeRequestCallFromMessageChannel(callback) {
-//     var channel = new MessageChannel();
-//     channel.port1.onmessage = callback;
-//     return function requestCall() {
-//         channel.port2.postMessage(0);
-//     };
-// }
-// For reasons explained above, we are also unable to use `setImmediate`
-// under any circumstances.
-// Even if we were, there is another bug in Internet Explorer 10.
-// It is not sufficient to assign `setImmediate` to `requestFlush` because
-// `setImmediate` must be called *by name* and therefore must be wrapped in a
-// closure.
-// Never forget.
-// function makeRequestCallFromSetImmediate(callback) {
-//     return function requestCall() {
-//         setImmediate(callback);
-//     };
-// }
-// Safari 6.0 has a problem where timers will get lost while the user is
-// scrolling. This problem does not impact ASAP because Safari 6.0 supports
-// mutation observers, so that implementation is used instead.
-// However, if we ever elect to use timers in Safari, the prevalent work-around
-// is to add a scroll event listener that calls for a flush.
-// `setTimeout` does not call the passed callback if the delay is less than
-// approximately 7 in web workers in Firefox 8 through 18, and sometimes not
-// even then.
-
-
-function makeRequestCallFromTimer(callback) {
-  return function requestCall() {
-    // We dispatch a timeout with a specified delay of 0 for engines that
-    // can reliably accommodate that request. This will usually be snapped
-    // to a 4 milisecond delay, but once we're flushing, there's no delay
-    // between events.
-    var timeoutHandle = setTimeout(handleTimer, 0); // However, since this timer gets frequently dropped in Firefox
-    // workers, we enlist an interval handle that will try to fire
-    // an event 20 times per second until it succeeds.
-
-    var intervalHandle = setInterval(handleTimer, 50);
-
-    function handleTimer() {
-      // Whichever timer succeeds will cancel both timers and
-      // execute the callback.
-      clearTimeout(timeoutHandle);
-      clearInterval(intervalHandle);
-      callback();
-    }
-  };
-} // This is for `asap.js` only.
-// Its name will be periodically randomized to break any code that depends on
-// its existence.
-
-
-rawAsap.makeRequestCallFromTimer = makeRequestCallFromTimer; // ASAP was originally a nextTick shim included in Q. This was factored out
-// into this ASAP package. It was later adapted to RSVP which made further
-// amendments. These decisions, particularly to marginalize MessageChannel and
-// to capture the MutationObserver implementation in a closure, were integrated
-// back into ASAP proper.
-// https://github.com/tildeio/rsvp.js/blob/cddf7232546a9cf858524b75cde6f9edf72620a7/lib/rsvp/asap.js
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(8)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-var g; // This works in non-strict mode
-
-g = function () {
-  return this;
-}();
-
-try {
-  // This works if eval is allowed (see CSP)
-  g = g || new Function("return this")();
-} catch (e) {
-  // This works if the window reference is available
-  if (typeof window === "object") g = window;
-} // g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-
-module.exports = g;
-
-/***/ }),
-/* 9 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -616,2231 +275,1498 @@ var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
-// EXTERNAL MODULE: ../node_modules/string-hash/index.js
-var string_hash = __webpack_require__(3);
-var string_hash_default = /*#__PURE__*/__webpack_require__.n(string_hash);
+// CONCATENATED MODULE: ../node_modules/@emotion/sheet/dist/sheet.browser.esm.js
+/*
 
-// EXTERNAL MODULE: ../node_modules/asap/browser-asap.js
-var browser_asap = __webpack_require__(4);
-var browser_asap_default = /*#__PURE__*/__webpack_require__.n(browser_asap);
+Based off glamor's StyleSheet, thanks Sunil ❤️
 
-// CONCATENATED MODULE: ../node_modules/aphrodite/es/chunk-febce46b.js
+high performance StyleSheet for css-in-js systems
 
+- uses multiple style tags behind the scenes for millions of rules
+- uses `insertRule` for appending in production for *much* faster performance
 
+// usage
 
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
+import { StyleSheet } from '@emotion/sheet'
 
-  return _typeof(obj);
-}
+let styleSheet = new StyleSheet({ key: '', container: document.head })
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
+styleSheet.insert('#box { border: 1px solid red; }')
+- appends a css rule into the stylesheet
 
-  return obj;
-}
+styleSheet.flush()
+- empties the stylesheet of all its contents
 
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
-}
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  }
-}
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-/* @flow */
-
-/* ::
-type ObjectMap = { [id:string]: any };
 */
+// $FlowFixMe
+function sheetForTag(tag) {
+  if (tag.sheet) {
+    // $FlowFixMe
+    return tag.sheet;
+  } // this weirdness brought to you by firefox
+
+  /* istanbul ignore next */
 
 
-var UPPERCASE_RE = /([A-Z])/g;
-
-var UPPERCASE_RE_TO_KEBAB = function UPPERCASE_RE_TO_KEBAB(match
-/* : string */
-) {
-  return (
-    /* : string */
-    "-".concat(match.toLowerCase())
-  );
-};
-
-var kebabifyStyleName = function kebabifyStyleName(string
-/* : string */
-)
-/* : string */
-{
-  var result = string.replace(UPPERCASE_RE, UPPERCASE_RE_TO_KEBAB);
-
-  if (result[0] === 'm' && result[1] === 's' && result[2] === '-') {
-    return "-".concat(result);
+  for (var i = 0; i < document.styleSheets.length; i++) {
+    if (document.styleSheets[i].ownerNode === tag) {
+      // $FlowFixMe
+      return document.styleSheets[i];
+    }
   }
-
-  return result;
-};
-/**
- * CSS properties which accept numbers but are not in units of "px".
- * Taken from React's CSSProperty.js
- */
-
-
-var isUnitlessNumber = {
-  animationIterationCount: true,
-  borderImageOutset: true,
-  borderImageSlice: true,
-  borderImageWidth: true,
-  boxFlex: true,
-  boxFlexGroup: true,
-  boxOrdinalGroup: true,
-  columnCount: true,
-  flex: true,
-  flexGrow: true,
-  flexPositive: true,
-  flexShrink: true,
-  flexNegative: true,
-  flexOrder: true,
-  gridRow: true,
-  gridColumn: true,
-  fontWeight: true,
-  lineClamp: true,
-  lineHeight: true,
-  opacity: true,
-  order: true,
-  orphans: true,
-  tabSize: true,
-  widows: true,
-  zIndex: true,
-  zoom: true,
-  // SVG-related properties
-  fillOpacity: true,
-  floodOpacity: true,
-  stopOpacity: true,
-  strokeDasharray: true,
-  strokeDashoffset: true,
-  strokeMiterlimit: true,
-  strokeOpacity: true,
-  strokeWidth: true
-};
-/**
- * Taken from React's CSSProperty.js
- *
- * @param {string} prefix vendor-specific prefix, eg: Webkit
- * @param {string} key style name, eg: transitionDuration
- * @return {string} style name prefixed with `prefix`, properly camelCased, eg:
- * WebkitTransitionDuration
- */
-
-function prefixKey(prefix, key) {
-  return prefix + key.charAt(0).toUpperCase() + key.substring(1);
 }
-/**
- * Support style names that may come passed in prefixed by adding permutations
- * of vendor prefixes.
- * Taken from React's CSSProperty.js
- */
 
+function createStyleElement(options) {
+  var tag = document.createElement('style');
+  tag.setAttribute('data-emotion', options.key);
 
-var prefixes = ['Webkit', 'ms', 'Moz', 'O']; // Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
-// infinite loop, because it iterates over the newly added props too.
-// Taken from React's CSSProperty.js
-
-Object.keys(isUnitlessNumber).forEach(function (prop) {
-  prefixes.forEach(function (prefix) {
-    isUnitlessNumber[prefixKey(prefix, prop)] = isUnitlessNumber[prop];
-  });
-});
-
-var stringifyValue = function stringifyValue(key
-/* : string */
-, prop
-/* : any */
-)
-/* : string */
-{
-  if (typeof prop === "number") {
-    if (isUnitlessNumber[key]) {
-      return "" + prop;
-    } else {
-      return prop + "px";
-    }
-  } else {
-    return '' + prop;
-  }
-};
-
-var stringifyAndImportantifyValue = function stringifyAndImportantifyValue(key
-/* : string */
-, prop
-/* : any */
-) {
-  return (
-    /* : string */
-    importantify(stringifyValue(key, prop))
-  );
-}; // Turn a string into a hash string of base-36 values (using letters and numbers)
-// eslint-disable-next-line no-unused-vars
-
-
-var chunk_febce46b_hashString = function hashString(string
-/* : string */
-, key
-/* : ?string */
-) {
-  return (
-    /* string */
-    string_hash_default()(string).toString(36)
-  );
-}; // Hash a javascript object using JSON.stringify. This is very fast, about 3
-// microseconds on my computer for a sample object:
-// http://jsperf.com/test-hashfnv32a-hash/5
-//
-// Note that this uses JSON.stringify to stringify the objects so in order for
-// this to produce consistent hashes browsers need to have a consistent
-// ordering of objects. Ben Alpert says that Facebook depends on this, so we
-// can probably depend on this too.
-
-
-var hashObject = function hashObject(object
-/* : ObjectMap */
-) {
-  return (
-    /* : string */
-    chunk_febce46b_hashString(JSON.stringify(object))
-  );
-}; // Given a single style value string like the "b" from "a: b;", adds !important
-// to generate "b !important".
-
-
-var importantify = function importantify(string
-/* : string */
-) {
-  return (
-    /* : string */
-    // Bracket string character access is very fast, and in the default case we
-    // normally don't expect there to be "!important" at the end of the string
-    // so we can use this simple check to take an optimized path. If there
-    // happens to be a "!" in this position, we follow up with a more thorough
-    // check.
-    string[string.length - 10] === '!' && string.slice(-11) === ' !important' ? string : "".concat(string, " !important")
-  );
-};
-/* @flow */
-
-
-var MAP_EXISTS = typeof Map !== 'undefined';
-
-var OrderedElements = /*#__PURE__*/function () {
-  /* ::
-  elements: {[string]: any};
-  keyOrder: string[];
-  */
-  function OrderedElements() {
-    this.elements = {};
-    this.keyOrder = [];
+  if (options.nonce !== undefined) {
+    tag.setAttribute('nonce', options.nonce);
   }
 
-  var _proto = OrderedElements.prototype;
+  tag.appendChild(document.createTextNode(''));
+  return tag;
+}
 
-  _proto.forEach = function forEach(callback
-  /* : (string, any) => void */
-  ) {
-    for (var i = 0; i < this.keyOrder.length; i++) {
-      // (value, key) to match Map's API
-      callback(this.elements[this.keyOrder[i]], this.keyOrder[i]);
-    }
-  };
+var StyleSheet = /*#__PURE__*/function () {
+  function StyleSheet(options) {
+    this.isSpeedy = options.speedy === undefined ? "production" === 'production' : options.speedy;
+    this.tags = [];
+    this.ctr = 0;
+    this.nonce = options.nonce; // key is the value of the data-emotion attribute, it's used to identify different sheets
 
-  _proto.set = function set(key
-  /* : string */
-  , value
-  /* : any */
-  , shouldReorder
-  /* : ?boolean */
-  ) {
-    if (!this.elements.hasOwnProperty(key)) {
-      this.keyOrder.push(key);
-    } else if (shouldReorder) {
-      var index = this.keyOrder.indexOf(key);
-      this.keyOrder.splice(index, 1);
-      this.keyOrder.push(key);
-    }
+    this.key = options.key;
+    this.container = options.container;
+    this.before = null;
+  }
 
-    if (value == null) {
-      this.elements[key] = value;
-      return;
-    }
+  var _proto = StyleSheet.prototype;
 
-    if (MAP_EXISTS && value instanceof Map || value instanceof OrderedElements) {
-      // We have found a nested Map, so we need to recurse so that all
-      // of the nested objects and Maps are merged properly.
-      var nested = this.elements.hasOwnProperty(key) ? this.elements[key] : new OrderedElements();
-      value.forEach(function (value, key) {
-        nested.set(key, value, shouldReorder);
-      });
-      this.elements[key] = nested;
-      return;
-    }
+  _proto.insert = function insert(rule) {
+    // the max length is how many rules we have per style tag, it's 65000 in speedy mode
+    // it's 1 in dev because we insert source maps that map a single rule to a location
+    // and you can only have one source map per style tag
+    if (this.ctr % (this.isSpeedy ? 65000 : 1) === 0) {
+      var _tag = createStyleElement(this);
 
-    if (!Array.isArray(value) && _typeof(value) === 'object') {
-      // We have found a nested object, so we need to recurse so that all
-      // of the nested objects and Maps are merged properly.
-      var _nested = this.elements.hasOwnProperty(key) ? this.elements[key] : new OrderedElements();
+      var before;
 
-      var keys = Object.keys(value);
-
-      for (var i = 0; i < keys.length; i += 1) {
-        _nested.set(keys[i], value[keys[i]], shouldReorder);
+      if (this.tags.length === 0) {
+        before = this.before;
+      } else {
+        before = this.tags[this.tags.length - 1].nextSibling;
       }
 
-      this.elements[key] = _nested;
-      return;
+      this.container.insertBefore(_tag, before);
+      this.tags.push(_tag);
     }
 
-    this.elements[key] = value;
-  };
+    var tag = this.tags[this.tags.length - 1];
 
-  _proto.get = function get(key
-  /* : string */
-  )
-  /* : any */
-  {
-    return this.elements[key];
-  };
+    if (this.isSpeedy) {
+      var sheet = sheetForTag(tag);
 
-  _proto.has = function has(key
-  /* : string */
-  )
-  /* : boolean */
-  {
-    return this.elements.hasOwnProperty(key);
-  };
+      try {
+        // this is a really hot path
+        // we check the second character first because having "i"
+        // as the second character will happen less often than
+        // having "@" as the first character
+        var isImportRule = rule.charCodeAt(1) === 105 && rule.charCodeAt(0) === 64; // this is the ultrafast version, works across browsers
+        // the big drawback is that the css won't be editable in devtools
 
-  _proto.addStyleType = function addStyleType(styleType
-  /* : any */
-  )
-  /* : void */
-  {
-    var _this = this;
-
-    if (MAP_EXISTS && styleType instanceof Map || styleType instanceof OrderedElements) {
-      styleType.forEach(function (value, key) {
-        _this.set(key, value, true);
-      });
+        sheet.insertRule(rule, // we need to insert @import rules before anything else
+        // otherwise there will be an error
+        // technically this means that the @import rules will
+        // _usually_(not always since there could be multiple style tags)
+        // be the first ones in prod and generally later in dev
+        // this shouldn't really matter in the real world though
+        // @import is generally only used for font faces from google fonts and etc.
+        // so while this could be technically correct then it would be slower and larger
+        // for a tiny bit of correctness that won't matter in the real world
+        isImportRule ? 0 : sheet.cssRules.length);
+      } catch (e) {
+        if (false) {}
+      }
     } else {
-      var keys = Object.keys(styleType);
-
-      for (var i = 0; i < keys.length; i++) {
-        this.set(keys[i], styleType[keys[i]], true);
-      }
+      tag.appendChild(document.createTextNode(rule));
     }
+
+    this.ctr++;
   };
 
-  return OrderedElements;
+  _proto.flush = function flush() {
+    // $FlowFixMe
+    this.tags.forEach(function (tag) {
+      return tag.parentNode.removeChild(tag);
+    });
+    this.tags = [];
+    this.ctr = 0;
+  };
+
+  return StyleSheet;
 }();
 
-function unwrapExports(x) {
-  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x.default : x;
-}
 
-function createCommonjsModule(fn, module) {
-  return module = {
-    exports: {}
-  }, fn(module, module.exports), module.exports;
-}
+// CONCATENATED MODULE: ../node_modules/@emotion/stylis/dist/stylis.browser.esm.js
+function stylis_min(W) {
+  function M(d, c, e, h, a) {
+    for (var m = 0, b = 0, v = 0, n = 0, q, g, x = 0, K = 0, k, u = k = q = 0, l = 0, r = 0, I = 0, t = 0, B = e.length, J = B - 1, y, f = '', p = '', F = '', G = '', C; l < B;) {
+      g = e.charCodeAt(l);
+      l === J && 0 !== b + n + v + m && (0 !== b && (g = 47 === b ? 10 : 47), n = v = m = 0, B++, J++);
 
-function getCjsExportFromNamespace(n) {
-  return n && n.default || n;
-}
+      if (0 === b + n + v + m) {
+        if (l === J && (0 < r && (f = f.replace(N, '')), 0 < f.trim().length)) {
+          switch (g) {
+            case 32:
+            case 9:
+            case 59:
+            case 13:
+            case 10:
+              break;
 
-var capitalizeString_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = capitalizeString;
-
-  function capitalizeString(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-});
-unwrapExports(capitalizeString_1);
-var prefixProperty_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = prefixProperty;
-
-  var _capitalizeString2 = _interopRequireDefault(capitalizeString_1);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  function prefixProperty(prefixProperties, property, style) {
-    if (prefixProperties.hasOwnProperty(property)) {
-      var newStyle = {};
-      var requiredPrefixes = prefixProperties[property];
-      var capitalizedProperty = (0, _capitalizeString2.default)(property);
-      var keys = Object.keys(style);
-
-      for (var i = 0; i < keys.length; i++) {
-        var styleProperty = keys[i];
-
-        if (styleProperty === property) {
-          for (var j = 0; j < requiredPrefixes.length; j++) {
-            newStyle[requiredPrefixes[j] + capitalizedProperty] = style[property];
+            default:
+              f += e.charAt(l);
           }
+
+          g = 59;
         }
 
-        newStyle[styleProperty] = style[styleProperty];
-      }
+        switch (g) {
+          case 123:
+            f = f.trim();
+            q = f.charCodeAt(0);
+            k = 1;
 
-      return newStyle;
-    }
+            for (t = ++l; l < B;) {
+              switch (g = e.charCodeAt(l)) {
+                case 123:
+                  k++;
+                  break;
 
-    return style;
-  }
-});
-unwrapExports(prefixProperty_1);
-var prefixValue_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = prefixValue;
+                case 125:
+                  k--;
+                  break;
 
-  function prefixValue(plugins, property, value, style, metaData) {
-    for (var i = 0, len = plugins.length; i < len; ++i) {
-      var processedValue = plugins[i](property, value, style, metaData); // we can stop processing if a value is returned
-      // as all plugin criteria are unique
+                case 47:
+                  switch (g = e.charCodeAt(l + 1)) {
+                    case 42:
+                    case 47:
+                      a: {
+                        for (u = l + 1; u < J; ++u) {
+                          switch (e.charCodeAt(u)) {
+                            case 47:
+                              if (42 === g && 42 === e.charCodeAt(u - 1) && l + 2 !== u) {
+                                l = u + 1;
+                                break a;
+                              }
 
-      if (processedValue) {
-        return processedValue;
-      }
-    }
-  }
-});
-unwrapExports(prefixValue_1);
-var addNewValuesOnly_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = addNewValuesOnly;
+                              break;
 
-  function addIfNew(list, value) {
-    if (list.indexOf(value) === -1) {
-      list.push(value);
-    }
-  }
+                            case 10:
+                              if (47 === g) {
+                                l = u + 1;
+                                break a;
+                              }
 
-  function addNewValuesOnly(list, values) {
-    if (Array.isArray(values)) {
-      for (var i = 0, len = values.length; i < len; ++i) {
-        addIfNew(list, values[i]);
-      }
-    } else {
-      addIfNew(list, values);
-    }
-  }
-});
-unwrapExports(addNewValuesOnly_1);
-var isObject_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = isObject;
+                          }
+                        }
 
-  function isObject(value) {
-    return value instanceof Object && !Array.isArray(value);
-  }
-});
-unwrapExports(isObject_1);
-var createPrefixer_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = createPrefixer;
+                        l = u;
+                      }
 
-  var _prefixProperty2 = _interopRequireDefault(prefixProperty_1);
+                  }
 
-  var _prefixValue2 = _interopRequireDefault(prefixValue_1);
+                  break;
 
-  var _addNewValuesOnly2 = _interopRequireDefault(addNewValuesOnly_1);
+                case 91:
+                  g++;
 
-  var _isObject2 = _interopRequireDefault(isObject_1);
+                case 40:
+                  g++;
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
+                case 34:
+                case 39:
+                  for (; l++ < J && e.charCodeAt(l) !== g;) {}
 
-  function createPrefixer(_ref) {
-    var prefixMap = _ref.prefixMap,
-        plugins = _ref.plugins;
-    return function prefix(style) {
-      for (var property in style) {
-        var value = style[property]; // handle nested objects
+              }
 
-        if ((0, _isObject2.default)(value)) {
-          style[property] = prefix(value); // handle array values
-        } else if (Array.isArray(value)) {
-          var combinedValue = [];
+              if (0 === k) break;
+              l++;
+            }
 
-          for (var i = 0, len = value.length; i < len; ++i) {
-            var processedValue = (0, _prefixValue2.default)(plugins, property, value[i], style, prefixMap);
-            (0, _addNewValuesOnly2.default)(combinedValue, processedValue || value[i]);
-          } // only modify the value if it was touched
-          // by any plugin to prevent unnecessary mutations
+            k = e.substring(t, l);
+            0 === q && (q = (f = f.replace(ca, '').trim()).charCodeAt(0));
 
+            switch (q) {
+              case 64:
+                0 < r && (f = f.replace(N, ''));
+                g = f.charCodeAt(1);
 
-          if (combinedValue.length > 0) {
-            style[property] = combinedValue;
-          }
-        } else {
-          var _processedValue = (0, _prefixValue2.default)(plugins, property, value, style, prefixMap); // only modify the value if it was touched
-          // by any plugin to prevent unnecessary mutations
+                switch (g) {
+                  case 100:
+                  case 109:
+                  case 115:
+                  case 45:
+                    r = c;
+                    break;
 
+                  default:
+                    r = O;
+                }
 
-          if (_processedValue) {
-            style[property] = _processedValue;
-          }
+                k = M(c, r, k, g, a + 1);
+                t = k.length;
+                0 < A && (r = X(O, f, I), C = H(3, k, r, c, D, z, t, g, a, h), f = r.join(''), void 0 !== C && 0 === (t = (k = C.trim()).length) && (g = 0, k = ''));
+                if (0 < t) switch (g) {
+                  case 115:
+                    f = f.replace(da, ea);
 
-          style = (0, _prefixProperty2.default)(prefixMap, property, style);
+                  case 100:
+                  case 109:
+                  case 45:
+                    k = f + '{' + k + '}';
+                    break;
+
+                  case 107:
+                    f = f.replace(fa, '$1 $2');
+                    k = f + '{' + k + '}';
+                    k = 1 === w || 2 === w && L('@' + k, 3) ? '@-webkit-' + k + '@' + k : '@' + k;
+                    break;
+
+                  default:
+                    k = f + k, 112 === h && (k = (p += k, ''));
+                } else k = '';
+                break;
+
+              default:
+                k = M(c, X(c, f, I), k, h, a + 1);
+            }
+
+            F += k;
+            k = I = r = u = q = 0;
+            f = '';
+            g = e.charCodeAt(++l);
+            break;
+
+          case 125:
+          case 59:
+            f = (0 < r ? f.replace(N, '') : f).trim();
+            if (1 < (t = f.length)) switch (0 === u && (q = f.charCodeAt(0), 45 === q || 96 < q && 123 > q) && (t = (f = f.replace(' ', ':')).length), 0 < A && void 0 !== (C = H(1, f, c, d, D, z, p.length, h, a, h)) && 0 === (t = (f = C.trim()).length) && (f = '\x00\x00'), q = f.charCodeAt(0), g = f.charCodeAt(1), q) {
+              case 0:
+                break;
+
+              case 64:
+                if (105 === g || 99 === g) {
+                  G += f + e.charAt(l);
+                  break;
+                }
+
+              default:
+                58 !== f.charCodeAt(t - 1) && (p += P(f, q, g, f.charCodeAt(2)));
+            }
+            I = r = u = q = 0;
+            f = '';
+            g = e.charCodeAt(++l);
         }
       }
 
-      return style;
-    };
-  }
-});
-var createPrefixer = unwrapExports(createPrefixer_1);
-var backgroundClip_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = backgroundClip; // https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip#Browser_compatibility
+      switch (g) {
+        case 13:
+        case 10:
+          47 === b ? b = 0 : 0 === 1 + q && 107 !== h && 0 < f.length && (r = 1, f += '\x00');
+          0 < A * Y && H(0, f, c, d, D, z, p.length, h, a, h);
+          z = 1;
+          D++;
+          break;
 
-  function backgroundClip(property, value) {
-    if (typeof value === 'string' && value === 'text') {
-      return ['-webkit-text', 'text'];
-    }
-  }
-});
-var backgroundClip = unwrapExports(backgroundClip_1);
-var isPrefixedValue_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = isPrefixedValue;
-  var regex = /-webkit-|-moz-|-ms-/;
-
-  function isPrefixedValue(value) {
-    return typeof value === 'string' && regex.test(value);
-  }
-
-  module.exports = exports['default'];
-});
-unwrapExports(isPrefixedValue_1);
-var calc_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = calc;
-
-  var _isPrefixedValue2 = _interopRequireDefault(isPrefixedValue_1);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  var prefixes = ['-webkit-', '-moz-', ''];
-
-  function calc(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('calc(') > -1) {
-      return prefixes.map(function (prefix) {
-        return value.replace(/calc\(/g, prefix + 'calc(');
-      });
-    }
-  }
-});
-var calc = unwrapExports(calc_1);
-var crossFade_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = crossFade;
-
-  var _isPrefixedValue2 = _interopRequireDefault(isPrefixedValue_1);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  } // http://caniuse.com/#search=cross-fade
-
-
-  var prefixes = ['-webkit-', ''];
-
-  function crossFade(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('cross-fade(') > -1) {
-      return prefixes.map(function (prefix) {
-        return value.replace(/cross-fade\(/g, prefix + 'cross-fade(');
-      });
-    }
-  }
-});
-var crossFade = unwrapExports(crossFade_1);
-var cursor_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = cursor;
-  var prefixes = ['-webkit-', '-moz-', ''];
-  var values = {
-    'zoom-in': true,
-    'zoom-out': true,
-    grab: true,
-    grabbing: true
-  };
-
-  function cursor(property, value) {
-    if (property === 'cursor' && values.hasOwnProperty(value)) {
-      return prefixes.map(function (prefix) {
-        return prefix + value;
-      });
-    }
-  }
-});
-var cursor = unwrapExports(cursor_1);
-var filter_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = filter;
-
-  var _isPrefixedValue2 = _interopRequireDefault(isPrefixedValue_1);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  } // http://caniuse.com/#feat=css-filter-function
-
-
-  var prefixes = ['-webkit-', ''];
-
-  function filter(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('filter(') > -1) {
-      return prefixes.map(function (prefix) {
-        return value.replace(/filter\(/g, prefix + 'filter(');
-      });
-    }
-  }
-});
-var filter = unwrapExports(filter_1);
-var flex_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = flex;
-  var values = {
-    flex: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
-    'inline-flex': ['-webkit-inline-box', '-moz-inline-box', '-ms-inline-flexbox', '-webkit-inline-flex', 'inline-flex']
-  };
-
-  function flex(property, value) {
-    if (property === 'display' && values.hasOwnProperty(value)) {
-      return values[value];
-    }
-  }
-});
-var flex = unwrapExports(flex_1);
-var flexboxIE_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = flexboxIE;
-  var alternativeValues = {
-    'space-around': 'distribute',
-    'space-between': 'justify',
-    'flex-start': 'start',
-    'flex-end': 'end'
-  };
-  var alternativeProps = {
-    alignContent: 'msFlexLinePack',
-    alignSelf: 'msFlexItemAlign',
-    alignItems: 'msFlexAlign',
-    justifyContent: 'msFlexPack',
-    order: 'msFlexOrder',
-    flexGrow: 'msFlexPositive',
-    flexShrink: 'msFlexNegative',
-    flexBasis: 'msFlexPreferredSize' // Full expanded syntax is flex-grow | flex-shrink | flex-basis.
-
-  };
-  var flexShorthandMappings = {
-    auto: '1 1 auto',
-    inherit: 'inherit',
-    initial: '0 1 auto',
-    none: '0 0 auto',
-    unset: 'unset'
-  };
-  var isUnitlessNumber = /^\d+(\.\d+)?$/;
-
-  function flexboxIE(property, value, style) {
-    if (Object.prototype.hasOwnProperty.call(alternativeProps, property)) {
-      style[alternativeProps[property]] = alternativeValues[value] || value;
-    }
-
-    if (property === 'flex') {
-      // For certain values we can do straight mappings based on the spec
-      // for the expansions.
-      if (Object.prototype.hasOwnProperty.call(flexShorthandMappings, value)) {
-        style.msFlex = flexShorthandMappings[value];
-        return;
-      } // Here we have no direct mapping, so we favor looking for a
-      // unitless positive number as that will be the most common use-case.
-
-
-      if (isUnitlessNumber.test(value)) {
-        style.msFlex = value + ' 1 0%';
-        return;
-      } // The next thing we can look for is if there are multiple values.
-
-
-      var flexValues = value.split(/\s/); // If we only have a single value that wasn't a positive unitless
-      // or a pre-mapped value, then we can assume it is a unit value.
-
-      switch (flexValues.length) {
-        case 1:
-          style.msFlex = '1 1 ' + value;
-          return;
-
-        case 2:
-          // If we have 2 units, then we expect that the first will
-          // always be a unitless number and represents flex-grow.
-          // The second unit will represent flex-shrink for a unitless
-          // value, or flex-basis otherwise.
-          if (isUnitlessNumber.test(flexValues[1])) {
-            style.msFlex = flexValues[0] + ' ' + flexValues[1] + ' 0%';
-          } else {
-            style.msFlex = flexValues[0] + ' 1 ' + flexValues[1];
+        case 59:
+        case 125:
+          if (0 === b + n + v + m) {
+            z++;
+            break;
           }
-
-          return;
 
         default:
-          style.msFlex = value;
+          z++;
+          y = e.charAt(l);
+
+          switch (g) {
+            case 9:
+            case 32:
+              if (0 === n + m + b) switch (x) {
+                case 44:
+                case 58:
+                case 9:
+                case 32:
+                  y = '';
+                  break;
+
+                default:
+                  32 !== g && (y = ' ');
+              }
+              break;
+
+            case 0:
+              y = '\\0';
+              break;
+
+            case 12:
+              y = '\\f';
+              break;
+
+            case 11:
+              y = '\\v';
+              break;
+
+            case 38:
+              0 === n + b + m && (r = I = 1, y = '\f' + y);
+              break;
+
+            case 108:
+              if (0 === n + b + m + E && 0 < u) switch (l - u) {
+                case 2:
+                  112 === x && 58 === e.charCodeAt(l - 3) && (E = x);
+
+                case 8:
+                  111 === K && (E = K);
+              }
+              break;
+
+            case 58:
+              0 === n + b + m && (u = l);
+              break;
+
+            case 44:
+              0 === b + v + n + m && (r = 1, y += '\r');
+              break;
+
+            case 34:
+            case 39:
+              0 === b && (n = n === g ? 0 : 0 === n ? g : n);
+              break;
+
+            case 91:
+              0 === n + b + v && m++;
+              break;
+
+            case 93:
+              0 === n + b + v && m--;
+              break;
+
+            case 41:
+              0 === n + b + m && v--;
+              break;
+
+            case 40:
+              if (0 === n + b + m) {
+                if (0 === q) switch (2 * x + 3 * K) {
+                  case 533:
+                    break;
+
+                  default:
+                    q = 1;
+                }
+                v++;
+              }
+
+              break;
+
+            case 64:
+              0 === b + v + n + m + u + k && (k = 1);
+              break;
+
+            case 42:
+            case 47:
+              if (!(0 < n + m + v)) switch (b) {
+                case 0:
+                  switch (2 * g + 3 * e.charCodeAt(l + 1)) {
+                    case 235:
+                      b = 47;
+                      break;
+
+                    case 220:
+                      t = l, b = 42;
+                  }
+
+                  break;
+
+                case 42:
+                  47 === g && 42 === x && t + 2 !== l && (33 === e.charCodeAt(t + 2) && (p += e.substring(t, l + 1)), y = '', b = 0);
+              }
+          }
+
+          0 === b && (f += y);
       }
-    }
-  }
-});
-var flexboxIE = unwrapExports(flexboxIE_1);
-var flexboxOld_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = flexboxOld;
-  var alternativeValues = {
-    'space-around': 'justify',
-    'space-between': 'justify',
-    'flex-start': 'start',
-    'flex-end': 'end',
-    'wrap-reverse': 'multiple',
-    wrap: 'multiple'
-  };
-  var alternativeProps = {
-    alignItems: 'WebkitBoxAlign',
-    justifyContent: 'WebkitBoxPack',
-    flexWrap: 'WebkitBoxLines',
-    flexGrow: 'WebkitBoxFlex'
-  };
 
-  function flexboxOld(property, value, style) {
-    if (property === 'flexDirection' && typeof value === 'string') {
-      if (value.indexOf('column') > -1) {
-        style.WebkitBoxOrient = 'vertical';
-      } else {
-        style.WebkitBoxOrient = 'horizontal';
-      }
-
-      if (value.indexOf('reverse') > -1) {
-        style.WebkitBoxDirection = 'reverse';
-      } else {
-        style.WebkitBoxDirection = 'normal';
-      }
+      K = x;
+      x = g;
+      l++;
     }
 
-    if (alternativeProps.hasOwnProperty(property)) {
-      style[alternativeProps[property]] = alternativeValues[value] || value;
-    }
-  }
-});
-var flexboxOld = unwrapExports(flexboxOld_1);
-var gradient_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = gradient;
+    t = p.length;
 
-  var _isPrefixedValue2 = _interopRequireDefault(isPrefixedValue_1);
+    if (0 < t) {
+      r = c;
+      if (0 < A && (C = H(2, p, r, d, D, z, t, h, a, h), void 0 !== C && 0 === (p = C).length)) return G + p + F;
+      p = r.join(',') + '{' + p + '}';
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
+      if (0 !== w * E) {
+        2 !== w || L(p, 2) || (E = 0);
 
-  var prefixes = ['-webkit-', '-moz-', ''];
-  var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/gi;
+        switch (E) {
+          case 111:
+            p = p.replace(ha, ':-moz-$1') + p;
+            break;
 
-  function gradient(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && values.test(value)) {
-      return prefixes.map(function (prefix) {
-        return value.replace(values, function (grad) {
-          return prefix + grad;
-        });
-      });
-    }
-  }
-});
-var gradient = unwrapExports(gradient_1);
-var grid_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _slicedToArray = function () {
-    function sliceIterator(arr, i) {
-      var _arr = [];
-      var _n = true;
-      var _d = false;
-      var _e = undefined;
-
-      try {
-        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-          _arr.push(_s.value);
-
-          if (i && _arr.length === i) break;
+          case 112:
+            p = p.replace(Q, '::-webkit-input-$1') + p.replace(Q, '::-moz-$1') + p.replace(Q, ':-ms-input-$1') + p;
         }
-      } catch (err) {
-        _d = true;
-        _e = err;
-      } finally {
-        try {
-          if (!_n && _i["return"]) _i["return"]();
-        } finally {
-          if (_d) throw _e;
+
+        E = 0;
+      }
+    }
+
+    return G + p + F;
+  }
+
+  function X(d, c, e) {
+    var h = c.trim().split(ia);
+    c = h;
+    var a = h.length,
+        m = d.length;
+
+    switch (m) {
+      case 0:
+      case 1:
+        var b = 0;
+
+        for (d = 0 === m ? '' : d[0] + ' '; b < a; ++b) {
+          c[b] = Z(d, c[b], e).trim();
         }
-      }
 
-      return _arr;
+        break;
+
+      default:
+        var v = b = 0;
+
+        for (c = []; b < a; ++b) {
+          for (var n = 0; n < m; ++n) {
+            c[v++] = Z(d[n] + ' ', h[b], e).trim();
+          }
+        }
+
     }
 
-    return function (arr, i) {
-      if (Array.isArray(arr)) {
-        return arr;
-      } else if (Symbol.iterator in Object(arr)) {
-        return sliceIterator(arr, i);
-      } else {
-        throw new TypeError("Invalid attempt to destructure non-iterable instance");
-      }
-    };
-  }();
-
-  exports.default = grid;
-
-  function isSimplePositionValue(value) {
-    return typeof value === 'number' && !isNaN(value);
+    return c;
   }
 
-  var alignmentValues = ['center', 'end', 'start', 'stretch'];
-  var displayValues = {
-    'inline-grid': ['-ms-inline-grid', 'inline-grid'],
-    grid: ['-ms-grid', 'grid']
-  };
-  var propertyConverters = {
-    alignSelf: function alignSelf(value, style) {
-      if (alignmentValues.indexOf(value) > -1) {
-        style.msGridRowAlign = value;
-      }
-    },
-    gridColumn: function gridColumn(value, style) {
-      if (isSimplePositionValue(value)) {
-        style.msGridColumn = value;
-      } else {
-        var _value$split$map = value.split('/').map(function (position) {
-          return +position;
-        }),
-            _value$split$map2 = _slicedToArray(_value$split$map, 2),
-            start = _value$split$map2[0],
-            end = _value$split$map2[1];
+  function Z(d, c, e) {
+    var h = c.charCodeAt(0);
+    33 > h && (h = (c = c.trim()).charCodeAt(0));
 
-        propertyConverters.gridColumnStart(start, style);
-        propertyConverters.gridColumnEnd(end, style);
-      }
-    },
-    gridColumnEnd: function gridColumnEnd(value, style) {
-      var msGridColumn = style.msGridColumn;
+    switch (h) {
+      case 38:
+        return c.replace(F, '$1' + d.trim());
 
-      if (isSimplePositionValue(value) && isSimplePositionValue(msGridColumn)) {
-        style.msGridColumnSpan = value - msGridColumn;
-      }
-    },
-    gridColumnStart: function gridColumnStart(value, style) {
-      if (isSimplePositionValue(value)) {
-        style.msGridColumn = value;
-      }
-    },
-    gridRow: function gridRow(value, style) {
-      if (isSimplePositionValue(value)) {
-        style.msGridRow = value;
-      } else {
-        var _value$split$map3 = value.split('/').map(function (position) {
-          return +position;
-        }),
-            _value$split$map4 = _slicedToArray(_value$split$map3, 2),
-            start = _value$split$map4[0],
-            end = _value$split$map4[1];
+      case 58:
+        return d.trim() + c.replace(F, '$1' + d.trim());
 
-        propertyConverters.gridRowStart(start, style);
-        propertyConverters.gridRowEnd(end, style);
-      }
-    },
-    gridRowEnd: function gridRowEnd(value, style) {
-      var msGridRow = style.msGridRow;
-
-      if (isSimplePositionValue(value) && isSimplePositionValue(msGridRow)) {
-        style.msGridRowSpan = value - msGridRow;
-      }
-    },
-    gridRowStart: function gridRowStart(value, style) {
-      if (isSimplePositionValue(value)) {
-        style.msGridRow = value;
-      }
-    },
-    gridTemplateColumns: function gridTemplateColumns(value, style) {
-      style.msGridColumns = value;
-    },
-    gridTemplateRows: function gridTemplateRows(value, style) {
-      style.msGridRows = value;
-    },
-    justifySelf: function justifySelf(value, style) {
-      if (alignmentValues.indexOf(value) > -1) {
-        style.msGridColumnAlign = value;
-      }
-    }
-  };
-
-  function grid(property, value, style) {
-    if (property === 'display' && value in displayValues) {
-      return displayValues[value];
+      default:
+        if (0 < 1 * e && 0 < c.indexOf('\f')) return c.replace(F, (58 === d.charCodeAt(0) ? '' : '$1') + d.trim());
     }
 
-    if (property in propertyConverters) {
-      var propertyConverter = propertyConverters[property];
-      propertyConverter(value, style);
-    }
+    return d + c;
   }
-});
-var grid = unwrapExports(grid_1);
-var imageSet_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = imageSet;
 
-  var _isPrefixedValue2 = _interopRequireDefault(isPrefixedValue_1);
+  function P(d, c, e, h) {
+    var a = d + ';',
+        m = 2 * c + 3 * e + 4 * h;
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  } // http://caniuse.com/#feat=css-image-set
-
-
-  var prefixes = ['-webkit-', ''];
-
-  function imageSet(property, value) {
-    if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('image-set(') > -1) {
-      return prefixes.map(function (prefix) {
-        return value.replace(/image-set\(/g, prefix + 'image-set(');
-      });
+    if (944 === m) {
+      d = a.indexOf(':', 9) + 1;
+      var b = a.substring(d, a.length - 1).trim();
+      b = a.substring(0, d).trim() + b + ';';
+      return 1 === w || 2 === w && L(b, 1) ? '-webkit-' + b + b : b;
     }
+
+    if (0 === w || 2 === w && !L(a, 1)) return a;
+
+    switch (m) {
+      case 1015:
+        return 97 === a.charCodeAt(10) ? '-webkit-' + a + a : a;
+
+      case 951:
+        return 116 === a.charCodeAt(3) ? '-webkit-' + a + a : a;
+
+      case 963:
+        return 110 === a.charCodeAt(5) ? '-webkit-' + a + a : a;
+
+      case 1009:
+        if (100 !== a.charCodeAt(4)) break;
+
+      case 969:
+      case 942:
+        return '-webkit-' + a + a;
+
+      case 978:
+        return '-webkit-' + a + '-moz-' + a + a;
+
+      case 1019:
+      case 983:
+        return '-webkit-' + a + '-moz-' + a + '-ms-' + a + a;
+
+      case 883:
+        if (45 === a.charCodeAt(8)) return '-webkit-' + a + a;
+        if (0 < a.indexOf('image-set(', 11)) return a.replace(ja, '$1-webkit-$2') + a;
+        break;
+
+      case 932:
+        if (45 === a.charCodeAt(4)) switch (a.charCodeAt(5)) {
+          case 103:
+            return '-webkit-box-' + a.replace('-grow', '') + '-webkit-' + a + '-ms-' + a.replace('grow', 'positive') + a;
+
+          case 115:
+            return '-webkit-' + a + '-ms-' + a.replace('shrink', 'negative') + a;
+
+          case 98:
+            return '-webkit-' + a + '-ms-' + a.replace('basis', 'preferred-size') + a;
+        }
+        return '-webkit-' + a + '-ms-' + a + a;
+
+      case 964:
+        return '-webkit-' + a + '-ms-flex-' + a + a;
+
+      case 1023:
+        if (99 !== a.charCodeAt(8)) break;
+        b = a.substring(a.indexOf(':', 15)).replace('flex-', '').replace('space-between', 'justify');
+        return '-webkit-box-pack' + b + '-webkit-' + a + '-ms-flex-pack' + b + a;
+
+      case 1005:
+        return ka.test(a) ? a.replace(aa, ':-webkit-') + a.replace(aa, ':-moz-') + a : a;
+
+      case 1e3:
+        b = a.substring(13).trim();
+        c = b.indexOf('-') + 1;
+
+        switch (b.charCodeAt(0) + b.charCodeAt(c)) {
+          case 226:
+            b = a.replace(G, 'tb');
+            break;
+
+          case 232:
+            b = a.replace(G, 'tb-rl');
+            break;
+
+          case 220:
+            b = a.replace(G, 'lr');
+            break;
+
+          default:
+            return a;
+        }
+
+        return '-webkit-' + a + '-ms-' + b + a;
+
+      case 1017:
+        if (-1 === a.indexOf('sticky', 9)) break;
+
+      case 975:
+        c = (a = d).length - 10;
+        b = (33 === a.charCodeAt(c) ? a.substring(0, c) : a).substring(d.indexOf(':', 7) + 1).trim();
+
+        switch (m = b.charCodeAt(0) + (b.charCodeAt(7) | 0)) {
+          case 203:
+            if (111 > b.charCodeAt(8)) break;
+
+          case 115:
+            a = a.replace(b, '-webkit-' + b) + ';' + a;
+            break;
+
+          case 207:
+          case 102:
+            a = a.replace(b, '-webkit-' + (102 < m ? 'inline-' : '') + 'box') + ';' + a.replace(b, '-webkit-' + b) + ';' + a.replace(b, '-ms-' + b + 'box') + ';' + a;
+        }
+
+        return a + ';';
+
+      case 938:
+        if (45 === a.charCodeAt(5)) switch (a.charCodeAt(6)) {
+          case 105:
+            return b = a.replace('-items', ''), '-webkit-' + a + '-webkit-box-' + b + '-ms-flex-' + b + a;
+
+          case 115:
+            return '-webkit-' + a + '-ms-flex-item-' + a.replace(ba, '') + a;
+
+          default:
+            return '-webkit-' + a + '-ms-flex-line-pack' + a.replace('align-content', '').replace(ba, '') + a;
+        }
+        break;
+
+      case 973:
+      case 989:
+        if (45 !== a.charCodeAt(3) || 122 === a.charCodeAt(4)) break;
+
+      case 931:
+      case 953:
+        if (!0 === la.test(d)) return 115 === (b = d.substring(d.indexOf(':') + 1)).charCodeAt(0) ? P(d.replace('stretch', 'fill-available'), c, e, h).replace(':fill-available', ':stretch') : a.replace(b, '-webkit-' + b) + a.replace(b, '-moz-' + b.replace('fill-', '')) + a;
+        break;
+
+      case 962:
+        if (a = '-webkit-' + a + (102 === a.charCodeAt(5) ? '-ms-' + a : '') + a, 211 === e + h && 105 === a.charCodeAt(13) && 0 < a.indexOf('transform', 10)) return a.substring(0, a.indexOf(';', 27) + 1).replace(ma, '$1-webkit-$2') + a;
+    }
+
+    return a;
   }
-});
-var imageSet = unwrapExports(imageSet_1);
-var logical_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = logical;
-  var alternativeProps = {
-    marginBlockStart: ['WebkitMarginBefore'],
-    marginBlockEnd: ['WebkitMarginAfter'],
-    marginInlineStart: ['WebkitMarginStart', 'MozMarginStart'],
-    marginInlineEnd: ['WebkitMarginEnd', 'MozMarginEnd'],
-    paddingBlockStart: ['WebkitPaddingBefore'],
-    paddingBlockEnd: ['WebkitPaddingAfter'],
-    paddingInlineStart: ['WebkitPaddingStart', 'MozPaddingStart'],
-    paddingInlineEnd: ['WebkitPaddingEnd', 'MozPaddingEnd'],
-    borderBlockStart: ['WebkitBorderBefore'],
-    borderBlockStartColor: ['WebkitBorderBeforeColor'],
-    borderBlockStartStyle: ['WebkitBorderBeforeStyle'],
-    borderBlockStartWidth: ['WebkitBorderBeforeWidth'],
-    borderBlockEnd: ['WebkitBorderAfter'],
-    borderBlockEndColor: ['WebkitBorderAfterColor'],
-    borderBlockEndStyle: ['WebkitBorderAfterStyle'],
-    borderBlockEndWidth: ['WebkitBorderAfterWidth'],
-    borderInlineStart: ['WebkitBorderStart', 'MozBorderStart'],
-    borderInlineStartColor: ['WebkitBorderStartColor', 'MozBorderStartColor'],
-    borderInlineStartStyle: ['WebkitBorderStartStyle', 'MozBorderStartStyle'],
-    borderInlineStartWidth: ['WebkitBorderStartWidth', 'MozBorderStartWidth'],
-    borderInlineEnd: ['WebkitBorderEnd', 'MozBorderEnd'],
-    borderInlineEndColor: ['WebkitBorderEndColor', 'MozBorderEndColor'],
-    borderInlineEndStyle: ['WebkitBorderEndStyle', 'MozBorderEndStyle'],
-    borderInlineEndWidth: ['WebkitBorderEndWidth', 'MozBorderEndWidth']
-  };
 
-  function logical(property, value, style) {
-    if (Object.prototype.hasOwnProperty.call(alternativeProps, property)) {
-      var alternativePropList = alternativeProps[property];
+  function L(d, c) {
+    var e = d.indexOf(1 === c ? ':' : '{'),
+        h = d.substring(0, 3 !== c ? e : 10);
+    e = d.substring(e + 1, d.length - 1);
+    return R(2 !== c ? h : h.replace(na, '$1'), e, c);
+  }
 
-      for (var i = 0, len = alternativePropList.length; i < len; ++i) {
-        style[alternativePropList[i]] = value;
+  function ea(d, c) {
+    var e = P(c, c.charCodeAt(0), c.charCodeAt(1), c.charCodeAt(2));
+    return e !== c + ';' ? e.replace(oa, ' or ($1)').substring(4) : '(' + c + ')';
+  }
+
+  function H(d, c, e, h, a, m, b, v, n, q) {
+    for (var g = 0, x = c, w; g < A; ++g) {
+      switch (w = S[g].call(B, d, x, e, h, a, m, b, v, n, q)) {
+        case void 0:
+        case !1:
+        case !0:
+        case null:
+          break;
+
+        default:
+          x = w;
       }
     }
-  }
-});
-var logical = unwrapExports(logical_1);
-var position_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = position;
 
-  function position(property, value) {
-    if (property === 'position' && value === 'sticky') {
-      return ['-webkit-sticky', 'sticky'];
+    if (x !== c) return x;
+  }
+
+  function T(d) {
+    switch (d) {
+      case void 0:
+      case null:
+        A = S.length = 0;
+        break;
+
+      default:
+        if ('function' === typeof d) S[A++] = d;else if ('object' === typeof d) for (var c = 0, e = d.length; c < e; ++c) {
+          T(d[c]);
+        } else Y = !!d | 0;
     }
-  }
-});
-var position = unwrapExports(position_1);
-var sizing_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = sizing;
-  var prefixes = ['-webkit-', '-moz-', ''];
-  var properties = {
-    maxHeight: true,
-    maxWidth: true,
-    width: true,
-    height: true,
-    columnWidth: true,
-    minWidth: true,
-    minHeight: true
-  };
-  var values = {
-    'min-content': true,
-    'max-content': true,
-    'fill-available': true,
-    'fit-content': true,
-    'contain-floats': true
-  };
 
-  function sizing(property, value) {
-    if (properties.hasOwnProperty(property) && values.hasOwnProperty(value)) {
-      return prefixes.map(function (prefix) {
-        return prefix + value;
-      });
+    return T;
+  }
+
+  function U(d) {
+    d = d.prefix;
+    void 0 !== d && (R = null, d ? 'function' !== typeof d ? w = 1 : (w = 2, R = d) : w = 0);
+    return U;
+  }
+
+  function B(d, c) {
+    var e = d;
+    33 > e.charCodeAt(0) && (e = e.trim());
+    V = e;
+    e = [V];
+
+    if (0 < A) {
+      var h = H(-1, c, e, e, D, z, 0, 0, 0, 0);
+      void 0 !== h && 'string' === typeof h && (c = h);
     }
+
+    var a = M(O, e, c, 0, 0);
+    0 < A && (h = H(-2, a, e, e, D, z, a.length, 0, 0, 0), void 0 !== h && (a = h));
+    V = '';
+    E = 0;
+    z = D = 1;
+    return a;
   }
-});
-var sizing = unwrapExports(sizing_1);
-/* eslint-disable no-var, prefer-template */
 
-var uppercasePattern = /[A-Z]/g;
-var msPattern = /^ms-/;
-var cache = {};
-
-function toHyphenLower(match) {
-  return '-' + match.toLowerCase();
+  var ca = /^\0+/g,
+      N = /[\0\r\f]/g,
+      aa = /: */g,
+      ka = /zoo|gra/,
+      ma = /([,: ])(transform)/g,
+      ia = /,\r+?/g,
+      F = /([\t\r\n ])*\f?&/g,
+      fa = /@(k\w+)\s*(\S*)\s*/,
+      Q = /::(place)/g,
+      ha = /:(read-only)/g,
+      G = /[svh]\w+-[tblr]{2}/,
+      da = /\(\s*(.*)\s*\)/g,
+      oa = /([\s\S]*?);/g,
+      ba = /-self|flex-/g,
+      na = /[^]*?(:[rp][el]a[\w-]+)[^]*/,
+      la = /stretch|:\s*\w+\-(?:conte|avail)/,
+      ja = /([^-])(image-set\()/,
+      z = 1,
+      D = 1,
+      E = 0,
+      w = 1,
+      O = [],
+      S = [],
+      A = 0,
+      R = null,
+      Y = 0,
+      V = '';
+  B.use = T;
+  B.set = U;
+  void 0 !== W && U(W);
+  return B;
 }
 
-function hyphenateStyleName(name) {
-  if (cache.hasOwnProperty(name)) {
-    return cache[name];
-  }
+/* harmony default export */ var stylis_browser_esm = (stylis_min);
+// CONCATENATED MODULE: ../node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js
+var weakMemoize = function weakMemoize(func) {
+  // $FlowFixMe flow doesn't include all non-primitive types as allowed for weakmaps
+  var cache = new WeakMap();
+  return function (arg) {
+    if (cache.has(arg)) {
+      // $FlowFixMe
+      return cache.get(arg);
+    }
 
-  var hName = name.replace(uppercasePattern, toHyphenLower);
-  return cache[name] = msPattern.test(hName) ? '-' + hName : hName;
+    var ret = func(arg);
+    cache.set(arg, ret);
+    return ret;
+  };
+};
+
+/* harmony default export */ var weak_memoize_browser_esm = (weakMemoize);
+// CONCATENATED MODULE: ../node_modules/@emotion/cache/dist/cache.browser.esm.js
+
+
+ // https://github.com/thysultan/stylis.js/tree/master/plugins/rule-sheet
+// inlined to avoid umd wrapper and peerDep warnings/installing stylis
+// since we use stylis after closure compiler
+
+var delimiter = '/*|*/';
+var needle = delimiter + '}';
+
+function toSheet(block) {
+  if (block) {
+    Sheet.current.insert(block + '}');
+  }
 }
 
-var hyphenateStyleName$1 = /*#__PURE__*/Object.freeze({
-  default: hyphenateStyleName
-});
+var Sheet = {
+  current: null
+};
 
-var _hyphenateStyleName = getCjsExportFromNamespace(hyphenateStyleName$1);
+var ruleSheet = function ruleSheet(context, content, selectors, parents, line, column, length, ns, depth, at) {
+  switch (context) {
+    // property
+    case 1:
+      {
+        switch (content.charCodeAt(0)) {
+          case 64:
+            {
+              // @import
+              Sheet.current.insert(content + ';');
+              return '';
+            }
+          // charcode for l
 
-var hyphenateProperty_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = hyphenateProperty;
+          case 108:
+            {
+              // charcode for b
+              // this ignores label
+              if (content.charCodeAt(2) === 98) {
+                return '';
+              }
+            }
+        }
 
-  var _hyphenateStyleName2 = _interopRequireDefault(_hyphenateStyleName);
+        break;
+      }
+    // selector
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
+    case 2:
+      {
+        if (ns === 0) return content + delimiter;
+        break;
+      }
+    // at-rule
+
+    case 3:
+      {
+        switch (ns) {
+          // @font-face, @page
+          case 102:
+          case 112:
+            {
+              Sheet.current.insert(selectors[0] + content);
+              return '';
+            }
+
+          default:
+            {
+              return content + (at === 0 ? delimiter : '');
+            }
+        }
+      }
+
+    case -2:
+      {
+        content.split(needle).forEach(toSheet);
+      }
+  }
+};
+
+var cache_browser_esm_createCache = function createCache(options) {
+  if (options === undefined) options = {};
+  var key = options.key || 'css';
+  var stylisOptions;
+
+  if (options.prefix !== undefined) {
+    stylisOptions = {
+      prefix: options.prefix
     };
   }
 
-  function hyphenateProperty(property) {
-    return (0, _hyphenateStyleName2.default)(property);
+  var stylis = new stylis_browser_esm(stylisOptions);
+
+  if (false) {}
+
+  var inserted = {}; // $FlowFixMe
+
+  var container;
+  {
+    container = options.container || document.head;
+    var nodes = document.querySelectorAll("style[data-emotion-" + key + "]");
+    Array.prototype.forEach.call(nodes, function (node) {
+      var attrib = node.getAttribute("data-emotion-" + key); // $FlowFixMe
+
+      attrib.split(' ').forEach(function (id) {
+        inserted[id] = true;
+      });
+
+      if (node.parentNode !== container) {
+        container.appendChild(node);
+      }
+    });
   }
 
-  module.exports = exports['default'];
-});
-unwrapExports(hyphenateProperty_1);
-var transition_1 = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = transition;
+  var _insert;
 
-  var _hyphenateProperty2 = _interopRequireDefault(hyphenateProperty_1);
+  {
+    stylis.use(options.stylisPlugins)(ruleSheet);
 
-  var _isPrefixedValue2 = _interopRequireDefault(isPrefixedValue_1);
+    _insert = function insert(selector, serialized, sheet, shouldCache) {
+      var name = serialized.name;
+      Sheet.current = sheet;
 
-  var _capitalizeString2 = _interopRequireDefault(capitalizeString_1);
+      if (false) { var map; }
 
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
+      stylis(selector, serialized.styles);
+
+      if (shouldCache) {
+        cache.inserted[name] = true;
+      }
     };
   }
 
-  var properties = {
-    transition: true,
-    transitionProperty: true,
-    WebkitTransition: true,
-    WebkitTransitionProperty: true,
-    MozTransition: true,
-    MozTransitionProperty: true
+  if (false) { var commentEnd, commentStart; }
+
+  var cache = {
+    key: key,
+    sheet: new StyleSheet({
+      key: key,
+      container: container,
+      nonce: options.nonce,
+      speedy: options.speedy
+    }),
+    nonce: options.nonce,
+    inserted: inserted,
+    registered: {},
+    insert: _insert
   };
-  var prefixMapping = {
-    Webkit: '-webkit-',
-    Moz: '-moz-',
-    ms: '-ms-'
+  return cache;
+};
+
+/* harmony default export */ var cache_browser_esm = (cache_browser_esm_createCache);
+// CONCATENATED MODULE: ../node_modules/@emotion/hash/dist/hash.browser.esm.js
+/* eslint-disable */
+// Inspired by https://github.com/garycourt/murmurhash-js
+// Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
+function murmur2(str) {
+  // 'm' and 'r' are mixing constants generated offline.
+  // They're not really 'magic', they just happen to work well.
+  // const m = 0x5bd1e995;
+  // const r = 24;
+  // Initialize the hash
+  var h = 0; // Mix 4 bytes at a time into the hash
+
+  var k,
+      i = 0,
+      len = str.length;
+
+  for (; len >= 4; ++i, len -= 4) {
+    k = str.charCodeAt(i) & 0xff | (str.charCodeAt(++i) & 0xff) << 8 | (str.charCodeAt(++i) & 0xff) << 16 | (str.charCodeAt(++i) & 0xff) << 24;
+    k =
+    /* Math.imul(k, m): */
+    (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16);
+    k ^=
+    /* k >>> r: */
+    k >>> 24;
+    h =
+    /* Math.imul(k, m): */
+    (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16) ^
+    /* Math.imul(h, m): */
+    (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+  } // Handle the last few bytes of the input array
+
+
+  switch (len) {
+    case 3:
+      h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
+
+    case 2:
+      h ^= (str.charCodeAt(i + 1) & 0xff) << 8;
+
+    case 1:
+      h ^= str.charCodeAt(i) & 0xff;
+      h =
+      /* Math.imul(h, m): */
+      (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+  } // Do a few final mixes of the hash to ensure the last few
+  // bytes are well-incorporated.
+
+
+  h ^= h >>> 13;
+  h =
+  /* Math.imul(h, m): */
+  (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+  return ((h ^ h >>> 15) >>> 0).toString(36);
+}
+
+/* harmony default export */ var hash_browser_esm = (murmur2);
+// CONCATENATED MODULE: ../node_modules/@emotion/unitless/dist/unitless.browser.esm.js
+var unitlessKeys = {
+  animationIterationCount: 1,
+  borderImageOutset: 1,
+  borderImageSlice: 1,
+  borderImageWidth: 1,
+  boxFlex: 1,
+  boxFlexGroup: 1,
+  boxOrdinalGroup: 1,
+  columnCount: 1,
+  columns: 1,
+  flex: 1,
+  flexGrow: 1,
+  flexPositive: 1,
+  flexShrink: 1,
+  flexNegative: 1,
+  flexOrder: 1,
+  gridRow: 1,
+  gridRowEnd: 1,
+  gridRowSpan: 1,
+  gridRowStart: 1,
+  gridColumn: 1,
+  gridColumnEnd: 1,
+  gridColumnSpan: 1,
+  gridColumnStart: 1,
+  msGridRow: 1,
+  msGridRowSpan: 1,
+  msGridColumn: 1,
+  msGridColumnSpan: 1,
+  fontWeight: 1,
+  lineHeight: 1,
+  opacity: 1,
+  order: 1,
+  orphans: 1,
+  tabSize: 1,
+  widows: 1,
+  zIndex: 1,
+  zoom: 1,
+  WebkitLineClamp: 1,
+  // SVG-related properties
+  fillOpacity: 1,
+  floodOpacity: 1,
+  stopOpacity: 1,
+  strokeDasharray: 1,
+  strokeDashoffset: 1,
+  strokeMiterlimit: 1,
+  strokeOpacity: 1,
+  strokeWidth: 1
+};
+/* harmony default export */ var unitless_browser_esm = (unitlessKeys);
+// CONCATENATED MODULE: ../node_modules/@emotion/memoize/dist/memoize.browser.esm.js
+function memoize(fn) {
+  var cache = {};
+  return function (arg) {
+    if (cache[arg] === undefined) cache[arg] = fn(arg);
+    return cache[arg];
   };
+}
 
-  function prefixValue(value, propertyPrefixMap) {
-    if ((0, _isPrefixedValue2.default)(value)) {
-      return value;
-    } // only split multi values, not cubic beziers
+/* harmony default export */ var memoize_browser_esm = (memoize);
+// CONCATENATED MODULE: ../node_modules/@emotion/serialize/dist/serialize.browser.esm.js
 
 
-    var multipleValues = value.split(/,(?![^()]*(?:\([^()]*\))?\))/g);
 
-    for (var i = 0, len = multipleValues.length; i < len; ++i) {
-      var singleValue = multipleValues[i];
-      var values = [singleValue];
+var ILLEGAL_ESCAPE_SEQUENCE_ERROR = "You have illegal escape sequence in your template literal, most likely inside content's property value.\nBecause you write your CSS inside a JavaScript string you actually have to do double escaping, so for example \"content: '\\00d7';\" should become \"content: '\\\\00d7';\".\nYou can read more about this here:\nhttps://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences";
+var UNDEFINED_AS_OBJECT_KEY_ERROR = "You have passed in falsy value as style object's key (can happen when in example you pass unexported component as computed key).";
+var hyphenateRegex = /[A-Z]|^ms/g;
+var animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g;
 
-      for (var property in propertyPrefixMap) {
-        var dashCaseProperty = (0, _hyphenateProperty2.default)(property);
+var isCustomProperty = function isCustomProperty(property) {
+  return property.charCodeAt(1) === 45;
+};
 
-        if (singleValue.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== 'order') {
-          var prefixes = propertyPrefixMap[property];
+var isProcessableValue = function isProcessableValue(value) {
+  return value != null && typeof value !== 'boolean';
+};
 
-          for (var j = 0, pLen = prefixes.length; j < pLen; ++j) {
-            // join all prefixes and create a new value
-            values.unshift(singleValue.replace(dashCaseProperty, prefixMapping[prefixes[j]] + dashCaseProperty));
+var processStyleName = memoize_browser_esm(function (styleName) {
+  return isCustomProperty(styleName) ? styleName : styleName.replace(hyphenateRegex, '-$&').toLowerCase();
+});
+
+var serialize_browser_esm_processStyleValue = function processStyleValue(key, value) {
+  switch (key) {
+    case 'animation':
+    case 'animationName':
+      {
+        if (typeof value === 'string') {
+          return value.replace(animationRegex, function (match, p1, p2) {
+            cursor = {
+              name: p1,
+              styles: p2,
+              next: cursor
+            };
+            return p1;
+          });
+        }
+      }
+  }
+
+  if (unitless_browser_esm[key] !== 1 && !isCustomProperty(key) && typeof value === 'number' && value !== 0) {
+    return value + 'px';
+  }
+
+  return value;
+};
+
+if (false) { var hyphenatedCache, hyphenPattern, msPattern, oldProcessStyleValue, contentValues, contentValuePattern; }
+
+var shouldWarnAboutInterpolatingClassNameFromCss = true;
+
+function handleInterpolation(mergedProps, registered, interpolation, couldBeSelectorInterpolation) {
+  if (interpolation == null) {
+    return '';
+  }
+
+  if (interpolation.__emotion_styles !== undefined) {
+    if (false) {}
+
+    return interpolation;
+  }
+
+  switch (typeof interpolation) {
+    case 'boolean':
+      {
+        return '';
+      }
+
+    case 'object':
+      {
+        if (interpolation.anim === 1) {
+          cursor = {
+            name: interpolation.name,
+            styles: interpolation.styles,
+            next: cursor
+          };
+          return interpolation.name;
+        }
+
+        if (interpolation.styles !== undefined) {
+          var next = interpolation.next;
+
+          if (next !== undefined) {
+            // not the most efficient thing ever but this is a pretty rare case
+            // and there will be very few iterations of this generally
+            while (next !== undefined) {
+              cursor = {
+                name: next.name,
+                styles: next.styles,
+                next: cursor
+              };
+              next = next.next;
+            }
+          }
+
+          var styles = interpolation.styles + ";";
+
+          if (false) {}
+
+          return styles;
+        }
+
+        return createStringFromObject(mergedProps, registered, interpolation);
+      }
+
+    case 'function':
+      {
+        if (mergedProps !== undefined) {
+          var previousCursor = cursor;
+          var result = interpolation(mergedProps);
+          cursor = previousCursor;
+          return handleInterpolation(mergedProps, registered, result, couldBeSelectorInterpolation);
+        } else if (false) {}
+
+        break;
+      }
+
+    case 'string':
+      if (false) { var replaced, matched; }
+
+      break;
+  } // finalize string values (regular strings and functions interpolated into css calls)
+
+
+  if (registered == null) {
+    return interpolation;
+  }
+
+  var cached = registered[interpolation];
+
+  if (false) {}
+
+  return cached !== undefined && !couldBeSelectorInterpolation ? cached : interpolation;
+}
+
+function createStringFromObject(mergedProps, registered, obj) {
+  var string = '';
+
+  if (Array.isArray(obj)) {
+    for (var i = 0; i < obj.length; i++) {
+      string += handleInterpolation(mergedProps, registered, obj[i], false);
+    }
+  } else {
+    for (var _key in obj) {
+      var value = obj[_key];
+
+      if (typeof value !== 'object') {
+        if (registered != null && registered[value] !== undefined) {
+          string += _key + "{" + registered[value] + "}";
+        } else if (isProcessableValue(value)) {
+          string += processStyleName(_key) + ":" + serialize_browser_esm_processStyleValue(_key, value) + ";";
+        }
+      } else {
+        if (_key === 'NO_COMPONENT_SELECTOR' && "production" !== 'production') {
+          throw new Error('Component selectors can only be used in conjunction with babel-plugin-emotion.');
+        }
+
+        if (Array.isArray(value) && typeof value[0] === 'string' && (registered == null || registered[value[0]] === undefined)) {
+          for (var _i = 0; _i < value.length; _i++) {
+            if (isProcessableValue(value[_i])) {
+              string += processStyleName(_key) + ":" + serialize_browser_esm_processStyleValue(_key, value[_i]) + ";";
+            }
+          }
+        } else {
+          var interpolated = handleInterpolation(mergedProps, registered, value, false);
+
+          switch (_key) {
+            case 'animation':
+            case 'animationName':
+              {
+                string += processStyleName(_key) + ":" + interpolated + ";";
+                break;
+              }
+
+            default:
+              {
+                if (false) {}
+
+                string += _key + "{" + interpolated + "}";
+              }
           }
         }
       }
-
-      multipleValues[i] = values.join(',');
-    }
-
-    return multipleValues.join(',');
-  }
-
-  function transition(property, value, style, propertyPrefixMap) {
-    // also check for already prefixed transitions
-    if (typeof value === 'string' && properties.hasOwnProperty(property)) {
-      var outputValue = prefixValue(value, propertyPrefixMap); // if the property is already prefixed
-
-      var webkitOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
-        return !/-moz-|-ms-/.test(val);
-      }).join(',');
-
-      if (property.indexOf('Webkit') > -1) {
-        return webkitOutput;
-      }
-
-      var mozOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
-        return !/-webkit-|-ms-/.test(val);
-      }).join(',');
-
-      if (property.indexOf('Moz') > -1) {
-        return mozOutput;
-      }
-
-      style['Webkit' + (0, _capitalizeString2.default)(property)] = webkitOutput;
-      style['Moz' + (0, _capitalizeString2.default)(property)] = mozOutput;
-      return outputValue;
-    }
-  }
-});
-var transition = unwrapExports(transition_1);
-var w = ["Webkit"];
-var m = ["Moz"];
-var ms = ["ms"];
-var wm = ["Webkit", "Moz"];
-var wms = ["Webkit", "ms"];
-var wmms = ["Webkit", "Moz", "ms"];
-var staticData = {
-  plugins: [backgroundClip, calc, crossFade, cursor, filter, flex, flexboxIE, flexboxOld, gradient, grid, imageSet, logical, position, sizing, transition],
-  prefixMap: {
-    "transform": wms,
-    "transformOrigin": wms,
-    "transformOriginX": wms,
-    "transformOriginY": wms,
-    "backfaceVisibility": w,
-    "perspective": w,
-    "perspectiveOrigin": w,
-    "transformStyle": w,
-    "transformOriginZ": w,
-    "animation": w,
-    "animationDelay": w,
-    "animationDirection": w,
-    "animationFillMode": w,
-    "animationDuration": w,
-    "animationIterationCount": w,
-    "animationName": w,
-    "animationPlayState": w,
-    "animationTimingFunction": w,
-    "appearance": wm,
-    "userSelect": wmms,
-    "fontKerning": w,
-    "textEmphasisPosition": w,
-    "textEmphasis": w,
-    "textEmphasisStyle": w,
-    "textEmphasisColor": w,
-    "boxDecorationBreak": w,
-    "clipPath": w,
-    "maskImage": w,
-    "maskMode": w,
-    "maskRepeat": w,
-    "maskPosition": w,
-    "maskClip": w,
-    "maskOrigin": w,
-    "maskSize": w,
-    "maskComposite": w,
-    "mask": w,
-    "maskBorderSource": w,
-    "maskBorderMode": w,
-    "maskBorderSlice": w,
-    "maskBorderWidth": w,
-    "maskBorderOutset": w,
-    "maskBorderRepeat": w,
-    "maskBorder": w,
-    "maskType": w,
-    "textDecorationStyle": wm,
-    "textDecorationSkip": wm,
-    "textDecorationLine": wm,
-    "textDecorationColor": wm,
-    "filter": w,
-    "fontFeatureSettings": wm,
-    "breakAfter": wmms,
-    "breakBefore": wmms,
-    "breakInside": wmms,
-    "columnCount": wm,
-    "columnFill": wm,
-    "columnGap": wm,
-    "columnRule": wm,
-    "columnRuleColor": wm,
-    "columnRuleStyle": wm,
-    "columnRuleWidth": wm,
-    "columns": wm,
-    "columnSpan": wm,
-    "columnWidth": wm,
-    "writingMode": wms,
-    "flex": wms,
-    "flexBasis": w,
-    "flexDirection": wms,
-    "flexGrow": w,
-    "flexFlow": wms,
-    "flexShrink": w,
-    "flexWrap": wms,
-    "alignContent": w,
-    "alignItems": w,
-    "alignSelf": w,
-    "justifyContent": w,
-    "order": w,
-    "transitionDelay": w,
-    "transitionDuration": w,
-    "transitionProperty": w,
-    "transitionTimingFunction": w,
-    "backdropFilter": w,
-    "scrollSnapType": wms,
-    "scrollSnapPointsX": wms,
-    "scrollSnapPointsY": wms,
-    "scrollSnapDestination": wms,
-    "scrollSnapCoordinate": wms,
-    "shapeImageThreshold": w,
-    "shapeImageMargin": w,
-    "shapeImageOutside": w,
-    "hyphens": wmms,
-    "flowInto": wms,
-    "flowFrom": wms,
-    "regionFragment": wms,
-    "textOrientation": w,
-    "boxSizing": m,
-    "textAlignLast": m,
-    "tabSize": m,
-    "wrapFlow": ms,
-    "wrapThrough": ms,
-    "wrapMargin": ms,
-    "touchAction": ms,
-    "textSizeAdjust": wms,
-    "borderImage": w,
-    "borderImageOutset": w,
-    "borderImageRepeat": w,
-    "borderImageSlice": w,
-    "borderImageSource": w,
-    "borderImageWidth": w
-  }
-};
-var prefixAll = createPrefixer(staticData);
-/* ::
-import type { SheetDefinition } from './index.js';
-type StringHandlers = { [id:string]: Function };
-type SelectorCallback = (selector: string) => string[];
-export type SelectorHandler = (
-    selector: string,
-    baseSelector: string,
-    callback: SelectorCallback
-) => string[] | string | null;
-*/
-
-/**
- * `selectorHandlers` are functions which handle special selectors which act
- * differently than normal style definitions. These functions look at the
- * current selector and can generate CSS for the styles in their subtree by
- * calling the callback with a new selector.
- *
- * For example, when generating styles with a base selector of '.foo' and the
- * following styles object:
- *
- *   {
- *     ':nth-child(2n)': {
- *       ':hover': {
- *         color: 'red'
- *       }
- *     }
- *   }
- *
- * when we reach the ':hover' style, we would call our selector handlers like
- *
- *   handler(':hover', '.foo:nth-child(2n)', callback)
- *
- * Since our `pseudoSelectors` handles ':hover' styles, that handler would call
- * the callback like
- *
- *   callback('.foo:nth-child(2n):hover')
- *
- * to generate its subtree `{ color: 'red' }` styles with a
- * '.foo:nth-child(2n):hover' selector. The callback would return an array of CSS
- * rules like
- *
- *   ['.foo:nth-child(2n):hover{color:red !important;}']
- *
- * and the handler would then return that resulting CSS.
- *
- * `defaultSelectorHandlers` is the list of default handlers used in a call to
- * `generateCSS`.
- *
- * @name SelectorHandler
- * @function
- * @param {string} selector: The currently inspected selector. ':hover' in the
- *     example above.
- * @param {string} baseSelector: The selector of the parent styles.
- *     '.foo:nth-child(2n)' in the example above.
- * @param {function} generateSubtreeStyles: A function which can be called to
- *     generate CSS for the subtree of styles corresponding to the selector.
- *     Accepts a new baseSelector to use for generating those styles.
- * @returns {string[] | string | null} The generated CSS for this selector, or
- *     null if we don't handle this selector.
- */
-
-var defaultSelectorHandlers
-/* : SelectorHandler[] */
-= [// Handle pseudo-selectors, like :hover and :nth-child(3n)
-function pseudoSelectors(selector, baseSelector, generateSubtreeStyles) {
-  if (selector[0] !== ":") {
-    return null;
-  }
-
-  return generateSubtreeStyles(baseSelector + selector);
-}, // Handle media queries (or font-faces)
-function mediaQueries(selector, baseSelector, generateSubtreeStyles) {
-  if (selector[0] !== "@") {
-    return null;
-  } // Generate the styles normally, and then wrap them in the media query.
-
-
-  var generated = generateSubtreeStyles(baseSelector);
-  return ["".concat(selector, "{").concat(generated.join(''), "}")];
-}];
-/**
- * Generate CSS for a selector and some styles.
- *
- * This function handles the media queries and pseudo selectors that can be used
- * in aphrodite styles.
- *
- * @param {string} selector: A base CSS selector for the styles to be generated
- *     with.
- * @param {Object} styleTypes: A list of properties of the return type of
- *     StyleSheet.create, e.g. [styles.red, styles.blue].
- * @param {Array.<SelectorHandler>} selectorHandlers: A list of selector
- *     handlers to use for handling special selectors. See
- *     `defaultSelectorHandlers`.
- * @param stringHandlers: See `generateCSSRuleset`
- * @param useImportant: See `generateCSSRuleset`
- *
- * To actually generate the CSS special-construct-less styles are passed to
- * `generateCSSRuleset`.
- *
- * For instance, a call to
- *
- *     generateCSS(".foo", [{
- *       color: "red",
- *       "@media screen": {
- *         height: 20,
- *         ":hover": {
- *           backgroundColor: "black"
- *         }
- *       },
- *       ":active": {
- *         fontWeight: "bold"
- *       }
- *     }], defaultSelectorHandlers);
- *
- * with the default `selectorHandlers` will make 5 calls to
- * `generateCSSRuleset`:
- *
- *     generateCSSRuleset(".foo", { color: "red" }, ...)
- *     generateCSSRuleset(".foo:active", { fontWeight: "bold" }, ...)
- *     // These 2 will be wrapped in @media screen {}
- *     generateCSSRuleset(".foo", { height: 20 }, ...)
- *     generateCSSRuleset(".foo:hover", { backgroundColor: "black" }, ...)
- */
-
-var generateCSS = function generateCSS(selector
-/* : string */
-, styleTypes
-/* : SheetDefinition[] */
-, selectorHandlers
-/* : SelectorHandler[] */
-, stringHandlers
-/* : StringHandlers */
-, useImportant
-/* : boolean */
-)
-/* : string[] */
-{
-  var merged = new OrderedElements();
-
-  for (var i = 0; i < styleTypes.length; i++) {
-    merged.addStyleType(styleTypes[i]);
-  }
-
-  var plainDeclarations = new OrderedElements();
-  var generatedStyles = []; // TODO(emily): benchmark this to see if a plain for loop would be faster.
-
-  merged.forEach(function (val, key) {
-    // For each key, see if one of the selector handlers will handle these
-    // styles.
-    var foundHandler = selectorHandlers.some(function (handler) {
-      var result = handler(key, selector, function (newSelector) {
-        return generateCSS(newSelector, [val], selectorHandlers, stringHandlers, useImportant);
-      });
-
-      if (result != null) {
-        // If the handler returned something, add it to the generated
-        // CSS and stop looking for another handler.
-        if (Array.isArray(result)) {
-          generatedStyles.push.apply(generatedStyles, _toConsumableArray(result));
-        } else {
-          // eslint-disable-next-line
-          console.warn('WARNING: Selector handlers should return an array of rules.' + 'Returning a string containing multiple rules is deprecated.', handler);
-          generatedStyles.push("@media all {".concat(result, "}"));
-        }
-
-        return true;
-      }
-    }); // If none of the handlers handled it, add it to the list of plain
-    // style declarations.
-
-    if (!foundHandler) {
-      plainDeclarations.set(key, val, true);
-    }
-  });
-  var generatedRuleset = generateCSSRuleset(selector, plainDeclarations, stringHandlers, useImportant, selectorHandlers);
-
-  if (generatedRuleset) {
-    generatedStyles.unshift(generatedRuleset);
-  }
-
-  return generatedStyles;
-};
-/**
- * Helper method of generateCSSRuleset to facilitate custom handling of certain
- * CSS properties. Used for e.g. font families.
- *
- * See generateCSSRuleset for usage and documentation of paramater types.
- */
-
-
-var runStringHandlers = function runStringHandlers(declarations
-/* : OrderedElements */
-, stringHandlers
-/* : StringHandlers */
-, selectorHandlers
-/* : SelectorHandler[] */
-)
-/* : void */
-{
-  if (!stringHandlers) {
-    return;
-  }
-
-  var stringHandlerKeys = Object.keys(stringHandlers);
-
-  for (var i = 0; i < stringHandlerKeys.length; i++) {
-    var key = stringHandlerKeys[i];
-
-    if (declarations.has(key)) {
-      // A declaration exists for this particular string handler, so we
-      // need to let the string handler interpret the declaration first
-      // before proceeding.
-      //
-      // TODO(emily): Pass in a callback which generates CSS, similar to
-      // how our selector handlers work, instead of passing in
-      // `selectorHandlers` and have them make calls to `generateCSS`
-      // themselves. Right now, this is impractical because our string
-      // handlers are very specialized and do complex things.
-      declarations.set(key, stringHandlers[key](declarations.get(key), selectorHandlers), // Preserve order here, since we are really replacing an
-      // unprocessed style with a processed style, not overriding an
-      // earlier style
-      false);
-    }
-  }
-};
-
-var transformRule = function transformRule(key
-/* : string */
-, value
-/* : string */
-, transformValue
-/* : function */
-) {
-  return (
-    /* : string */
-    "".concat(kebabifyStyleName(key), ":").concat(transformValue(key, value), ";")
-  );
-};
-
-var arrayToObjectKeysReducer = function arrayToObjectKeysReducer(acc, val) {
-  acc[val] = true;
-  return acc;
-};
-/**
- * Generate a CSS ruleset with the selector and containing the declarations.
- *
- * This function assumes that the given declarations don't contain any special
- * children (such as media queries, pseudo-selectors, or descendant styles).
- *
- * Note that this method does not deal with nesting used for e.g.
- * psuedo-selectors or media queries. That responsibility is left to  the
- * `generateCSS` function.
- *
- * @param {string} selector: the selector associated with the ruleset
- * @param {Object} declarations: a map from camelCased CSS property name to CSS
- *     property value.
- * @param {Object.<string, function>} stringHandlers: a map from camelCased CSS
- *     property name to a function which will map the given value to the value
- *     that is output.
- * @param {bool} useImportant: A boolean saying whether to append "!important"
- *     to each of the CSS declarations.
- * @returns {string} A string of raw CSS.
- *
- * Examples:
- *
- *    generateCSSRuleset(".blah", { color: "red" })
- *    -> ".blah{color: red !important;}"
- *    generateCSSRuleset(".blah", { color: "red" }, {}, false)
- *    -> ".blah{color: red}"
- *    generateCSSRuleset(".blah", { color: "red" }, {color: c => c.toUpperCase})
- *    -> ".blah{color: RED}"
- *    generateCSSRuleset(".blah:hover", { color: "red" })
- *    -> ".blah:hover{color: red}"
- */
-
-
-var generateCSSRuleset = function generateCSSRuleset(selector
-/* : string */
-, declarations
-/* : OrderedElements */
-, stringHandlers
-/* : StringHandlers */
-, useImportant
-/* : boolean */
-, selectorHandlers
-/* : SelectorHandler[] */
-)
-/* : string */
-{
-  // Mutates declarations
-  runStringHandlers(declarations, stringHandlers, selectorHandlers);
-  var originalElements = Object.keys(declarations.elements).reduce(arrayToObjectKeysReducer, Object.create(null)); // NOTE(emily): This mutates handledDeclarations.elements.
-
-  var prefixedElements = prefixAll(declarations.elements);
-  var elementNames = Object.keys(prefixedElements);
-
-  if (elementNames.length !== declarations.keyOrder.length) {
-    // There are some prefixed values, so we need to figure out how to sort
-    // them.
-    //
-    // Loop through prefixedElements, looking for anything that is not in
-    // sortOrder, which means it was added by prefixAll. This means that we
-    // need to figure out where it should appear in the sortOrder.
-    for (var i = 0; i < elementNames.length; i++) {
-      if (!originalElements[elementNames[i]]) {
-        // This element is not in the sortOrder, which means it is a prefixed
-        // value that was added by prefixAll. Let's try to figure out where it
-        // goes.
-        var originalStyle = void 0;
-
-        if (elementNames[i][0] === 'W') {
-          // This is a Webkit-prefixed style, like "WebkitTransition". Let's
-          // find its original style's sort order.
-          originalStyle = elementNames[i][6].toLowerCase() + elementNames[i].slice(7);
-        } else if (elementNames[i][1] === 'o') {
-          // This is a Moz-prefixed style, like "MozTransition". We check
-          // the second character to avoid colliding with Ms-prefixed
-          // styles. Let's find its original style's sort order.
-          originalStyle = elementNames[i][3].toLowerCase() + elementNames[i].slice(4);
-        } else {
-          // if (elementNames[i][1] === 's') {
-          // This is a Ms-prefixed style, like "MsTransition".
-          originalStyle = elementNames[i][2].toLowerCase() + elementNames[i].slice(3);
-        }
-
-        if (originalStyle && originalElements[originalStyle]) {
-          var originalIndex = declarations.keyOrder.indexOf(originalStyle);
-          declarations.keyOrder.splice(originalIndex, 0, elementNames[i]);
-        } else {
-          // We don't know what the original style was, so sort it to
-          // top. This can happen for styles that are added that don't
-          // have the same base name as the original style.
-          declarations.keyOrder.unshift(elementNames[i]);
-        }
-      }
     }
   }
 
-  var transformValue = useImportant === false ? stringifyValue : stringifyAndImportantifyValue;
-  var rules = [];
-
-  for (var _i = 0; _i < declarations.keyOrder.length; _i++) {
-    var key = declarations.keyOrder[_i];
-    var value = prefixedElements[key];
-
-    if (Array.isArray(value)) {
-      // inline-style-prefixer returns an array when there should be
-      // multiple rules for the same key. Here we flatten to multiple
-      // pairs with the same key.
-      for (var j = 0; j < value.length; j++) {
-        rules.push(transformRule(key, value[j], transformValue));
-      }
-    } else {
-      rules.push(transformRule(key, value, transformValue));
-    }
-  }
-
-  if (rules.length) {
-    return "".concat(selector, "{").concat(rules.join(""), "}");
-  } else {
-    return "";
-  }
-};
-/* ::
-import type { SheetDefinition, SheetDefinitions } from './index.js';
-import type { MaybeSheetDefinition } from './exports.js';
-import type { SelectorHandler } from './generate.js';
-*/
-// The current <style> tag we are inserting into, or null if we haven't
-// inserted anything yet. We could find this each time using
-// `document.querySelector("style[data-aphrodite"])`, but holding onto it is
-// faster.
-
-
-var styleTag
-/* : ?HTMLStyleElement */
-= null; // Inject a set of rules into a <style> tag in the head of the document. This
-// will automatically create a style tag and then continue to use it for
-// multiple injections. It will also use a style tag with the `data-aphrodite`
-// tag on it if that exists in the DOM. This could be used for e.g. reusing the
-// same style tag that server-side rendering inserts.
-
-var injectStyleTag = function injectStyleTag(cssRules
-/* : string[] */
-) {
-  if (styleTag == null) {
-    // Try to find a style tag with the `data-aphrodite` attribute first.
-    styleTag = document.querySelector("style[data-aphrodite]")
-    /* : any */
-    ; // If that doesn't work, generate a new style tag.
-
-    if (styleTag == null) {
-      // Taken from
-      // http://stackoverflow.com/questions/524696/how-to-create-a-style-tag-with-javascript
-      var head = document.head || document.getElementsByTagName('head')[0];
-      styleTag = document.createElement('style');
-      styleTag.type = 'text/css';
-      styleTag.setAttribute("data-aphrodite", "");
-      head.appendChild(styleTag);
-    }
-  } // $FlowFixMe
-
-
-  var sheet = styleTag.styleSheet || styleTag.sheet
-  /* : any */
-  ;
-
-  if (sheet.insertRule) {
-    var numRules = sheet.cssRules.length;
-    cssRules.forEach(function (rule) {
-      try {
-        sheet.insertRule(rule, numRules);
-        numRules += 1;
-      } catch (e) {// The selector for this rule wasn't compatible with the browser
-      }
-    });
-  } else {
-    styleTag.innerText = (styleTag.innerText || '') + cssRules.join('');
-  }
-}; // Custom handlers for stringifying CSS values that have side effects
-// (such as fontFamily, which can cause @font-face rules to be injected)
-
-
-var stringHandlers = {
-  // With fontFamily we look for objects that are passed in and interpret
-  // them as @font-face rules that we need to inject. The value of fontFamily
-  // can either be a string (as normal), an object (a single font face), or
-  // an array of objects and strings.
-  fontFamily: function fontFamily(val) {
-    if (Array.isArray(val)) {
-      var nameMap = {};
-      val.forEach(function (v) {
-        nameMap[fontFamily(v)] = true;
-      });
-      return Object.keys(nameMap).join(",");
-    } else if (_typeof(val) === "object") {
-      injectStyleOnce(val.src, "@font-face", [val], false);
-      return "\"".concat(val.fontFamily, "\"");
-    } else {
-      return val;
-    }
-  },
-  // With animationName we look for an object that contains keyframes and
-  // inject them as an `@keyframes` block, returning a uniquely generated
-  // name. The keyframes object should look like
-  //  animationName: {
-  //    from: {
-  //      left: 0,
-  //      top: 0,
-  //    },
-  //    '50%': {
-  //      left: 15,
-  //      top: 5,
-  //    },
-  //    to: {
-  //      left: 20,
-  //      top: 20,
-  //    }
-  //  }
-  // TODO(emily): `stringHandlers` doesn't let us rename the key, so I have
-  // to use `animationName` here. Improve that so we can call this
-  // `animation` instead of `animationName`.
-  animationName: function animationName(val, selectorHandlers) {
-    if (Array.isArray(val)) {
-      return val.map(function (v) {
-        return animationName(v, selectorHandlers);
-      }).join(",");
-    } else if (_typeof(val) === "object") {
-      // Generate a unique name based on the hash of the object. We can't
-      // just use the hash because the name can't start with a number.
-      // TODO(emily): this probably makes debugging hard, allow a custom
-      // name?
-      var name = "keyframe_".concat(hashObject(val)); // Since keyframes need 3 layers of nesting, we use `generateCSS` to
-      // build the inner layers and wrap it in `@keyframes` ourselves.
-
-      var finalVal = "@keyframes ".concat(name, "{"); // TODO see if we can find a way where checking for OrderedElements
-      // here is not necessary. Alternatively, perhaps we should have a
-      // utility method that can iterate over either a plain object, an
-      // instance of OrderedElements, or a Map, and then use that here and
-      // elsewhere.
-
-      if (val instanceof OrderedElements) {
-        val.forEach(function (valVal, valKey) {
-          finalVal += generateCSS(valKey, [valVal], selectorHandlers, stringHandlers, false).join('');
-        });
-      } else {
-        Object.keys(val).forEach(function (key) {
-          finalVal += generateCSS(key, [val[key]], selectorHandlers, stringHandlers, false).join('');
-        });
-      }
-
-      finalVal += '}';
-      chunk_febce46b_injectGeneratedCSSOnce(name, [finalVal]);
-      return name;
-    } else {
-      return val;
-    }
-  }
-}; // This is a map from Aphrodite's generated class names to `true` (acting as a
-// set of class names)
-
-var alreadyInjected = {}; // This is the buffer of styles which have not yet been flushed.
-
-var injectionBuffer
-/* : string[] */
-= []; // A flag to tell if we are already buffering styles. This could happen either
-// because we scheduled a flush call already, so newly added styles will
-// already be flushed, or because we are statically buffering on the server.
-
-var isBuffering = false;
-
-var chunk_febce46b_injectGeneratedCSSOnce = function injectGeneratedCSSOnce(key, generatedCSS) {
-  var _injectionBuffer;
-
-  if (alreadyInjected[key]) {
-    return;
-  }
-
-  if (!isBuffering) {
-    // We should never be automatically buffering on the server (or any
-    // place without a document), so guard against that.
-    if (typeof document === "undefined") {
-      throw new Error("Cannot automatically buffer without a document");
-    } // If we're not already buffering, schedule a call to flush the
-    // current styles.
-
-
-    isBuffering = true;
-    browser_asap_default()(flushToStyleTag);
-  }
-
-  (_injectionBuffer = injectionBuffer).push.apply(_injectionBuffer, _toConsumableArray(generatedCSS));
-
-  alreadyInjected[key] = true;
-};
-
-var injectStyleOnce = function injectStyleOnce(key
-/* : string */
-, selector
-/* : string */
-, definitions
-/* : SheetDefinition[] */
-, useImportant
-/* : boolean */
-) {
-  var selectorHandlers
-  /* : SelectorHandler[] */
-  = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
-
-  if (alreadyInjected[key]) {
-    return;
-  }
-
-  var generated = generateCSS(selector, definitions, selectorHandlers, stringHandlers, useImportant);
-  chunk_febce46b_injectGeneratedCSSOnce(key, generated);
-};
-
-var chunk_febce46b_reset = function reset() {
-  injectionBuffer = [];
-  alreadyInjected = {};
-  isBuffering = false;
-  styleTag = null;
-};
-
-var resetInjectedStyle = function resetInjectedStyle(key
-/* : string */
-) {
-  delete alreadyInjected[key];
-};
-
-var getBufferedStyles = function getBufferedStyles() {
-  return injectionBuffer;
-};
-
-var startBuffering = function startBuffering() {
-  if (isBuffering) {
-    throw new Error("Cannot buffer while already buffering");
-  }
-
-  isBuffering = true;
-};
-
-var flushToArray = function flushToArray() {
-  isBuffering = false;
-  var ret = injectionBuffer;
-  injectionBuffer = [];
-  return ret;
-};
-
-var flushToString = function flushToString() {
-  return flushToArray().join('');
-};
-
-var flushToStyleTag = function flushToStyleTag() {
-  var cssRules = flushToArray();
-
-  if (cssRules.length > 0) {
-    injectStyleTag(cssRules);
-  }
-};
-
-var getRenderedClassNames = function getRenderedClassNames()
-/* : string[] */
-{
-  return Object.keys(alreadyInjected);
-};
-
-var addRenderedClassNames = function addRenderedClassNames(classNames
-/* : string[] */
-) {
-  classNames.forEach(function (className) {
-    alreadyInjected[className] = true;
-  });
-};
-
-var isValidStyleDefinition = function isValidStyleDefinition(def
-/* : Object */
-) {
-  return "_definition" in def && "_name" in def && "_len" in def;
-};
-
-var processStyleDefinitions = function processStyleDefinitions(styleDefinitions
-/* : any[] */
-, classNameBits
-/* : string[] */
-, definitionBits
-/* : Object[] */
-, length
-/* : number */
-)
-/* : number */
-{
-  for (var i = 0; i < styleDefinitions.length; i += 1) {
-    // Filter out falsy values from the input, to allow for
-    // `css(a, test && c)`
-    if (styleDefinitions[i]) {
-      if (Array.isArray(styleDefinitions[i])) {
-        // We've encountered an array, so let's recurse
-        length += processStyleDefinitions(styleDefinitions[i], classNameBits, definitionBits, length);
-      } else if (isValidStyleDefinition(styleDefinitions[i])) {
-        classNameBits.push(styleDefinitions[i]._name);
-        definitionBits.push(styleDefinitions[i]._definition);
-        length += styleDefinitions[i]._len;
-      } else {
-        throw new Error("Invalid Style Definition: Styles should be defined using the StyleSheet.create method.");
-      }
-    }
-  }
-
-  return length;
-};
-/**
- * Inject styles associated with the passed style definition objects, and return
- * an associated CSS class name.
- *
- * @param {boolean} useImportant If true, will append !important to generated
- *     CSS output. e.g. {color: red} -> "color: red !important".
- * @param {(Object|Object[])[]} styleDefinitions style definition objects, or
- *     arbitrarily nested arrays of them, as returned as properties of the
- *     return value of StyleSheet.create().
- */
-
-
-var injectAndGetClassName = function injectAndGetClassName(useImportant
-/* : boolean */
-, styleDefinitions
-/* : MaybeSheetDefinition[] */
-, selectorHandlers
-/* : SelectorHandler[] */
-)
-/* : string */
-{
-  var classNameBits = [];
-  var definitionBits = []; // Mutates classNameBits and definitionBits and returns a length which we
-  // will append to the hash to decrease the chance of hash collisions.
-
-  var length = processStyleDefinitions(styleDefinitions, classNameBits, definitionBits, 0); // Break if there aren't any valid styles.
-
-  if (classNameBits.length === 0) {
-    return "";
-  }
-
-  var className;
-
-  if (true) {
-    className = classNameBits.length === 1 ? "_".concat(classNameBits[0]) : "_".concat(chunk_febce46b_hashString(classNameBits.join())).concat((length % 36).toString(36));
-  } else {}
-
-  injectStyleOnce(className, ".".concat(className), definitionBits, useImportant, selectorHandlers);
-  return className;
-};
-/* ::
-import type { SelectorHandler } from './generate.js';
-export type SheetDefinition = { [id:string]: any };
-export type SheetDefinitions = SheetDefinition | SheetDefinition[];
-type RenderFunction = () => string;
-type Extension = {
-    selectorHandler: SelectorHandler
-};
-export type MaybeSheetDefinition = SheetDefinition | false | null | void
-*/
-
-
-var unminifiedHashFn = function unminifiedHashFn(str
-/* : string */
-, key
-/* : string */
-) {
-  return "".concat(key, "_").concat(chunk_febce46b_hashString(str));
-}; // StyleSheet.create is in a hot path so we want to keep as much logic out of it
-// as possible. So, we figure out which hash function to use once, and only
-// switch it out via minify() as necessary.
-//
-// This is in an exported function to make it easier to test.
-
-
-var initialHashFn = function initialHashFn() {
-  return  true ? chunk_febce46b_hashString : undefined;
-};
-
-var hashFn = initialHashFn();
-var StyleSheet = {
-  create: function create(sheetDefinition
-  /* : SheetDefinition */
-  )
-  /* : Object */
-  {
-    var mappedSheetDefinition = {};
-    var keys = Object.keys(sheetDefinition);
-
-    for (var i = 0; i < keys.length; i += 1) {
-      var key = keys[i];
-      var val = sheetDefinition[key];
-      var stringVal = JSON.stringify(val);
-      mappedSheetDefinition[key] = {
-        _len: stringVal.length,
-        _name: hashFn(stringVal, key),
-        _definition: val
-      };
-    }
-
-    return mappedSheetDefinition;
-  },
-  rehydrate: function rehydrate() {
-    var renderedClassNames
-    /* : string[] */
-    = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    addRenderedClassNames(renderedClassNames);
-  }
-};
-/**
- * Utilities for using Aphrodite server-side.
- *
- * This can be minified out in client-only bundles by replacing `typeof window`
- * with `"object"`, e.g. via Webpack's DefinePlugin:
- *
- *   new webpack.DefinePlugin({
- *     "typeof window": JSON.stringify("object")
- *   })
- */
-
-var StyleSheetServer = typeof window !== 'undefined' ? null : {
-  renderStatic: function renderStatic(renderFunc
-  /* : RenderFunction */
-  ) {
-    chunk_febce46b_reset();
-    startBuffering();
-    var html = renderFunc();
-    var cssContent = flushToString();
-    return {
-      html: html,
-      css: {
-        content: cssContent,
-        renderedClassNames: getRenderedClassNames()
-      }
-    };
-  }
-};
-/**
- * Utilities for using Aphrodite in tests.
- *
- * Not meant to be used in production.
- */
-
-var StyleSheetTestUtils =  true ? null : undefined;
-/**
- * Generate the Aphrodite API exports, with given `selectorHandlers` and
- * `useImportant` state.
- */
-
-function makeExports(useImportant
-/* : boolean */
-) {
-  var selectorHandlers
-  /* : SelectorHandler[] */
-  = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultSelectorHandlers;
-  return {
-    StyleSheet: _objectSpread({}, StyleSheet, {
-      /**
-       * Returns a version of the exports of Aphrodite (i.e. an object
-       * with `css` and `StyleSheet` properties) which have some
-       * extensions included.
-       *
-       * @param {Array.<Object>} extensions: An array of extensions to
-       *     add to this instance of Aphrodite. Each object should have a
-       *     single property on it, defining which kind of extension to
-       *     add.
-       * @param {SelectorHandler} [extensions[].selectorHandler]: A
-       *     selector handler extension. See `defaultSelectorHandlers` in
-       *     generate.js.
-       *
-       * @returns {Object} An object containing the exports of the new
-       *     instance of Aphrodite.
-       */
-      extend: function extend(extensions
-      /* : Extension[] */
-      ) {
-        var extensionSelectorHandlers = extensions // Pull out extensions with a selectorHandler property
-        .map(function (extension) {
-          return extension.selectorHandler;
-        }) // Remove nulls (i.e. extensions without a selectorHandler property).
-        .filter(function (handler) {
-          return handler;
-        });
-        return makeExports(useImportant, selectorHandlers.concat(extensionSelectorHandlers));
-      }
-    }),
-    StyleSheetServer: StyleSheetServer,
-    StyleSheetTestUtils: StyleSheetTestUtils,
-    minify: function minify(shouldMinify
-    /* : boolean */
-    ) {
-      hashFn = shouldMinify ? chunk_febce46b_hashString : unminifiedHashFn;
-    },
-    css: function css()
-    /* : MaybeSheetDefinition[] */
-    {
-      for (var _len = arguments.length, styleDefinitions = new Array(_len), _key = 0; _key < _len; _key++) {
-        styleDefinitions[_key] = arguments[_key];
-      }
-
-      return injectAndGetClassName(useImportant, styleDefinitions, selectorHandlers);
-    },
-    flushToStyleTag: flushToStyleTag,
-    injectAndGetClassName: injectAndGetClassName,
-    defaultSelectorHandlers: defaultSelectorHandlers,
-    reset: chunk_febce46b_reset,
-    resetInjectedStyle: resetInjectedStyle
-  };
+  return string;
 }
 
+var labelPattern = /label:\s*([^\s;\n{]+)\s*;/g;
+var sourceMapPattern;
 
-// CONCATENATED MODULE: ../node_modules/aphrodite/es/index.js
+if (false) {} // this is the cursor for keyframes
+// keyframes are stored on the SerializedStyles object as a linked list
+
+
+var cursor;
+
+var serialize_browser_esm_serializeStyles = function serializeStyles(args, registered, mergedProps) {
+  if (args.length === 1 && typeof args[0] === 'object' && args[0] !== null && args[0].styles !== undefined) {
+    return args[0];
+  }
+
+  var stringMode = true;
+  var styles = '';
+  cursor = undefined;
+  var strings = args[0];
+
+  if (strings == null || strings.raw === undefined) {
+    stringMode = false;
+    styles += handleInterpolation(mergedProps, registered, strings, false);
+  } else {
+    if (false) {}
+
+    styles += strings[0];
+  } // we start at 1 since we've already handled the first arg
+
+
+  for (var i = 1; i < args.length; i++) {
+    styles += handleInterpolation(mergedProps, registered, args[i], styles.charCodeAt(styles.length - 1) === 46);
+
+    if (stringMode) {
+      if (false) {}
+
+      styles += strings[i];
+    }
+  }
+
+  var sourceMap;
+
+  if (false) {} // using a global regex with .exec is stateful so lastIndex has to be reset each time
+
+
+  labelPattern.lastIndex = 0;
+  var identifierName = '';
+  var match; // https://esbench.com/bench/5b809c2cf2949800a0f61fb5
+
+  while ((match = labelPattern.exec(styles)) !== null) {
+    identifierName += '-' + // $FlowFixMe we know it's not null
+    match[1];
+  }
+
+  var name = hash_browser_esm(styles) + identifierName;
+
+  if (false) {}
+
+  return {
+    name: name,
+    styles: styles,
+    next: cursor
+  };
+};
+
+
+// CONCATENATED MODULE: ../node_modules/@emotion/utils/dist/utils.browser.esm.js
+var isBrowser = "object" !== 'undefined';
+
+function getRegisteredStyles(registered, registeredStyles, classNames) {
+  var rawClassName = '';
+  classNames.split(' ').forEach(function (className) {
+    if (registered[className] !== undefined) {
+      registeredStyles.push(registered[className]);
+    } else {
+      rawClassName += className + " ";
+    }
+  });
+  return rawClassName;
+}
+
+var insertStyles = function insertStyles(cache, serialized, isStringTag) {
+  var className = cache.key + "-" + serialized.name;
+
+  if ( // we only need to add the styles to the registered cache if the
+  // class name could be used further down
+  // the tree but if it's a string tag, we know it won't
+  // so we don't have to add it to registered cache.
+  // this improves memory usage since we can avoid storing the whole style string
+  (isStringTag === false || // we need to always store it if we're in compat mode and
+  // in node since emotion-server relies on whether a style is in
+  // the registered cache to know whether a style is global or not
+  // also, note that this check will be dead code eliminated in the browser
+  isBrowser === false && cache.compat !== undefined) && cache.registered[className] === undefined) {
+    cache.registered[className] = serialized.styles;
+  }
+
+  if (cache.inserted[serialized.name] === undefined) {
+    var current = serialized;
+
+    do {
+      var maybeStyles = cache.insert("." + className, current, cache.sheet, true);
+      current = current.next;
+    } while (current !== undefined);
+  }
+};
+
+
+// CONCATENATED MODULE: ../node_modules/create-emotion/dist/create-emotion.browser.esm.js
 
 
 
-var useImportant = true; // Add !important to all style definitions
 
-var Aphrodite = makeExports(useImportant);
-var es_StyleSheet = Aphrodite.StyleSheet,
-    es_StyleSheetServer = Aphrodite.StyleSheetServer,
-    es_StyleSheetTestUtils = Aphrodite.StyleSheetTestUtils,
-    css = Aphrodite.css,
-    minify = Aphrodite.minify,
-    es_flushToStyleTag = Aphrodite.flushToStyleTag,
-    es_injectAndGetClassName = Aphrodite.injectAndGetClassName,
-    es_defaultSelectorHandlers = Aphrodite.defaultSelectorHandlers,
-    es_reset = Aphrodite.reset,
-    es_resetInjectedStyle = Aphrodite.resetInjectedStyle;
+function insertWithoutScoping(cache, serialized) {
+  if (cache.inserted[serialized.name] === undefined) {
+    return cache.insert('', serialized, cache.sheet, true);
+  }
+}
+
+function merge(registered, css, className) {
+  var registeredStyles = [];
+  var rawClassName = getRegisteredStyles(registered, registeredStyles, className);
+
+  if (registeredStyles.length < 2) {
+    return className;
+  }
+
+  return rawClassName + css(registeredStyles);
+}
+
+var create_emotion_browser_esm_createEmotion = function createEmotion(options) {
+  var cache = cache_browser_esm(options); // $FlowFixMe
+
+  cache.sheet.speedy = function (value) {
+    if (false) {}
+
+    this.isSpeedy = value;
+  };
+
+  cache.compat = true;
+
+  var css = function css() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var serialized = serialize_browser_esm_serializeStyles(args, cache.registered, undefined);
+    insertStyles(cache, serialized, false);
+    return cache.key + "-" + serialized.name;
+  };
+
+  var keyframes = function keyframes() {
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    var serialized = serialize_browser_esm_serializeStyles(args, cache.registered);
+    var animation = "animation-" + serialized.name;
+    insertWithoutScoping(cache, {
+      name: serialized.name,
+      styles: "@keyframes " + animation + "{" + serialized.styles + "}"
+    });
+    return animation;
+  };
+
+  var injectGlobal = function injectGlobal() {
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    var serialized = serialize_browser_esm_serializeStyles(args, cache.registered);
+    insertWithoutScoping(cache, serialized);
+  };
+
+  var cx = function cx() {
+    for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
+    }
+
+    return merge(cache.registered, css, create_emotion_browser_esm_classnames(args));
+  };
+
+  return {
+    css: css,
+    cx: cx,
+    injectGlobal: injectGlobal,
+    keyframes: keyframes,
+    hydrate: function hydrate(ids) {
+      ids.forEach(function (key) {
+        cache.inserted[key] = true;
+      });
+    },
+    flush: function flush() {
+      cache.registered = {};
+      cache.inserted = {};
+      cache.sheet.flush();
+    },
+    // $FlowFixMe
+    sheet: cache.sheet,
+    cache: cache,
+    getRegisteredStyles: getRegisteredStyles.bind(null, cache.registered),
+    merge: merge.bind(null, cache.registered, css)
+  };
+};
+
+var create_emotion_browser_esm_classnames = function classnames(args) {
+  var cls = '';
+
+  for (var i = 0; i < args.length; i++) {
+    var arg = args[i];
+    if (arg == null) continue;
+    var toAdd = void 0;
+
+    switch (typeof arg) {
+      case 'boolean':
+        break;
+
+      case 'object':
+        {
+          if (Array.isArray(arg)) {
+            toAdd = classnames(arg);
+          } else {
+            toAdd = '';
+
+            for (var k in arg) {
+              if (arg[k] && k) {
+                toAdd && (toAdd += ' ');
+                toAdd += k;
+              }
+            }
+          }
+
+          break;
+        }
+
+      default:
+        {
+          toAdd = arg;
+        }
+    }
+
+    if (toAdd) {
+      cls && (cls += ' ');
+      cls += toAdd;
+    }
+  }
+
+  return cls;
+};
+
+/* harmony default export */ var create_emotion_browser_esm = (create_emotion_browser_esm_createEmotion);
+// CONCATENATED MODULE: ../node_modules/emotion/dist/emotion.esm.js
+
+
+var _createEmotion = create_emotion_browser_esm(),
+    flush = _createEmotion.flush,
+    hydrate = _createEmotion.hydrate,
+    emotion_esm_cx = _createEmotion.cx,
+    emotion_esm_merge = _createEmotion.merge,
+    emotion_esm_getRegisteredStyles = _createEmotion.getRegisteredStyles,
+    emotion_esm_injectGlobal = _createEmotion.injectGlobal,
+    emotion_esm_keyframes = _createEmotion.keyframes,
+    emotion_esm_css = _createEmotion.css,
+    sheet = _createEmotion.sheet,
+    emotion_esm_cache = _createEmotion.cache;
+
 
 // CONCATENATED MODULE: ./utils/colors.js
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function colors_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { colors_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function colors_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var colors = {
   primary: {
@@ -2894,7 +1820,7 @@ var colors = {
 };
 var setColor = function setColor(scheme) {
   Object.keys(scheme).forEach(function (theme) {
-    colors[theme] = colors_objectSpread({}, colors[theme], {}, scheme[theme]);
+    colors[theme] = _objectSpread({}, colors[theme], {}, scheme[theme]);
   });
 };
 // CONCATENATED MODULE: ./components/Alert/Alert.js
@@ -2927,7 +1853,7 @@ var Alert_Alert = function Alert(props) {
       closeIconSize = props.closeIconSize,
       padding = props.padding;
   var palette = colors[theme] ? colors[theme] : colors.primary;
-  var styles = es_StyleSheet.create({
+  var styles = {
     alert: {
       padding: "".concat(padding, "px"),
       background: outline ? palette.hoverColor : palette.color,
@@ -2958,7 +1884,7 @@ var Alert_Alert = function Alert(props) {
         opacity: 1
       }
     }
-  });
+  };
 
   var _useState = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2966,12 +1892,12 @@ var Alert_Alert = function Alert(props) {
       setAlertState = _useState2[1];
 
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(css(styles.alert), Alert_defineProperty({}, className, className)),
+    className: classnames_default()(emotion_esm_css(styles.alert), Alert_defineProperty({}, className, className)),
     style: {
       display: alertState ? 'none' : 'block'
     }
   }, dismissible ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: css(styles.close),
+    className: emotion_esm_css(styles.close),
     onClick: function onClick() {
       return setAlertState(true);
     }
@@ -3076,7 +2002,7 @@ var Button_Button = function Button(props) {
       }
   }
 
-  var styles = es_StyleSheet.create({
+  var styles = {
     button: {
       boxSizing: 'border-box',
       position: 'relative',
@@ -3109,12 +2035,12 @@ var Button_Button = function Button(props) {
       marginLeft: "-".concat(dynamicStyles.iconMargin / 2, "px"),
       marginRight: children ? "".concat(dynamicStyles.iconMargin, "px") : "-".concat(dynamicStyles.iconMargin / 2, "px")
     }
-  });
+  };
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(css(styles.button), Button_defineProperty({}, className, className)),
+    className: classnames_default()(emotion_esm_css(styles.button), Button_defineProperty({}, className, className)),
     onClick: disabled ? function () {} : onClick
   }, icon ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-    className: css(styles.icon)
+    className: emotion_esm_css(styles.icon)
   }, icon) : '', children);
 };
 
@@ -3151,7 +2077,7 @@ var Card_Card = function Card(props) {
       padding = props.padding,
       withoutContainer = props.withoutContainer;
   var palette = colors[theme] ? colors[theme] : colors.primary;
-  var styles = es_StyleSheet.create({
+  var styles = {
     card: {
       border: outline ? 'none' : "1px solid ".concat(palette.color),
       borderTop: outline && "3px solid ".concat(palette.color),
@@ -3180,15 +2106,15 @@ var Card_Card = function Card(props) {
     icon: {
       marginRight: '10px'
     }
-  });
+  };
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(css(styles.card), Card_defineProperty({}, className, className))
+    className: classnames_default()(emotion_esm_css(styles.card), Card_defineProperty({}, className, className))
   }, title && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: css(styles.title)
+    className: emotion_esm_css(styles.title)
   }, icon && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("span", {
-    className: css(styles.icon)
+    className: emotion_esm_css(styles.icon)
   }, icon), title), !withoutContainer ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: css(styles.content)
+    className: emotion_esm_css(styles.content)
   }, children) : children);
 };
 
@@ -3215,14 +2141,13 @@ function Input_defineProperty(obj, key, value) { if (key in obj) { Object.define
 
 
 
-
-
+ // import { colors } from '../../utils/colors';
 
 var Input_Input = function Input(props) {
   var className = props.className,
       placeholder = props.placeholder; // const palette = colors[theme] ? colors[theme] : colors.primary;
 
-  var styles = es_StyleSheet.create({
+  var styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
@@ -3252,13 +2177,13 @@ var Input_Input = function Input(props) {
       padding: '17px 14px',
       boxSizing: 'border-box'
     }
-  });
+  };
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: classnames_default()(css(styles.input), Input_defineProperty({}, className, className))
+    className: classnames_default()(emotion_esm_css(styles.input), Input_defineProperty({}, className, className))
   }, placeholder ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-    className: css(styles.label)
+    className: emotion_esm_css(styles.label)
   }, placeholder) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
-    className: css(styles.control),
+    className: emotion_esm_css(styles.control),
     autoComplete: "off",
     placeholder: placeholder
   }));
