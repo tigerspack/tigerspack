@@ -1,53 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input Input default 1`] = `
-.input {
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-  background: #fff !important;
-  border-radius: 7px !important;
-  border: 2px solid #cfd1d7 !important;
-  position: relative !important;
-  margin-bottom: 25px !important;
-}
-
-.label {
-  position: absolute !important;
-  background: #fff !important;
-  font-size: 12px !important;
-  top: -8px !important;
-  left: 15px !important;
-  color: #cfd1d7 !important;
-  font-weight: 600 !important;
-  padding: 0 3px !important;
-  display: none !important;
-  -webkit-transition: display .4s, color .4s ease !important;
-  -moz-transition: display .4s, color .4s ease !important;
-  transition: display .4s, color .4s ease !important;
-}
-
-.control {
-  background: none !important;
-  border: none !important;
-  outline: none !important;
-  font-size: 16px !important;
-  width: 100% !important;
-  padding: 17px 14px !important;
-  -moz-box-sizing: border-box !important;
-  box-sizing: border-box !important;
-}
-
 <div
-  className="input"
+  className="css-1gp52g3"
 >
   <div
-    className="label"
+    className="css-1pi2e8z"
   >
     Test
   </div>
   <input
     autoComplete="off"
-    className="control"
+    className="css-18shtbw"
     placeholder="Test"
   />
 </div>
