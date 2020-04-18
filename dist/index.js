@@ -601,6 +601,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "Alert", function() { return /* binding */ index_Alert; });
 __webpack_require__.d(__webpack_exports__, "Button", function() { return /* binding */ index_Button; });
 __webpack_require__.d(__webpack_exports__, "Card", function() { return /* binding */ index_Card; });
+__webpack_require__.d(__webpack_exports__, "Input", function() { return /* binding */ index_Input; });
 __webpack_require__.d(__webpack_exports__, "setColorScheme", function() { return /* binding */ setColorScheme; });
 
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
@@ -3208,7 +3209,71 @@ Card_Card.defaultProps = {
 // CONCATENATED MODULE: ./components/Card/index.js
 
 /* harmony default export */ var components_Card = (components_Card_Card);
+// CONCATENATED MODULE: ./components/Input/Input.js
+function Input_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var Input_Input = function Input(props) {
+  var className = props.className,
+      placeholder = props.placeholder; // const palette = colors[theme] ? colors[theme] : colors.primary;
+
+  var styles = es_StyleSheet.create({
+    input: {
+      boxSizing: 'border-box',
+      background: '#fff',
+      borderRadius: '7px',
+      border: '2px solid #cfd1d7',
+      position: 'relative',
+      marginBottom: '25px'
+    },
+    label: {
+      position: 'absolute',
+      background: '#fff',
+      fontSize: '12px',
+      top: '-8px',
+      left: '15px',
+      color: '#cfd1d7',
+      fontWeight: '600',
+      padding: '0 3px',
+      display: 'none',
+      transition: 'display .4s, color .4s ease'
+    },
+    control: {
+      background: 'none',
+      border: 'none',
+      outline: 'none',
+      fontSize: '16px',
+      width: '100%',
+      padding: '17px 14px',
+      boxSizing: 'border-box'
+    }
+  });
+  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    className: classnames_default()(css(styles.input), Input_defineProperty({}, className, className))
+  }, placeholder ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    className: css(styles.label)
+  }, placeholder) : '', /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
+    className: css(styles.control),
+    autoComplete: "off",
+    placeholder: placeholder
+  }));
+};
+
+Input_Input.propTypes = {
+  className: prop_types_default.a.string,
+  placeholder: prop_types_default.a.string
+};
+/* harmony default export */ var components_Input_Input = (Input_Input);
+// CONCATENATED MODULE: ./components/Input/index.js
+
+/* harmony default export */ var components_Input = (components_Input_Input);
 // CONCATENATED MODULE: ./index.js
+
 
 
 
@@ -3216,7 +3281,8 @@ Card_Card.defaultProps = {
 
 var index_Alert = components_Alert;
 var index_Button = components_Button;
-var index_Card = components_Card; // Method
+var index_Card = components_Card;
+var index_Input = components_Input; // Method
 
 var setColorScheme = setColor; // Default export
 
