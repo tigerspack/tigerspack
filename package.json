@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/tigerspack/tigerspack/issues"
   },
-  "homepage": "https://github.com/tigerspack/tigerspack#readme",
+  "homepage": "https://tigerspack.com",
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",

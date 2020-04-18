@@ -48,4 +48,4 @@ const App = () => (
   </div>
 )
 ```
-See the full list of components and their parameters in the  [documentation](https://tigerspack.awb.pw/docs/components/alert).
+See the full list of components and their parameters in the  [documentation](https://tigerspack.com/docs/components/alert).
