@@ -34,16 +34,19 @@ const Input = (props) => {
     },
     label: {
       position: 'absolute',
-      background: activeLabel ? '#fff' : 'transparent',
+      background: activeLabel ? 'transparent' : '#fff',
       top: activeLabel ? '0' : `-${inputBorderWeight}px`,
       left: '15px',
       color: '#fff',
       padding: '0 3px',
-      transition: 'all .4s ease, background .4s ease-out, top 0s',
+      transition: 'all .4s ease, top 0s',
+      zIndex: 1,
     },
     labelText: {
-      marginTop: activeLabel ? '17px' : '-8px',
+      marginTop: activeLabel ? '17px' : '-6px',
       fontSize: activeLabel ? '16px' : '12px',
+      height: activeLabel ? '16px' : '12px',
+      lineHeight: activeLabel ? '16px' : '12px',
       color: valid ? colors.success.color : labelError,
       fontWeight: '500',
       transition: 'all .4s ease',
@@ -56,6 +59,8 @@ const Input = (props) => {
       width: '100%',
       padding: '17px 14px',
       boxSizing: 'border-box',
+      position: 'relative',
+      zIndex: 2,
     },
   };
   return (
