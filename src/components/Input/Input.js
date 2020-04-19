@@ -1,34 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
-// import { colors } from '../../utils/colors';
+import { colors } from '../../utils/colors';
 
 const Input = (props) => {
   const {
     className,
     placeholder,
+    error,
+    valid,
+    value,
+    ...otherProps
   } = props;
-  // const palette = colors[theme] ? colors[theme] : colors.primary;
+  // Config
+  const inputBorderWeight = 1;
+  // Hooks
+  const [focus, setFocus] = useState(false);
+  const [inputValue, setInputValue] = useState(value || '');
+  // Different states
+  const labelColor = focus ? colors.primary.color : '#cfd1d7';
+  const labelError = error ? colors.danger.color : labelColor;
+  const inputError = error ? `${inputBorderWeight}px solid ${colors.danger.color}` : `${inputBorderWeight}px solid ${focus ? colors.primary.color : '#cfd1d7'}`;
+  const activeLabel = inputValue.length === 0 && !focus;
+  // Styles
   const styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
       borderRadius: '7px',
-      border: '2px solid #cfd1d7',
+      border: valid ? `${inputBorderWeight}px solid ${colors.success.color}` : inputError,
       position: 'relative',
-      marginBottom: '25px',
+      marginBottom: '15px',
+      transition: 'all .4s ease',
     },
     label: {
       position: 'absolute',
-      background: '#fff',
-      fontSize: '12px',
-      top: '-8px',
+      background: !activeLabel && '#fff',
+      top: activeLabel ? '0' : `-${inputBorderWeight}px`,
       left: '15px',
-      color: '#cfd1d7',
-      fontWeight: '600',
+      color: '#fff',
       padding: '0 3px',
-      display: 'none',
-      transition: 'display .4s, color .4s ease',
+      transition: 'all .4s ease, background .4s ease-out, top 0s',
+    },
+    labelText: {
+      marginTop: activeLabel ? '17px' : '-8px',
+      fontSize: activeLabel ? '16px' : '12px',
+      color: valid ? colors.success.color : labelError,
+      fontWeight: '500',
+      transition: 'all .4s ease',
     },
     control: {
       background: 'none',
@@ -42,8 +60,13 @@ const Input = (props) => {
   };
   return (
     <div css={styles.input} className={className}>
-      { placeholder ? <div css={styles.label}>{placeholder}</div> : '' }
-      <input css={styles.control} autoComplete="off" placeholder={placeholder} />
+      { placeholder ? <div css={styles.label}><div css={styles.labelText}>{placeholder}</div></div> : '' }
+      <input css={styles.control}
+             autoComplete="off"
+             value={inputValue}
+             onChange={(event) => setInputValue(event.target.value)}
+             onFocus={() => setFocus(true)}
+             onBlur={() => setFocus(false)} {...otherProps} />
     </div>
   );
 };
@@ -51,6 +74,9 @@ const Input = (props) => {
 Input.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
+  error: PropTypes.bool,
+  valid: PropTypes.bool,
+  value: PropTypes.string,
 };
 
 export default Input;
