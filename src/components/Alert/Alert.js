@@ -5,12 +5,12 @@ import { colors } from '../../utils/colors';
 const Alert = (props) => {
   const {
     children,
-    className,
     dismissible,
     outline,
     theme,
     closeIconSize,
     padding,
+    ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
   const styles = {
@@ -47,7 +47,7 @@ const Alert = (props) => {
   };
   const [alertState, setAlertState] = useState(false);
   return (
-    <div css={styles.alert} className={className} style={{ display: alertState ? 'none' : 'block' }}>
+    <div css={styles.alert} style={{ display: alertState ? 'none' : 'block' }} {...otherProps}>
       {dismissible ? <div css={styles.close} onClick={() => setAlertState(true)}>+</div> : ''}
       {children}
     </div>
@@ -57,7 +57,6 @@ const Alert = (props) => {
 Alert.propTypes = {
   theme: PropTypes.string,
   children: PropTypes.any.isRequired,
-  className: PropTypes.string,
   dismissible: PropTypes.bool,
   outline: PropTypes.bool,
   closeIconSize: PropTypes.number,
