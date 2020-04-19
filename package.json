@@ -1,6 +1,6 @@
 {
   "name": "tigerspack",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "The fastest UI framework for React",
   "main": "dist/index.js",
   "keywords": [
