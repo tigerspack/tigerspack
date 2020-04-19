@@ -21,13 +21,14 @@ exports[`Input Input default 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "background": "#fff",
+        "background": "transparent",
         "color": "#fff",
         "left": "15px",
         "padding": "0 3px",
         "position": "absolute",
         "top": "0",
-        "transition": "all .4s ease, background .4s ease-out, top 0s",
+        "transition": "all .4s ease, top 0s",
+        "zIndex": 1,
       }
     }
   >
@@ -39,6 +40,8 @@ exports[`Input Input default 1`] = `
           "color": "#cfd1d7",
           "fontSize": "16px",
           "fontWeight": "500",
+          "height": "16px",
+          "lineHeight": "16px",
           "marginTop": "17px",
           "transition": "all .4s ease",
         }
@@ -59,7 +62,9 @@ exports[`Input Input default 1`] = `
         "fontSize": "16px",
         "outline": "none",
         "padding": "17px 14px",
+        "position": "relative",
         "width": "100%",
+        "zIndex": 2,
       }
     }
     id="test"
@@ -101,7 +106,9 @@ exports[`Input Input with error 1`] = `
         "fontSize": "16px",
         "outline": "none",
         "padding": "17px 14px",
+        "position": "relative",
         "width": "100%",
+        "zIndex": 2,
       }
     }
     onBlur={[Function]}
@@ -140,7 +147,9 @@ exports[`Input Input with valid value 1`] = `
         "fontSize": "16px",
         "outline": "none",
         "padding": "17px 14px",
+        "position": "relative",
         "width": "100%",
+        "zIndex": 2,
       }
     }
     onBlur={[Function]}
