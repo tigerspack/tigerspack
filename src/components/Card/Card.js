@@ -5,13 +5,13 @@ import { colors } from '../../utils/colors';
 const Card = (props) => {
   const {
     children,
-    className,
     title,
     icon,
     theme,
     outline,
     padding,
     withoutContainer,
+    ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
   const styles = {
@@ -45,7 +45,7 @@ const Card = (props) => {
     },
   };
   return (
-    <div css={styles.card} className={className}>
+    <div css={styles.card} {...otherProps}>
       {title && <div css={styles.title}>
         {icon && <span css={styles.icon}>{icon}</span>}
         {title}
@@ -57,7 +57,6 @@ const Card = (props) => {
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,
-  className: PropTypes.string,
   icon: PropTypes.any,
   withoutContainer: PropTypes.bool,
   padding: PropTypes.number,
