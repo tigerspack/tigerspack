@@ -34,7 +34,7 @@ const Input = (props) => {
     },
     label: {
       position: 'absolute',
-      background: !activeLabel && '#fff',
+      background: activeLabel ? '#fff' : 'transparent',
       top: activeLabel ? '0' : `-${inputBorderWeight}px`,
       left: '15px',
       color: '#fff',

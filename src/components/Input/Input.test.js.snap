@@ -21,7 +21,7 @@ exports[`Input Input default 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "background": false,
+        "background": "#fff",
         "color": "#fff",
         "left": "15px",
         "padding": "0 3px",
@@ -62,10 +62,91 @@ exports[`Input Input default 1`] = `
         "width": "100%",
       }
     }
+    id="test"
+    name="test"
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
+    onKeyUp={[Function]}
     value=""
+  />
+</EmotionCssPropInternal>
+`;
+
+exports[`Input Input with error 1`] = `
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "1px solid #D15130",
+      "borderRadius": "7px",
+      "boxSizing": "border-box",
+      "marginBottom": "15px",
+      "position": "relative",
+      "transition": "all .4s ease",
+    }
+  }
+>
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="input"
+    autoComplete="off"
+    css={
+      Object {
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "fontSize": "16px",
+        "outline": "none",
+        "padding": "17px 14px",
+        "width": "100%",
+      }
+    }
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    value="error value"
+  />
+</EmotionCssPropInternal>
+`;
+
+exports[`Input Input with valid value 1`] = `
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": "1px solid #9BC53D",
+      "borderRadius": "7px",
+      "boxSizing": "border-box",
+      "marginBottom": "15px",
+      "position": "relative",
+      "transition": "all .4s ease",
+    }
+  }
+>
+  <EmotionCssPropInternal
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="input"
+    autoComplete="off"
+    css={
+      Object {
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "fontSize": "16px",
+        "outline": "none",
+        "padding": "17px 14px",
+        "width": "100%",
+      }
+    }
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    value="valid value"
   />
 </EmotionCssPropInternal>
 `;
