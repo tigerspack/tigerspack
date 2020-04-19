@@ -2207,6 +2207,12 @@ Button_Button.propTypes = {
 
 /* harmony default export */ var components_Button = (components_Button_Button);
 // CONCATENATED MODULE: ./components/Card/Card.js
+function Card_extends() { Card_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Card_extends.apply(this, arguments); }
+
+function Card_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Card_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function Card_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -2214,13 +2220,14 @@ Button_Button.propTypes = {
 
 var Card_Card = function Card(props) {
   var children = props.children,
-      className = props.className,
       title = props.title,
       icon = props.icon,
       theme = props.theme,
       outline = props.outline,
       padding = props.padding,
-      withoutContainer = props.withoutContainer;
+      withoutContainer = props.withoutContainer,
+      otherProps = Card_objectWithoutProperties(props, ["children", "title", "icon", "theme", "outline", "padding", "withoutContainer"]);
+
   var palette = colors[theme] ? colors[theme] : colors.primary;
   var styles = {
     card: {
@@ -2252,10 +2259,9 @@ var Card_Card = function Card(props) {
       marginRight: '10px'
     }
   };
-  return core_browser_esm_jsx("div", {
-    css: styles.card,
-    className: className
-  }, title && core_browser_esm_jsx("div", {
+  return core_browser_esm_jsx("div", Card_extends({
+    css: styles.card
+  }, otherProps), title && core_browser_esm_jsx("div", {
     css: styles.title
   }, icon && core_browser_esm_jsx("span", {
     css: styles.icon
@@ -2266,7 +2272,6 @@ var Card_Card = function Card(props) {
 
 Card_Card.propTypes = {
   children: prop_types_default.a.any.isRequired,
-  className: prop_types_default.a.string,
   icon: prop_types_default.a.any,
   withoutContainer: prop_types_default.a.bool,
   padding: prop_types_default.a.number,
