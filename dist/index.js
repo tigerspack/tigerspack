@@ -2267,36 +2267,81 @@ Card_Card.defaultProps = {
 
 /* harmony default export */ var components_Card = (components_Card_Card);
 // CONCATENATED MODULE: ./components/Input/Input.js
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
- // import classNames from 'classnames';
-// import { colors } from '../../utils/colors';
+function Input_slicedToArray(arr, i) { return Input_arrayWithHoles(arr) || Input_iterableToArrayLimit(arr, i) || Input_unsupportedIterableToArray(arr, i) || Input_nonIterableRest(); }
+
+function Input_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function Input_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Input_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Input_arrayLikeToArray(o, minLen); }
+
+function Input_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function Input_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function Input_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
 
 
 
 var Input_Input = function Input(props) {
   var className = props.className,
-      placeholder = props.placeholder; // const palette = colors[theme] ? colors[theme] : colors.primary;
+      placeholder = props.placeholder,
+      error = props.error,
+      valid = props.valid,
+      value = props.value,
+      otherProps = _objectWithoutProperties(props, ["className", "placeholder", "error", "valid", "value"]); // Config
+
+
+  var inputBorderWeight = 1; // Hooks
+
+  var _useState = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["useState"])(false),
+      _useState2 = Input_slicedToArray(_useState, 2),
+      focus = _useState2[0],
+      setFocus = _useState2[1];
+
+  var _useState3 = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["useState"])(value || ''),
+      _useState4 = Input_slicedToArray(_useState3, 2),
+      inputValue = _useState4[0],
+      setInputValue = _useState4[1]; // Different states
+
+
+  var labelColor = focus ? colors.primary.color : '#cfd1d7';
+  var labelError = error ? colors.danger.color : labelColor;
+  var inputError = error ? "".concat(inputBorderWeight, "px solid ").concat(colors.danger.color) : "".concat(inputBorderWeight, "px solid ").concat(focus ? colors.primary.color : '#cfd1d7');
+  var activeLabel = inputValue.length === 0 && !focus; // Styles
 
   var styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
       borderRadius: '7px',
-      border: '2px solid #cfd1d7',
+      border: valid ? "".concat(inputBorderWeight, "px solid ").concat(colors.success.color) : inputError,
       position: 'relative',
-      marginBottom: '25px'
+      marginBottom: '15px',
+      transition: 'all .4s ease'
     },
     label: {
       position: 'absolute',
-      background: '#fff',
-      fontSize: '12px',
-      top: '-8px',
+      background: !activeLabel && '#fff',
+      top: activeLabel ? '0' : "-".concat(inputBorderWeight, "px"),
       left: '15px',
-      color: '#cfd1d7',
-      fontWeight: '600',
+      color: '#fff',
       padding: '0 3px',
-      display: 'none',
-      transition: 'display .4s, color .4s ease'
+      transition: 'all .4s ease, background .4s ease-out, top 0s'
+    },
+    labelText: {
+      marginTop: activeLabel ? '17px' : '-8px',
+      fontSize: activeLabel ? '16px' : '12px',
+      color: valid ? colors.success.color : labelError,
+      fontWeight: '500',
+      transition: 'all .4s ease'
     },
     control: {
       background: 'none',
@@ -2313,16 +2358,30 @@ var Input_Input = function Input(props) {
     className: className
   }, placeholder ? core_browser_esm_jsx("div", {
     css: styles.label
-  }, placeholder) : '', core_browser_esm_jsx("input", {
+  }, core_browser_esm_jsx("div", {
+    css: styles.labelText
+  }, placeholder)) : '', core_browser_esm_jsx("input", _extends({
     css: styles.control,
     autoComplete: "off",
-    placeholder: placeholder
-  }));
+    value: inputValue,
+    onChange: function onChange(event) {
+      return setInputValue(event.target.value);
+    },
+    onFocus: function onFocus() {
+      return setFocus(true);
+    },
+    onBlur: function onBlur() {
+      return setFocus(false);
+    }
+  }, otherProps)));
 };
 
 Input_Input.propTypes = {
   className: prop_types_default.a.string,
-  placeholder: prop_types_default.a.string
+  placeholder: prop_types_default.a.string,
+  error: prop_types_default.a.bool,
+  valid: prop_types_default.a.bool,
+  value: prop_types_default.a.string
 };
 /* harmony default export */ var components_Input_Input = (Input_Input);
 // CONCATENATED MODULE: ./components/Input/index.js
