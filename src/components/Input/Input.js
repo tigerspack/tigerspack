@@ -8,37 +8,44 @@ const Input = (props) => {
     placeholder,
     error,
     valid,
-    name,
+    value,
+    ...otherProps
   } = props;
-
+  // Config
+  const inputBorderWeight = 1;
+  // Hooks
   const [focus, setFocus] = useState(false);
+  const [inputValue, setInputValue] = useState(value || '');
+  // Different states
   const labelColor = focus ? colors.primary.color : '#cfd1d7';
   const labelError = error ? colors.danger.color : labelColor;
-  const inputError = error ? `2px solid ${colors.danger.color}` : `2px solid ${focus ? colors.primary.color : '#cfd1d7'}`;
+  const inputError = error ? `${inputBorderWeight}px solid ${colors.danger.color}` : `${inputBorderWeight}px solid ${focus ? colors.primary.color : '#cfd1d7'}`;
+  const activeLabel = inputValue.length === 0 && !focus;
+  // Styles
   const styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
       borderRadius: '7px',
-      border: valid ? `2px solid ${colors.success.color}` : inputError,
+      border: valid ? `${inputBorderWeight}px solid ${colors.success.color}` : inputError,
       position: 'relative',
       marginBottom: '15px',
       transition: 'all .4s ease',
     },
     label: {
       position: 'absolute',
-      background: '#fff',
-      top: '-2px',
+      background: !activeLabel && '#fff',
+      top: activeLabel ? '0' : `-${inputBorderWeight}px`,
       left: '15px',
       color: '#fff',
       padding: '0 3px',
-      transition: 'all .4s ease',
+      transition: 'all .4s ease, background .4s ease-out, top 0s',
     },
     labelText: {
-      marginTop: '-8px',
-      fontSize: '12px',
+      marginTop: activeLabel ? '17px' : '-8px',
+      fontSize: activeLabel ? '16px' : '12px',
       color: valid ? colors.success.color : labelError,
-      fontWeight: '600',
+      fontWeight: '500',
       transition: 'all .4s ease',
     },
     control: {
@@ -51,25 +58,25 @@ const Input = (props) => {
       boxSizing: 'border-box',
     },
   };
-
   return (
     <div css={styles.input} className={className}>
       { placeholder ? <div css={styles.label}><div css={styles.labelText}>{placeholder}</div></div> : '' }
       <input css={styles.control}
-             name={name}
              autoComplete="off"
+             value={inputValue}
+             onChange={(event) => setInputValue(event.target.value)}
              onFocus={() => setFocus(true)}
-             onBlur={() => setFocus(false)} />
+             onBlur={() => setFocus(false)} {...otherProps} />
     </div>
   );
 };
 
 Input.propTypes = {
-  name: PropTypes.string,
   className: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.bool,
   valid: PropTypes.bool,
+  value: PropTypes.string,
 };
 
 export default Input;
