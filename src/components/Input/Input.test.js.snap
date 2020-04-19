@@ -7,11 +7,12 @@ exports[`Input Input default 1`] = `
   css={
     Object {
       "background": "#fff",
-      "border": "2px solid #cfd1d7",
+      "border": "1px solid #cfd1d7",
       "borderRadius": "7px",
       "boxSizing": "border-box",
-      "marginBottom": "25px",
+      "marginBottom": "15px",
       "position": "relative",
+      "transition": "all .4s ease",
     }
   }
 >
@@ -20,20 +21,31 @@ exports[`Input Input default 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "background": "#fff",
-        "color": "#cfd1d7",
-        "display": "none",
-        "fontSize": "12px",
-        "fontWeight": "600",
+        "background": false,
+        "color": "#fff",
         "left": "15px",
         "padding": "0 3px",
         "position": "absolute",
-        "top": "-8px",
-        "transition": "display .4s, color .4s ease",
+        "top": "0",
+        "transition": "all .4s ease, background .4s ease-out, top 0s",
       }
     }
   >
-    Test
+    <EmotionCssPropInternal
+      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+      __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+      css={
+        Object {
+          "color": "#cfd1d7",
+          "fontSize": "16px",
+          "fontWeight": "500",
+          "marginTop": "17px",
+          "transition": "all .4s ease",
+        }
+      }
+    >
+      Test
+    </EmotionCssPropInternal>
   </EmotionCssPropInternal>
   <EmotionCssPropInternal
     __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
@@ -50,7 +62,10 @@ exports[`Input Input default 1`] = `
         "width": "100%",
       }
     }
-    placeholder="Test"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    value=""
   />
 </EmotionCssPropInternal>
 `;

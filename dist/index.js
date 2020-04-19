@@ -2267,6 +2267,8 @@ Card_Card.defaultProps = {
 
 /* harmony default export */ var components_Card = (components_Card_Card);
 // CONCATENATED MODULE: ./components/Input/Input.js
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function Input_slicedToArray(arr, i) { return Input_arrayWithHoles(arr) || Input_iterableToArrayLimit(arr, i) || Input_unsupportedIterableToArray(arr, i) || Input_nonIterableRest(); }
 
 function Input_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2279,6 +2281,10 @@ function Input_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" 
 
 function Input_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -2289,40 +2295,52 @@ var Input_Input = function Input(props) {
       placeholder = props.placeholder,
       error = props.error,
       valid = props.valid,
-      name = props.name; // const palette = colors[theme] ? colors[theme] : colors.primary;
+      value = props.value,
+      otherProps = _objectWithoutProperties(props, ["className", "placeholder", "error", "valid", "value"]); // Config
+
+
+  var inputBorderWeight = 1; // Hooks
 
   var _useState = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["useState"])(false),
       _useState2 = Input_slicedToArray(_useState, 2),
       focus = _useState2[0],
       setFocus = _useState2[1];
 
+  var _useState3 = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["useState"])(value || ''),
+      _useState4 = Input_slicedToArray(_useState3, 2),
+      inputValue = _useState4[0],
+      setInputValue = _useState4[1]; // Different states
+
+
   var labelColor = focus ? colors.primary.color : '#cfd1d7';
   var labelError = error ? colors.danger.color : labelColor;
-  var inputError = error ? "2px solid ".concat(colors.danger.color) : "2px solid ".concat(focus ? colors.primary.color : '#cfd1d7');
+  var inputError = error ? "".concat(inputBorderWeight, "px solid ").concat(colors.danger.color) : "".concat(inputBorderWeight, "px solid ").concat(focus ? colors.primary.color : '#cfd1d7');
+  var activeLabel = inputValue.length === 0 && !focus; // Styles
+
   var styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
       borderRadius: '7px',
-      border: valid ? "2px solid ".concat(colors.success.color) : inputError,
+      border: valid ? "".concat(inputBorderWeight, "px solid ").concat(colors.success.color) : inputError,
       position: 'relative',
       marginBottom: '15px',
       transition: 'all .4s ease'
     },
     label: {
       position: 'absolute',
-      background: '#fff',
-      top: '-2px',
+      background: !activeLabel && '#fff',
+      top: activeLabel ? '0' : "-".concat(inputBorderWeight, "px"),
       left: '15px',
       color: '#fff',
       padding: '0 3px',
-      transition: 'all .4s ease'
+      transition: 'all .4s ease, background .4s ease-out, top 0s'
     },
     labelText: {
-      marginTop: '-8px',
-      fontSize: '12px',
+      marginTop: activeLabel ? '17px' : '-8px',
+      fontSize: activeLabel ? '16px' : '12px',
       color: valid ? colors.success.color : labelError,
-      fontWeight: '600',
+      fontWeight: '500',
       transition: 'all .4s ease'
     },
     control: {
@@ -2335,16 +2353,6 @@ var Input_Input = function Input(props) {
       boxSizing: 'border-box'
     }
   };
-
-  var _useState3 = Object(external_commonjs_react_commonjs2_react_amd_React_root_React_["useState"])('Hello Function Component!'),
-      _useState4 = Input_slicedToArray(_useState3, 2),
-      greeting = _useState4[0],
-      setGreeting = _useState4[1];
-
-  var keyPressFunction = function keyPressFunction() {
-    console.log('greeting', greeting);
-  };
-
   return core_browser_esm_jsx("div", {
     css: styles.input,
     className: className
@@ -2352,30 +2360,28 @@ var Input_Input = function Input(props) {
     css: styles.label
   }, core_browser_esm_jsx("div", {
     css: styles.labelText
-  }, placeholder)) : '', core_browser_esm_jsx("input", {
+  }, placeholder)) : '', core_browser_esm_jsx("input", _extends({
     css: styles.control,
-    name: name,
     autoComplete: "off",
-    onKeyUp: keyPressFunction,
+    value: inputValue,
+    onChange: function onChange(event) {
+      return setInputValue(event.target.value);
+    },
     onFocus: function onFocus() {
       return setFocus(true);
-    },
-    value: greeting,
-    onChange: function onChange(event) {
-      return setGreeting(event.target.value);
     },
     onBlur: function onBlur() {
       return setFocus(false);
     }
-  }));
+  }, otherProps)));
 };
 
 Input_Input.propTypes = {
-  name: prop_types_default.a.string,
   className: prop_types_default.a.string,
   placeholder: prop_types_default.a.string,
   error: prop_types_default.a.bool,
-  valid: prop_types_default.a.bool
+  valid: prop_types_default.a.bool,
+  value: prop_types_default.a.string
 };
 /* harmony default export */ var components_Input_Input = (Input_Input);
 // CONCATENATED MODULE: ./components/Input/index.js
