@@ -1961,6 +1961,8 @@ var ClassNames = core_browser_esm_withEmotionCache(function (props, context) {
 });
 
 // CONCATENATED MODULE: ./components/Alert/Alert.js
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1973,6 +1975,10 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -1980,12 +1986,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Alert_Alert = function Alert(props) {
   var children = props.children,
-      className = props.className,
       dismissible = props.dismissible,
       outline = props.outline,
       theme = props.theme,
       closeIconSize = props.closeIconSize,
-      padding = props.padding;
+      padding = props.padding,
+      otherProps = _objectWithoutProperties(props, ["children", "dismissible", "outline", "theme", "closeIconSize", "padding"]);
+
   var palette = colors[theme] ? colors[theme] : colors.primary;
   var styles = {
     alert: {
@@ -2025,13 +2032,12 @@ var Alert_Alert = function Alert(props) {
       alertState = _useState2[0],
       setAlertState = _useState2[1];
 
-  return core_browser_esm_jsx("div", {
+  return core_browser_esm_jsx("div", _extends({
     css: styles.alert,
-    className: className,
     style: {
       display: alertState ? 'none' : 'block'
     }
-  }, dismissible ? core_browser_esm_jsx("div", {
+  }, otherProps), dismissible ? core_browser_esm_jsx("div", {
     css: styles.close,
     onClick: function onClick() {
       return setAlertState(true);
@@ -2042,7 +2048,6 @@ var Alert_Alert = function Alert(props) {
 Alert_Alert.propTypes = {
   theme: prop_types_default.a.string,
   children: prop_types_default.a.any.isRequired,
-  className: prop_types_default.a.string,
   dismissible: prop_types_default.a.bool,
   outline: prop_types_default.a.bool,
   closeIconSize: prop_types_default.a.number,
@@ -2057,11 +2062,11 @@ Alert_Alert.defaultProps = {
 
 /* harmony default export */ var components_Alert = (components_Alert_Alert);
 // CONCATENATED MODULE: ./components/Button/Button.js
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function Button_extends() { Button_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Button_extends.apply(this, arguments); }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function Button_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Button_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function Button_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
 
@@ -2074,7 +2079,7 @@ var Button_Button = function Button(props) {
       size = props.size,
       theme = props.theme,
       type = props.type,
-      otherProps = _objectWithoutProperties(props, ["children", "icon", "size", "theme", "type"]);
+      otherProps = Button_objectWithoutProperties(props, ["children", "icon", "size", "theme", "type"]);
 
   var palette = colors[theme] ? colors[theme] : colors.primary; // Dynamic styles
 
@@ -2183,7 +2188,7 @@ var Button_Button = function Button(props) {
       marginRight: children ? "".concat(dynamicStyles.iconMargin, "px") : "-".concat(dynamicStyles.iconMargin / 2, "px")
     }
   };
-  return core_browser_esm_jsx("button", _extends({
+  return core_browser_esm_jsx("button", Button_extends({
     css: styles.button
   }, otherProps), icon ? core_browser_esm_jsx("span", {
     css: styles.icon
