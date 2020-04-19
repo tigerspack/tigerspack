@@ -5,20 +5,20 @@ import { colors } from '../../utils/colors';
 const Button = (props) => {
   const {
     children,
-    className,
-    onClick,
-    disabled,
     icon,
     size,
     theme,
     type,
+    ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
+  // Dynamic styles
   const dynamicStyles = {};
   switch (type) {
     case 'text': {
       dynamicStyles.background = 'transparent';
       dynamicStyles.backgroundHover = palette.color;
+      dynamicStyles.border = '1px solid transparent';
       dynamicStyles.color = palette.color;
       dynamicStyles.colorHover = palette.hoverText;
       break;
@@ -63,6 +63,7 @@ const Button = (props) => {
       break;
     }
   }
+  // Styles
   const styles = {
     button: {
       boxSizing: 'border-box',
@@ -77,19 +78,26 @@ const Button = (props) => {
       backgroundImage: 'none',
       whiteSpace: 'nowrap',
       userSelect: 'none',
+      cursor: 'pointer',
       borderRadius: type !== 'rounded' ? '4px' : '20px',
-      cursor: disabled ? 'not-allowed' : 'pointer',
-      opacity: disabled ? 0.7 : 1,
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
       fontSize: dynamicStyles.fontSize,
       lineHeight: dynamicStyles.lineHeight,
       padding: dynamicStyles.padding,
+      ':disabled': {
+        opacity: 0.7,
+        cursor: 'not-allowed',
+        ':hover': {
+          color: dynamicStyles.color,
+          backgroundColor: dynamicStyles.background,
+        },
+      },
       ':hover': {
-        color: !disabled && dynamicStyles.colorHover,
+        color: dynamicStyles.colorHover,
         textDecoration: 'none',
-        backgroundColor: !disabled && dynamicStyles.backgroundHover,
+        backgroundColor: dynamicStyles.backgroundHover,
       },
     },
     icon: {
@@ -98,21 +106,18 @@ const Button = (props) => {
     },
   };
   return (
-    <div css={styles.button} className={className} onClick={disabled ? () => {} : onClick}>
+    <button css={styles.button} {...otherProps}>
       {icon ? <span css={styles.icon}>{icon}</span> : ''}
       {children}
-    </div>
+    </button>
   );
 };
 
 Button.propTypes = {
   theme: PropTypes.string,
   children: PropTypes.any,
-  className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   type: PropTypes.oneOf(['text', 'outline', 'rounded']),
-  disabled: PropTypes.bool,
   icon: PropTypes.any,
 };
 

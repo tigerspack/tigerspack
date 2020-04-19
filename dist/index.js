@@ -2057,6 +2057,12 @@ Alert_Alert.defaultProps = {
 
 /* harmony default export */ var components_Alert = (components_Alert_Alert);
 // CONCATENATED MODULE: ./components/Button/Button.js
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -2064,14 +2070,14 @@ Alert_Alert.defaultProps = {
 
 var Button_Button = function Button(props) {
   var children = props.children,
-      className = props.className,
-      onClick = props.onClick,
-      disabled = props.disabled,
       icon = props.icon,
       size = props.size,
       theme = props.theme,
-      type = props.type;
-  var palette = colors[theme] ? colors[theme] : colors.primary;
+      type = props.type,
+      otherProps = _objectWithoutProperties(props, ["children", "icon", "size", "theme", "type"]);
+
+  var palette = colors[theme] ? colors[theme] : colors.primary; // Dynamic styles
+
   var dynamicStyles = {};
 
   switch (type) {
@@ -2079,6 +2085,7 @@ var Button_Button = function Button(props) {
       {
         dynamicStyles.background = 'transparent';
         dynamicStyles.backgroundHover = palette.color;
+        dynamicStyles.border = '1px solid transparent';
         dynamicStyles.color = palette.color;
         dynamicStyles.colorHover = palette.hoverText;
         break;
@@ -2132,7 +2139,8 @@ var Button_Button = function Button(props) {
         dynamicStyles.lineHeight = 1.52857143;
         break;
       }
-  }
+  } // Styles
+
 
   var styles = {
     button: {
@@ -2148,19 +2156,26 @@ var Button_Button = function Button(props) {
       backgroundImage: 'none',
       whiteSpace: 'nowrap',
       userSelect: 'none',
+      cursor: 'pointer',
       borderRadius: type !== 'rounded' ? '4px' : '20px',
-      cursor: disabled ? 'not-allowed' : 'pointer',
-      opacity: disabled ? 0.7 : 1,
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
       fontSize: dynamicStyles.fontSize,
       lineHeight: dynamicStyles.lineHeight,
       padding: dynamicStyles.padding,
+      ':disabled': {
+        opacity: 0.7,
+        cursor: 'not-allowed',
+        ':hover': {
+          color: dynamicStyles.color,
+          backgroundColor: dynamicStyles.background
+        }
+      },
       ':hover': {
-        color: !disabled && dynamicStyles.colorHover,
+        color: dynamicStyles.colorHover,
         textDecoration: 'none',
-        backgroundColor: !disabled && dynamicStyles.backgroundHover
+        backgroundColor: dynamicStyles.backgroundHover
       }
     },
     icon: {
@@ -2168,11 +2183,9 @@ var Button_Button = function Button(props) {
       marginRight: children ? "".concat(dynamicStyles.iconMargin, "px") : "-".concat(dynamicStyles.iconMargin / 2, "px")
     }
   };
-  return core_browser_esm_jsx("div", {
-    css: styles.button,
-    className: className,
-    onClick: disabled ? function () {} : onClick
-  }, icon ? core_browser_esm_jsx("span", {
+  return core_browser_esm_jsx("button", _extends({
+    css: styles.button
+  }, otherProps), icon ? core_browser_esm_jsx("span", {
     css: styles.icon
   }, icon) : '', children);
 };
@@ -2180,11 +2193,8 @@ var Button_Button = function Button(props) {
 Button_Button.propTypes = {
   theme: prop_types_default.a.string,
   children: prop_types_default.a.any,
-  className: prop_types_default.a.string,
-  onClick: prop_types_default.a.func.isRequired,
   size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
   type: prop_types_default.a.oneOf(['text', 'outline', 'rounded']),
-  disabled: prop_types_default.a.bool,
   icon: prop_types_default.a.any
 };
 /* harmony default export */ var components_Button_Button = (Button_Button);
@@ -2267,7 +2277,7 @@ Card_Card.defaultProps = {
 
 /* harmony default export */ var components_Card = (components_Card_Card);
 // CONCATENATED MODULE: ./components/Input/Input.js
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function Input_extends() { Input_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Input_extends.apply(this, arguments); }
 
 function Input_slicedToArray(arr, i) { return Input_arrayWithHoles(arr) || Input_iterableToArrayLimit(arr, i) || Input_unsupportedIterableToArray(arr, i) || Input_nonIterableRest(); }
 
@@ -2281,9 +2291,9 @@ function Input_iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" 
 
 function Input_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function Input_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Input_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function Input_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 
 
@@ -2296,7 +2306,7 @@ var Input_Input = function Input(props) {
       error = props.error,
       valid = props.valid,
       value = props.value,
-      otherProps = _objectWithoutProperties(props, ["className", "placeholder", "error", "valid", "value"]); // Config
+      otherProps = Input_objectWithoutProperties(props, ["className", "placeholder", "error", "valid", "value"]); // Config
 
 
   var inputBorderWeight = 1; // Hooks
@@ -2365,7 +2375,7 @@ var Input_Input = function Input(props) {
     css: styles.label
   }, core_browser_esm_jsx("div", {
     css: styles.labelText
-  }, placeholder)) : '', core_browser_esm_jsx("input", _extends({
+  }, placeholder)) : '', core_browser_esm_jsx("input", Input_extends({
     css: styles.control,
     autoComplete: "off",
     value: inputValue,

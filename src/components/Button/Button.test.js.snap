@@ -3,9 +3,17 @@
 exports[`Button Button default 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
+      ":disabled": Object {
+        ":hover": Object {
+          "backgroundColor": "#3F88C5",
+          "color": "#fff",
+        },
+        "cursor": "not-allowed",
+        "opacity": 0.7,
+      },
       ":hover": Object {
         "backgroundColor": "#619DCF",
         "color": "#fff",
@@ -23,7 +31,6 @@ exports[`Button Button default 1`] = `
       "fontWeight": 500,
       "lineHeight": 1.52857143,
       "marginBottom": 0,
-      "opacity": 1,
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -43,9 +50,17 @@ exports[`Button Button default 1`] = `
 exports[`Button button with icon only 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
+      ":disabled": Object {
+        ":hover": Object {
+          "backgroundColor": "#5BC0EB",
+          "color": "#fff",
+        },
+        "cursor": "not-allowed",
+        "opacity": 0.7,
+      },
       ":hover": Object {
         "backgroundColor": "#87D1F0",
         "color": "#fff",
@@ -63,7 +78,6 @@ exports[`Button button with icon only 1`] = `
       "fontWeight": 500,
       "lineHeight": 1.52857143,
       "marginBottom": 0,
-      "opacity": 1,
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -108,12 +122,20 @@ exports[`Button button with icon only 1`] = `
 exports[`Button disabled button 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
+      ":disabled": Object {
+        ":hover": Object {
+          "backgroundColor": "#3F88C5",
+          "color": "#fff",
+        },
+        "cursor": "not-allowed",
+        "opacity": 0.7,
+      },
       ":hover": Object {
-        "backgroundColor": false,
-        "color": false,
+        "backgroundColor": "#619DCF",
+        "color": "#fff",
         "textDecoration": "none",
       },
       "backgroundColor": "#3F88C5",
@@ -122,13 +144,12 @@ exports[`Button disabled button 1`] = `
       "borderRadius": "4px",
       "boxSizing": "border-box",
       "color": "#fff",
-      "cursor": "not-allowed",
+      "cursor": "pointer",
       "display": "inline-block",
       "fontSize": "14px",
       "fontWeight": 500,
       "lineHeight": 1.52857143,
       "marginBottom": 0,
-      "opacity": 0.7,
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -139,7 +160,20 @@ exports[`Button disabled button 1`] = `
       "whiteSpace": "nowrap",
     }
   }
-  onClick={[Function]}
+  disabled={true}
+  onClick={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
 >
   Test button
 </EmotionCssPropInternal>
@@ -148,9 +182,17 @@ exports[`Button disabled button 1`] = `
 exports[`Button large outline button 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
+      ":disabled": Object {
+        ":hover": Object {
+          "backgroundColor": "transparent",
+          "color": "#3F88C5",
+        },
+        "cursor": "not-allowed",
+        "opacity": 0.7,
+      },
       ":hover": Object {
         "backgroundColor": "#3F88C5",
         "color": "#fff",
@@ -168,7 +210,6 @@ exports[`Button large outline button 1`] = `
       "fontWeight": 500,
       "lineHeight": 1.3333333,
       "marginBottom": 0,
-      "opacity": 1,
       "outline": "none",
       "padding": "10px 16px",
       "position": "relative",
@@ -200,9 +241,17 @@ exports[`Button large outline button 1`] = `
 exports[`Button rounded button with icon 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
+      ":disabled": Object {
+        ":hover": Object {
+          "backgroundColor": "#D15130",
+          "color": "#fff",
+        },
+        "cursor": "not-allowed",
+        "opacity": 0.7,
+      },
       ":hover": Object {
         "backgroundColor": "#E76846",
         "color": "#fff",
@@ -220,7 +269,6 @@ exports[`Button rounded button with icon 1`] = `
       "fontWeight": 500,
       "lineHeight": 1.52857143,
       "marginBottom": 0,
-      "opacity": 1,
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -266,9 +314,17 @@ exports[`Button rounded button with icon 1`] = `
 exports[`Button small text button 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
+      ":disabled": Object {
+        ":hover": Object {
+          "backgroundColor": "transparent",
+          "color": "#3F88C5",
+        },
+        "cursor": "not-allowed",
+        "opacity": 0.7,
+      },
       ":hover": Object {
         "backgroundColor": "#3F88C5",
         "color": "#fff",
@@ -276,7 +332,7 @@ exports[`Button small text button 1`] = `
       },
       "backgroundColor": "transparent",
       "backgroundImage": "none",
-      "border": undefined,
+      "border": "1px solid transparent",
       "borderRadius": "4px",
       "boxSizing": "border-box",
       "color": "#3F88C5",
@@ -286,7 +342,6 @@ exports[`Button small text button 1`] = `
       "fontWeight": 500,
       "lineHeight": 1.5,
       "marginBottom": 0,
-      "opacity": 1,
       "outline": "none",
       "padding": "4px 10px",
       "position": "relative",
