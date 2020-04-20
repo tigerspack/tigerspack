@@ -1,13 +1,23 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const htmlPlugin = new HtmlWebpackPlugin({
+  template: './sandbox/index.html',
+  fileName: './index.html',
+});
+
+const NODE_ENV = process.env.NODE_ENV || 'production';
+const devMode = NODE_ENV === 'development';
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: './index.js',
+  entry: devMode ? './sandbox/index.js' : './index.js',
   output: {
     path: `${__dirname}/dist`,
     filename: './index.js',
     publicPath: '/',
-    libraryTarget: 'commonjs2',
+    chunkFilename: './[name].js',
+    libraryTarget: !devMode ? 'commonjs2' : 'this',
   },
   optimization: {
     minimize: false,
@@ -20,7 +30,11 @@ module.exports = {
       },
     ],
   },
-  externals: {
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+  },
+  externals: !devMode ? {
     react: {
       commonjs: 'react',
       commonjs2: 'react',
@@ -33,5 +47,12 @@ module.exports = {
       amd: 'ReactDOM',
       root: 'ReactDOM',
     },
+  } : {},
+  plugins: devMode ? [htmlPlugin] : [],
+  devServer: {
+    contentBase: './dist',
+    port: 4444,
+    historyApiFallback: true,
+    publicPath: '/',
   },
 };
