@@ -12,7 +12,7 @@ The fastest UI framework for React
 [![npm downloads](https://img.shields.io/npm/dm/tigerspack)](https://www.npmjs.com/package/tigerspack)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=tigerspack/tigerspack)](https://dependabot.com)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tigerspack/tigerspack/blob/master/LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/tigerspack/tigerspack/blob/master/CONTRIBUTING.md)
 [![Tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
 </div>
