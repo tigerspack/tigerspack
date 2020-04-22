@@ -216,6 +216,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "Alert", function() { return /* reexport */ components_Alert; });
 __webpack_require__.d(__webpack_exports__, "Button", function() { return /* reexport */ components_Button; });
 __webpack_require__.d(__webpack_exports__, "Card", function() { return /* reexport */ components_Card; });
+__webpack_require__.d(__webpack_exports__, "Grid", function() { return /* reexport */ components_Grid; });
 __webpack_require__.d(__webpack_exports__, "Input", function() { return /* reexport */ components_Input; });
 __webpack_require__.d(__webpack_exports__, "setColor", function() { return /* reexport */ setColor; });
 
@@ -2286,6 +2287,118 @@ Card_Card.defaultProps = {
 // CONCATENATED MODULE: ./components/Card/index.js
 
 /* harmony default export */ var components_Card = (components_Card_Card);
+// CONCATENATED MODULE: ./components/Grid/Grid.js
+function Grid_extends() { Grid_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Grid_extends.apply(this, arguments); }
+
+function Grid_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function Grid_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Grid_ownKeys(Object(source), true).forEach(function (key) { Grid_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Grid_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function Grid_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function Grid_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Grid_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function Grid_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+var Grid_Grid = function Grid(props) {
+  var align = props.align,
+      children = props.children,
+      flow = props.flow,
+      stretch = props.stretch,
+      padding = props.padding,
+      size = props.size,
+      valign = props.valign,
+      wrap = props.wrap,
+      otherProps = Grid_objectWithoutProperties(props, ["align", "children", "flow", "stretch", "padding", "size", "valign", "wrap"]);
+
+  var posObj = {};
+  var sizeObj = {};
+
+  var posNameStab = function posNameStab(prop) {
+    if (prop === 'top' || prop === 'left') {
+      return 'flex-start';
+    }
+
+    if (prop === 'bottom' || prop === 'right') {
+      return 'flex-end';
+    }
+
+    return prop;
+  };
+
+  var isColumn = flow === 'column';
+
+  if (align) {
+    posObj[isColumn ? 'alignContent' : 'justifyContent'] = posNameStab(align);
+    posObj[isColumn ? 'alignItems' : 'justifyItems'] = posNameStab(align);
+  }
+
+  if (valign) {
+    posObj[isColumn ? 'justifyContent' : 'alignContent'] = posNameStab(valign);
+    posObj[isColumn ? 'justifyItems' : 'alignItems'] = posNameStab(valign);
+  }
+
+  if (stretch) {
+    switch (stretch) {
+      case 'width':
+        {
+          sizeObj.width = '100%';
+          break;
+        }
+
+      case 'height':
+        {
+          sizeObj.height = '100%';
+          break;
+        }
+
+      default:
+        {
+          sizeObj.width = '100%';
+          sizeObj.height = '100%';
+          break;
+        }
+    }
+  }
+
+  if (size < 13) {
+    sizeObj[isColumn ? 'minHeight' : 'minWidth'] = "".concat(100 / 12 * size, "%");
+  }
+
+  var gridStyle = Grid_objectSpread({
+    display: 'flex',
+    flexFlow: flow,
+    padding: "".concat(padding, "px"),
+    boxSizing: 'border-box',
+    flexWrap: wrap ? 'wrap' : 'nowrap'
+  }, posObj, {}, sizeObj);
+
+  return core_browser_esm_jsx("div", Grid_extends({
+    css: gridStyle
+  }, otherProps), children);
+};
+
+Grid_Grid.propTypes = {
+  align: prop_types_default.a.oneOf(['left', 'right', 'center']),
+  valign: prop_types_default.a.oneOf(['top', 'bottom', 'center']),
+  children: prop_types_default.a.any.isRequired,
+  flow: prop_types_default.a.oneOf(['row', 'column']),
+  padding: prop_types_default.a.number,
+  stretch: prop_types_default.a.oneOf(['width', 'height', 'full']),
+  size: prop_types_default.a.number,
+  wrap: prop_types_default.a.bool
+};
+Grid_Grid.defaultProps = {
+  padding: 0
+};
+/* harmony default export */ var components_Grid_Grid = (Grid_Grid);
+// CONCATENATED MODULE: ./components/Grid/index.js
+
+/* harmony default export */ var components_Grid = (components_Grid_Grid);
 // CONCATENATED MODULE: ./components/Input/Input.js
 function Input_extends() { Input_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Input_extends.apply(this, arguments); }
 
@@ -2413,6 +2526,7 @@ Input_Input.propTypes = {
 
 /* harmony default export */ var components_Input = (components_Input_Input);
 // CONCATENATED MODULE: ./index.js
+
 
 
 
