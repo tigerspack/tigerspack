@@ -36,7 +36,7 @@ const Grid = (props) => {
 
   if (valign) {
     posObj[isColumn ? 'justifyContent' : 'alignContent'] = posNameStab(valign);
-    posObj[isColumn ? 'justifyContent' : 'alignItems'] = posNameStab(valign);
+    posObj[isColumn ? 'justifyItems' : 'alignItems'] = posNameStab(valign);
   }
 
   if (stretch) {
@@ -49,12 +49,11 @@ const Grid = (props) => {
         sizeObj.height = '100%';
         break;
       }
-      case 'full': {
+      default: {
         sizeObj.width = '100%';
         sizeObj.height = '100%';
         break;
       }
-      default: break;
     }
   }
 
