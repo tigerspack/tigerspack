@@ -14,8 +14,7 @@ const Grid = (props) => {
     ...otherProps
   } = props;
 
-  const posObj = {};
-  const sizeObj = {};
+  const stylesObject = {};
 
   const posNameStab = (prop) => {
     if (prop === 'top' || prop === 'left') {
@@ -30,35 +29,35 @@ const Grid = (props) => {
   const isColumn = flow === 'column';
 
   if (align) {
-    posObj[isColumn ? 'alignContent' : 'justifyContent'] = posNameStab(align);
-    posObj[isColumn ? 'alignItems' : 'justifyItems'] = posNameStab(align);
+    stylesObject[isColumn ? 'alignContent' : 'justifyContent'] = posNameStab(align);
+    stylesObject[isColumn ? 'alignItems' : 'justifyItems'] = posNameStab(align);
   }
 
   if (valign) {
-    posObj[isColumn ? 'justifyContent' : 'alignContent'] = posNameStab(valign);
-    posObj[isColumn ? 'justifyItems' : 'alignItems'] = posNameStab(valign);
+    stylesObject[isColumn ? 'justifyContent' : 'alignContent'] = posNameStab(valign);
+    stylesObject[isColumn ? 'justifyItems' : 'alignItems'] = posNameStab(valign);
   }
 
   if (stretch) {
     switch (stretch) {
       case 'width': {
-        sizeObj.width = '100%';
+        stylesObject.width = '100%';
         break;
       }
       case 'height': {
-        sizeObj.height = '100%';
+        stylesObject.height = '100%';
         break;
       }
       default: {
-        sizeObj.width = '100%';
-        sizeObj.height = '100%';
+        stylesObject.width = '100%';
+        stylesObject.height = '100%';
         break;
       }
     }
   }
 
   if (size < 13) {
-    sizeObj[isColumn ? 'minHeight' : 'minWidth'] = `${(100 / 12) * size}%`;
+    stylesObject[isColumn ? 'minHeight' : 'minWidth'] = `${(100 / 12) * size}%`;
   }
 
   const gridStyle = {
@@ -67,8 +66,7 @@ const Grid = (props) => {
     padding: `${padding}px`,
     boxSizing: 'border-box',
     flexWrap: wrap ? 'wrap' : 'nowrap',
-    ...posObj,
-    ...sizeObj,
+    ...stylesObject,
   };
 
   return (
