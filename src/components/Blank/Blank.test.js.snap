@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Blank Default Blank 1`] = `
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+  css={
+    Object {
+      "background": "#fff",
+      "border": undefined,
+      "borderRadius": "3px",
+      "boxShadow": "0 0 3px rgba(0, 0, 0, 0.12), 0 1.5px 3px rgba(0, 0, 0, 0.24)",
+      "boxSizing": "border-box",
+      "marginBottom": "0px",
+      "overflow": "hidden",
+      "padding": "15px",
+      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+    }
+  }
+>
+  Test Blank
+</EmotionCssPropInternal>
+`;
