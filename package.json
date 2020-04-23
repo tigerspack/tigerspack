@@ -40,6 +40,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "coveralls": "^3.0.9",
+    "@emotion/babel-preset-css-prop": "^10.0.27",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
@@ -57,7 +58,6 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "@emotion/babel-preset-css-prop": "^10.0.27",
     "@emotion/core": "^10.0.28",
     "prop-types": "^15.7.2"
   },
