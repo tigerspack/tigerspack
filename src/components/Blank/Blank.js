@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { colors } from '../../utils/colors';
+import { colors } from '../../utils/colors';
 
 const Blank = (props) => {
   const {
+    border,
     children,
     shadow,
     indent,
@@ -11,12 +12,11 @@ const Blank = (props) => {
     padding,
     ...otherProps
   } = props;
-  // const palette = colors[theme] ? colors[theme] : colors.primary;
-
 
   const blankStyles = {
     background: '#fff',
-    boxShadow: `0 0 ${shadow}px rgba(0, 0, 0, 0.12), 0 ${shadow / 2}px ${shadow}px rgba(0, 0, 0, 0.24)`,
+    border: border && `1px solid ${colors[border].color}`,
+    boxShadow: !border && `0 0 ${shadow}px rgba(0, 0, 0, 0.12), 0 ${shadow / 2}px ${shadow}px rgba(0, 0, 0, 0.24)`,
     boxSizing: 'border-box',
     transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
     borderRadius: `${rounded}px`,
@@ -32,6 +32,7 @@ const Blank = (props) => {
 };
 
 Blank.propTypes = {
+  border: PropTypes.string,
   children: PropTypes.any.isRequired,
   indent: PropTypes.number,
   shadow: PropTypes.number,
