@@ -2094,7 +2094,8 @@ var Blank_Blank = function Blank(props) {
     borderRadius: "".concat(rounded, "px"),
     padding: "".concat(padding, "px"),
     marginBottom: "".concat(indent, "px"),
-    overflow: 'hidden'
+    display: 'flex',
+    width: '100%'
   };
   return core_browser_esm_jsx("div", Blank_extends({
     css: blankStyles
