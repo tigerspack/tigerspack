@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title Default Title 1`] = `
+<EmotionCssPropInternal
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="h2"
+  css={
+    Object {
+      "borderBottom": "",
+      "fontWeight": 500,
+      "marginBottom": "10px",
+      "padding": "0px",
+      "paddingBottom": "",
+    }
+  }
+>
+  Test Blank
+</EmotionCssPropInternal>
+`;
