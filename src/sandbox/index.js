@@ -130,6 +130,35 @@ const Sandbox = () => {
           </Grid>
         </Grid>
       </Card>
+
+      <Card outline title={'grid component'}>
+        <Grid wrap>
+          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+        </Grid>
+        <Grid wrap>
+          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
+          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
+          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
+          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
+        </Grid>
+        <Grid wrap>
+          <Grid padding={5} size={4}><Blank>size=4</Blank></Grid>
+          <Grid padding={5} size={4}><Blank>size=4</Blank></Grid>
+          <Grid padding={5} size={4}><Blank>size=4</Blank></Grid>
+        </Grid>
+        <Grid wrap>
+          <Grid padding={5} size={6}><Blank>size=6</Blank></Grid>
+          <Grid padding={5} size={6}><Blank>size=6</Blank></Grid>
+        </Grid>
+        <Grid wrap>
+          <Grid padding={5} size={12}><Blank>size=12</Blank></Grid>
+        </Grid>
+      </Card>
     </Grid>
   );
 };
