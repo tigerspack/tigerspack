@@ -24,6 +24,7 @@ const Alert = (props) => {
       borderRadius: '4px',
       marginBottom: `${padding}px`,
       position: 'relative',
+      width: '100%',
     },
     close: {
       textAlign: 'left',

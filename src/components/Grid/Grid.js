@@ -57,8 +57,8 @@ const Grid = (props) => {
   }
 
   if (size < 13) {
-    stylesObject[isColumn ? 'minHeight' : 'minWidth'] = `${(100 / 12) * size}%`;
-    stylesObject[isColumn ? 'maxHeight' : 'maxWidth'] = `${(100 / 12) * size}%`;
+    stylesObject.minWidth = `${(100 / 12) * size}%`;
+    stylesObject.maxWidth = `${(100 / 12) * size}%`;
   }
 
   const gridStyle = {
