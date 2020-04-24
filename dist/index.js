@@ -2007,7 +2007,8 @@ var Alert_Alert = function Alert(props) {
       transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
       borderRadius: '4px',
       marginBottom: "".concat(padding, "px"),
-      position: 'relative'
+      position: 'relative',
+      width: '100%'
     },
     close: {
       textAlign: 'left',
@@ -2067,6 +2068,12 @@ Alert_Alert.defaultProps = {
 // CONCATENATED MODULE: ./components/Blank/Blank.js
 function Blank_extends() { Blank_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Blank_extends.apply(this, arguments); }
 
+function Blank_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function Blank_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Blank_ownKeys(Object(source), true).forEach(function (key) { Blank_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Blank_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function Blank_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function Blank_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Blank_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function Blank_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
@@ -2077,15 +2084,35 @@ function Blank_objectWithoutPropertiesLoose(source, excluded) { if (source == nu
 
 
 var Blank_Blank = function Blank(props) {
-  var border = props.border,
+  var align = props.align,
+      border = props.border,
       children = props.children,
       shadow = props.shadow,
       indent = props.indent,
       rounded = props.rounded,
       padding = props.padding,
-      otherProps = Blank_objectWithoutProperties(props, ["border", "children", "shadow", "indent", "rounded", "padding"]);
+      otherProps = Blank_objectWithoutProperties(props, ["align", "border", "children", "shadow", "indent", "rounded", "padding"]);
 
-  var blankStyles = {
+  var stylesObject = {};
+
+  var posNameStab = function posNameStab(prop) {
+    if (prop === 'top' || prop === 'left') {
+      return 'flex-start';
+    }
+
+    if (prop === 'bottom' || prop === 'right') {
+      return 'flex-end';
+    }
+
+    return prop;
+  };
+
+  if (align) {
+    stylesObject.alignContent = posNameStab(align);
+    stylesObject.alignItems = posNameStab(align);
+  }
+
+  var blankStyles = Blank_objectSpread({
     background: '#fff',
     border: border && "1px solid ".concat(colors[border].color),
     boxShadow: !border && "0 0 ".concat(shadow, "px rgba(0, 0, 0, 0.12), 0 ").concat(shadow / 2, "px ").concat(shadow, "px rgba(0, 0, 0, 0.24)"),
@@ -2095,14 +2122,17 @@ var Blank_Blank = function Blank(props) {
     padding: "".concat(padding, "px"),
     marginBottom: "".concat(indent, "px"),
     display: 'flex',
+    flexFlow: 'column',
     width: '100%'
-  };
+  }, stylesObject);
+
   return core_browser_esm_jsx("div", Blank_extends({
     css: blankStyles
   }, otherProps), children);
 };
 
 Blank_Blank.propTypes = {
+  align: prop_types_default.a.oneOf(['left', 'right', 'center']),
   border: prop_types_default.a.string,
   children: prop_types_default.a.any.isRequired,
   indent: prop_types_default.a.number,
@@ -2423,7 +2453,8 @@ var Grid_Grid = function Grid(props) {
   }
 
   if (size < 13) {
-    stylesObject[isColumn ? 'minHeight' : 'minWidth'] = "".concat(100 / 12 * size, "%");
+    stylesObject.minWidth = "".concat(100 / 12 * size, "%");
+    stylesObject.maxWidth = "".concat(100 / 12 * size, "%");
   }
 
   var gridStyle = Grid_objectSpread({
