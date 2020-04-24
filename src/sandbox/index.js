@@ -1,31 +1,136 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Card, Grid } from '../index';
+import {
+  Alert, Button, Blank, Card, Grid, Input, Title,
+} from '../index';
 
 const Sandbox = () => {
   const gridStyle = {
     padding: '5px',
   };
   return (
-    <Card>
-      <h1>Button</h1>
-      <Grid style={{ height: 500 }}>
-        <Grid flow={'row'} stretch={'full'} valign={'center'} align={'center'} wrap>
-          <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
-            <Button>Text</Button>
+    <Grid flow={'column'} stretch={'width'} padding={15}>
+      <Card outline title={'Alert component'}>
+        <Grid flow={'row'} stretch={'width'}>
+          <Grid size={6} padding={5} flow={'column'}>
+            <Grid stretch={'width'}>
+              <Alert theme="danger">Danger</Alert>
+            </Grid>
+            <Grid stretch={'width'}>
+              <Alert dismissible theme="warning">Warning</Alert>
+            </Grid>
+            <Grid stretch={'width'}>
+              <Alert dismissible theme="success">Success</Alert>
+            </Grid>
+            <Grid stretch={'width'}>
+              <Alert theme="info">Info</Alert>
+            </Grid>
           </Grid>
-          <Grid css={gridStyle} align={'center'} size={32}>
-            <Button size={'large'}>Text</Button>
-          </Grid>
-          <Grid css={gridStyle} valign={'bottom'} align={'right'} size={31}>
-            <Button>Text</Button>
-          </Grid>
-          <Grid css={gridStyle} valign={'center'} align={'right'} size={3}>
-            <Button size={'small'}>Text</Button>
+          <Grid size={6} padding={5} flow={'column'}>
+            <Grid stretch={'width'}>
+              <Alert outline theme="danger">Danger</Alert>
+            </Grid>
+            <Grid stretch={'width'}>
+              <Alert dismissible outline theme="warning">Warning</Alert>
+            </Grid>
+            <Grid stretch={'width'}>
+              <Alert dismissible outline theme="success">Success</Alert>
+            </Grid>
+            <Grid stretch={'width'}>
+              <Alert outline theme="info">Info</Alert>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </Card>
+      </Card>
+
+      <Card outline title={'Button component'}>
+        <Title>Colors</Title>
+        <Blank border={'light'} rounded={5} shadow={3} indent={15}>
+          <Grid>
+            <Grid flow={'row'} stretch={'full'} align={'center'} wrap>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="primary">Primary</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="yellow">Yellow</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="danger">Danger</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="warning">Warning</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="success">Success</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="info">Info</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="dark">Dark</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button theme="light">Light</Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Blank>
+        <Title>Text type</Title>
+        <Blank border={'light'} rounded={5} shadow={3}>
+          <Grid>
+            <Grid flow={'row'} stretch={'full'} align={'center'} wrap>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="primary">Primary</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="yellow">Yellow</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="danger">Danger</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="warning">Warning</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="success">Success</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="info">Info</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="dark">Dark</Button>
+              </Grid>
+              <Grid css={gridStyle} valign={'top'} align={'left'} size={32}>
+                <Button type="text" theme="light">Light</Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Blank>
+      </Card>
+
+      <Card outline title={'input component'}>
+        <Grid flow={'row'} stretch={'width'} wrap>
+          <Grid size={4} padding={5}>
+            <Input placeholder='First name'/>
+          </Grid>
+          <Grid size={4} padding={5}>
+            <Input placeholder='Last name'/>
+          </Grid>
+          <Grid size={4} padding={5}>
+            <Input placeholder='Country' value={'United States'}/>
+          </Grid>
+          <Grid size={4} padding={5}>
+            <Input valid placeholder='Email' value='test@test.ru'/>
+          </Grid>
+          <Grid size={4} padding={5}>
+            <Input error placeholder='Phone' value='+787267333'/>
+          </Grid>
+          <Grid size={4} padding={5}>
+            <Input error placeholder='Password' type={'password'} value='test@test'/>
+          </Grid>
+        </Grid>
+      </Card>
+    </Grid>
   );
 };
 
