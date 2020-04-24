@@ -56,10 +56,6 @@ describe('Grid', () => {
     const component = shallow(<Grid size={1}>Test Grid</Grid>);
     expect(component.get(0).props.css.minWidth).toEqual(`${(100 / 12)}%`);
   });
-  it('Grid size column', () => {
-    const component = shallow(<Grid flow={'column'} size={1}>Test Grid</Grid>);
-    expect(component.get(0).props.css.minHeight).toEqual(`${(100 / 12)}%`);
-  });
   it('Grid padding', () => {
     const component = shallow(<Grid padding={10}>Test Grid</Grid>);
     expect(component.get(0).props.css.padding).toEqual('10px');
