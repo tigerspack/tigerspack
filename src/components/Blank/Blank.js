@@ -22,7 +22,8 @@ const Blank = (props) => {
     borderRadius: `${rounded}px`,
     padding: `${padding}px`,
     marginBottom: `${indent}px`,
-    overflow: 'hidden',
+    display: 'flex',
+    width: '100%',
   };
   return (
     <div css={blankStyles} {...otherProps}>
