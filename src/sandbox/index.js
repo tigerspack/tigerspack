@@ -133,30 +133,44 @@ const Sandbox = () => {
 
       <Card outline title={'grid component'}>
         <Grid wrap>
-          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
-          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
-          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
-          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
-          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
-          <Grid padding={5} size={2}><Blank>size=2</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+          <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
         </Grid>
         <Grid wrap>
-          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
-          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
-          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
-          <Grid padding={5} size={3}><Blank>size=3</Blank></Grid>
+          <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
+          <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
         </Grid>
         <Grid wrap>
-          <Grid padding={5} size={4}><Blank>size=4</Blank></Grid>
-          <Grid padding={5} size={4}><Blank>size=4</Blank></Grid>
-          <Grid padding={5} size={4}><Blank>size=4</Blank></Grid>
+          <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
+          <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
+          <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
+          <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
         </Grid>
         <Grid wrap>
-          <Grid padding={5} size={6}><Blank>size=6</Blank></Grid>
-          <Grid padding={5} size={6}><Blank>size=6</Blank></Grid>
+          <Grid padding={5} size={4}><Blank align={'center'}>size=4</Blank></Grid>
+          <Grid padding={5} size={4}><Blank align={'center'}>size=4</Blank></Grid>
+          <Grid padding={5} size={4}><Blank align={'center'}>size=4</Blank></Grid>
         </Grid>
         <Grid wrap>
-          <Grid padding={5} size={12}><Blank>size=12</Blank></Grid>
+          <Grid padding={5} size={6}><Blank align={'center'}>size=6</Blank></Grid>
+          <Grid padding={5} size={6}><Blank align={'center'}>size=6</Blank></Grid>
+        </Grid>
+        <Grid wrap>
+          <Grid padding={5} size={12}><Blank align={'center'}>size=12</Blank></Grid>
         </Grid>
       </Card>
     </Grid>
