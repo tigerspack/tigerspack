@@ -27,8 +27,8 @@ const Blank = (props) => {
   };
 
   if (align) {
-    stylesObject.justifyContent = posNameStab(align);
-    stylesObject.justifyItems = posNameStab(align);
+    stylesObject.alignContent = posNameStab(align);
+    stylesObject.alignItems = posNameStab(align);
   }
 
   const blankStyles = {
@@ -41,6 +41,7 @@ const Blank = (props) => {
     padding: `${padding}px`,
     marginBottom: `${indent}px`,
     display: 'flex',
+    flexFlow: 'column',
     width: '100%',
     ...stylesObject,
   };
