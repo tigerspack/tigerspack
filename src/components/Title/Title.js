@@ -16,8 +16,8 @@ const Title = (props) => {
     fontWeight: 500,
     padding: `${padding}px`,
     marginBottom: `${indent}px`,
-    borderBottom: border && `1px solid ${colors[border].color}`,
-    paddingBottom: border && `${indent}px`,
+    borderBottom: border ? `1px solid ${colors[border].color}` : '',
+    paddingBottom: border ? `${indent}px` : '',
   };
 
   switch (size) {
