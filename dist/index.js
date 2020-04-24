@@ -214,10 +214,12 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "Alert", function() { return /* reexport */ components_Alert; });
+__webpack_require__.d(__webpack_exports__, "Blank", function() { return /* reexport */ components_Blank; });
 __webpack_require__.d(__webpack_exports__, "Button", function() { return /* reexport */ components_Button; });
 __webpack_require__.d(__webpack_exports__, "Card", function() { return /* reexport */ components_Card; });
 __webpack_require__.d(__webpack_exports__, "Grid", function() { return /* reexport */ components_Grid; });
 __webpack_require__.d(__webpack_exports__, "Input", function() { return /* reexport */ components_Input; });
+__webpack_require__.d(__webpack_exports__, "Title", function() { return /* reexport */ components_Title; });
 __webpack_require__.d(__webpack_exports__, "setColor", function() { return /* reexport */ setColor; });
 
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
@@ -2062,6 +2064,61 @@ Alert_Alert.defaultProps = {
 // CONCATENATED MODULE: ./components/Alert/index.js
 
 /* harmony default export */ var components_Alert = (components_Alert_Alert);
+// CONCATENATED MODULE: ./components/Blank/Blank.js
+function Blank_extends() { Blank_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Blank_extends.apply(this, arguments); }
+
+function Blank_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Blank_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function Blank_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+
+var Blank_Blank = function Blank(props) {
+  var border = props.border,
+      children = props.children,
+      shadow = props.shadow,
+      indent = props.indent,
+      rounded = props.rounded,
+      padding = props.padding,
+      otherProps = Blank_objectWithoutProperties(props, ["border", "children", "shadow", "indent", "rounded", "padding"]);
+
+  var blankStyles = {
+    background: '#fff',
+    border: border && "1px solid ".concat(colors[border].color),
+    boxShadow: !border && "0 0 ".concat(shadow, "px rgba(0, 0, 0, 0.12), 0 ").concat(shadow / 2, "px ").concat(shadow, "px rgba(0, 0, 0, 0.24)"),
+    boxSizing: 'border-box',
+    transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
+    borderRadius: "".concat(rounded, "px"),
+    padding: "".concat(padding, "px"),
+    marginBottom: "".concat(indent, "px"),
+    overflow: 'hidden'
+  };
+  return core_browser_esm_jsx("div", Blank_extends({
+    css: blankStyles
+  }, otherProps), children);
+};
+
+Blank_Blank.propTypes = {
+  border: prop_types_default.a.string,
+  children: prop_types_default.a.any.isRequired,
+  indent: prop_types_default.a.number,
+  shadow: prop_types_default.a.number,
+  rounded: prop_types_default.a.number,
+  padding: prop_types_default.a.number
+};
+Blank_Blank.defaultProps = {
+  padding: 15,
+  rounded: 3,
+  shadow: 3,
+  indent: 0
+};
+/* harmony default export */ var components_Blank_Blank = (Blank_Blank);
+// CONCATENATED MODULE: ./components/Blank/index.js
+
+/* harmony default export */ var components_Blank = (components_Blank_Blank);
 // CONCATENATED MODULE: ./components/Button/Button.js
 function Button_extends() { Button_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Button_extends.apply(this, arguments); }
 
@@ -2315,8 +2372,7 @@ var Grid_Grid = function Grid(props) {
       wrap = props.wrap,
       otherProps = Grid_objectWithoutProperties(props, ["align", "children", "flow", "stretch", "padding", "size", "valign", "wrap"]);
 
-  var posObj = {};
-  var sizeObj = {};
+  var stylesObject = {};
 
   var posNameStab = function posNameStab(prop) {
     if (prop === 'top' || prop === 'left') {
@@ -2333,40 +2389,40 @@ var Grid_Grid = function Grid(props) {
   var isColumn = flow === 'column';
 
   if (align) {
-    posObj[isColumn ? 'alignContent' : 'justifyContent'] = posNameStab(align);
-    posObj[isColumn ? 'alignItems' : 'justifyItems'] = posNameStab(align);
+    stylesObject[isColumn ? 'alignContent' : 'justifyContent'] = posNameStab(align);
+    stylesObject[isColumn ? 'alignItems' : 'justifyItems'] = posNameStab(align);
   }
 
   if (valign) {
-    posObj[isColumn ? 'justifyContent' : 'alignContent'] = posNameStab(valign);
-    posObj[isColumn ? 'justifyItems' : 'alignItems'] = posNameStab(valign);
+    stylesObject[isColumn ? 'justifyContent' : 'alignContent'] = posNameStab(valign);
+    stylesObject[isColumn ? 'justifyItems' : 'alignItems'] = posNameStab(valign);
   }
 
   if (stretch) {
     switch (stretch) {
       case 'width':
         {
-          sizeObj.width = '100%';
+          stylesObject.width = '100%';
           break;
         }
 
       case 'height':
         {
-          sizeObj.height = '100%';
+          stylesObject.height = '100%';
           break;
         }
 
       default:
         {
-          sizeObj.width = '100%';
-          sizeObj.height = '100%';
+          stylesObject.width = '100%';
+          stylesObject.height = '100%';
           break;
         }
     }
   }
 
   if (size < 13) {
-    sizeObj[isColumn ? 'minHeight' : 'minWidth'] = "".concat(100 / 12 * size, "%");
+    stylesObject[isColumn ? 'minHeight' : 'minWidth'] = "".concat(100 / 12 * size, "%");
   }
 
   var gridStyle = Grid_objectSpread({
@@ -2375,7 +2431,7 @@ var Grid_Grid = function Grid(props) {
     padding: "".concat(padding, "px"),
     boxSizing: 'border-box',
     flexWrap: wrap ? 'wrap' : 'nowrap'
-  }, posObj, {}, sizeObj);
+  }, stylesObject);
 
   return core_browser_esm_jsx("div", Grid_extends({
     css: gridStyle
@@ -2525,7 +2581,70 @@ Input_Input.propTypes = {
 // CONCATENATED MODULE: ./components/Input/index.js
 
 /* harmony default export */ var components_Input = (components_Input_Input);
+// CONCATENATED MODULE: ./components/Title/Title.js
+function Title_extends() { Title_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Title_extends.apply(this, arguments); }
+
+function Title_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Title_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function Title_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+
+var Title_Title = function Title(props) {
+  var children = props.children,
+      indent = props.indent,
+      size = props.size,
+      padding = props.padding,
+      border = props.border,
+      otherProps = Title_objectWithoutProperties(props, ["children", "indent", "size", "padding", "border"]);
+
+  var titleStyles = {
+    fontWeight: 500,
+    padding: "".concat(padding, "px"),
+    marginBottom: "".concat(indent, "px"),
+    borderBottom: border ? "1px solid ".concat(colors[border].color) : '',
+    paddingBottom: border ? "".concat(indent, "px") : ''
+  };
+
+  switch (size) {
+    case 'large':
+      return core_browser_esm_jsx("h1", Title_extends({
+        css: titleStyles
+      }, otherProps), children);
+
+    case 'small':
+      return core_browser_esm_jsx("h3", Title_extends({
+        css: titleStyles
+      }, otherProps), children);
+
+    default:
+      return core_browser_esm_jsx("h2", Title_extends({
+        css: titleStyles
+      }, otherProps), children);
+  }
+};
+
+Title_Title.propTypes = {
+  children: prop_types_default.a.any.isRequired,
+  indent: prop_types_default.a.number,
+  size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
+  padding: prop_types_default.a.number,
+  border: prop_types_default.a.string
+};
+Title_Title.defaultProps = {
+  padding: 0,
+  indent: 10
+};
+/* harmony default export */ var components_Title_Title = (Title_Title);
+// CONCATENATED MODULE: ./components/Title/index.js
+
+/* harmony default export */ var components_Title = (components_Title_Title);
 // CONCATENATED MODULE: ./index.js
+
+
 
 
 
