@@ -4,6 +4,7 @@ import { colors } from '../../utils/colors';
 
 const Blank = (props) => {
   const {
+    align,
     border,
     children,
     shadow,
@@ -12,6 +13,23 @@ const Blank = (props) => {
     padding,
     ...otherProps
   } = props;
+
+  const stylesObject = {};
+
+  const posNameStab = (prop) => {
+    if (prop === 'top' || prop === 'left') {
+      return 'flex-start';
+    }
+    if (prop === 'bottom' || prop === 'right') {
+      return 'flex-end';
+    }
+    return prop;
+  };
+
+  if (align) {
+    stylesObject.justifyContent = posNameStab(align);
+    stylesObject.justifyItems = posNameStab(align);
+  }
 
   const blankStyles = {
     background: '#fff',
@@ -24,7 +42,9 @@ const Blank = (props) => {
     marginBottom: `${indent}px`,
     display: 'flex',
     width: '100%',
+    ...stylesObject,
   };
+
   return (
     <div css={blankStyles} {...otherProps}>
       {children}
@@ -33,6 +53,7 @@ const Blank = (props) => {
 };
 
 Blank.propTypes = {
+  align: PropTypes.oneOf(['left', 'right', 'center']),
   border: PropTypes.string,
   children: PropTypes.any.isRequired,
   indent: PropTypes.number,
