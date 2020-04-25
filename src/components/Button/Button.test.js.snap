@@ -2,7 +2,7 @@
 
 exports[`Button Button default 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
@@ -30,7 +30,7 @@ exports[`Button Button default 1`] = `
       "fontSize": "14px",
       "fontWeight": 500,
       "lineHeight": 1.52857143,
-      "marginBottom": 0,
+      "marginBottom": "0px",
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -49,7 +49,7 @@ exports[`Button Button default 1`] = `
 
 exports[`Button button with icon only 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
@@ -77,7 +77,7 @@ exports[`Button button with icon only 1`] = `
       "fontSize": "14px",
       "fontWeight": 500,
       "lineHeight": 1.52857143,
-      "marginBottom": 0,
+      "marginBottom": "0px",
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -103,7 +103,7 @@ exports[`Button button with icon only 1`] = `
   }
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
     css={
       Object {
@@ -121,7 +121,7 @@ exports[`Button button with icon only 1`] = `
 
 exports[`Button disabled button 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
@@ -149,7 +149,7 @@ exports[`Button disabled button 1`] = `
       "fontSize": "14px",
       "fontWeight": 500,
       "lineHeight": 1.52857143,
-      "marginBottom": 0,
+      "marginBottom": "0px",
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -181,7 +181,7 @@ exports[`Button disabled button 1`] = `
 
 exports[`Button large outline button 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
@@ -209,7 +209,7 @@ exports[`Button large outline button 1`] = `
       "fontSize": "18px",
       "fontWeight": 500,
       "lineHeight": 1.3333333,
-      "marginBottom": 0,
+      "marginBottom": "0px",
       "outline": "none",
       "padding": "10px 16px",
       "position": "relative",
@@ -240,7 +240,7 @@ exports[`Button large outline button 1`] = `
 
 exports[`Button rounded button with icon 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
@@ -268,7 +268,7 @@ exports[`Button rounded button with icon 1`] = `
       "fontSize": "14px",
       "fontWeight": 500,
       "lineHeight": 1.52857143,
-      "marginBottom": 0,
+      "marginBottom": "0px",
       "outline": "none",
       "padding": "6px 16px",
       "position": "relative",
@@ -294,7 +294,7 @@ exports[`Button rounded button with icon 1`] = `
   }
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
     css={
       Object {
@@ -313,7 +313,7 @@ exports[`Button rounded button with icon 1`] = `
 
 exports[`Button small text button 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Button"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="button"
   css={
     Object {
@@ -341,7 +341,7 @@ exports[`Button small text button 1`] = `
       "fontSize": "12px",
       "fontWeight": 500,
       "lineHeight": 1.5,
-      "marginBottom": 0,
+      "marginBottom": "0px",
       "outline": "none",
       "padding": "4px 10px",
       "position": "relative",
