@@ -10,6 +10,7 @@ const Card = (props) => {
     icon,
     theme,
     outline,
+    indent,
     padding,
     withoutContainer,
     ...otherProps
@@ -24,7 +25,7 @@ const Card = (props) => {
       boxSizing: 'border-box',
       transition: defaultStyles.animation,
       borderRadius: defaultStyles.borderRadius,
-      marginBottom: `${padding}px`,
+      marginBottom: `${indent}px`,
       overflow: 'hidden',
     },
     title: {
@@ -60,6 +61,7 @@ Card.propTypes = {
   children: PropTypes.any.isRequired,
   icon: PropTypes.any,
   withoutContainer: PropTypes.bool,
+  indent: PropTypes.number,
   padding: PropTypes.number,
   outline: PropTypes.bool,
   title: PropTypes.string,
@@ -68,6 +70,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   padding: defaultStyles.indent,
+  indent: defaultStyles.indent,
 };
 
 export default Card;
