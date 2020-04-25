@@ -8,6 +8,7 @@ const Button = (props) => {
     children,
     icon,
     size,
+    indent,
     theme,
     type,
     ...otherProps
@@ -72,7 +73,7 @@ const Button = (props) => {
       outline: 'none',
       transition: defaultStyles.animation,
       display: 'inline-block',
-      marginBottom: 0,
+      marginBottom: `${indent}px`,
       fontWeight: 500,
       textAlign: 'center',
       verticalAlign: 'middle',
@@ -120,6 +121,11 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   type: PropTypes.oneOf(['text', 'outline', 'rounded']),
   icon: PropTypes.any,
+  indent: PropTypes.number,
+};
+
+Button.defaultProps = {
+  indent: 0,
 };
 
 export default Button;

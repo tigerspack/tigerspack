@@ -8,6 +8,7 @@ const Input = (props) => {
     className,
     placeholder,
     error,
+    indent,
     valid,
     value,
     ...otherProps
@@ -30,7 +31,7 @@ const Input = (props) => {
       borderRadius: '7px',
       border: valid ? `${inputBorderWeight}px solid ${colors.success.color}` : inputError,
       position: 'relative',
-      marginBottom: `${defaultStyles.indent}px`,
+      marginBottom: `${indent}px`,
       transition: defaultStyles.animation,
     },
     label: {
@@ -81,8 +82,13 @@ Input.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.bool,
+  indent: PropTypes.number,
   valid: PropTypes.bool,
   value: PropTypes.string,
+};
+
+Input.defaultProps = {
+  indent: defaultStyles.indent,
 };
 
 export default Input;

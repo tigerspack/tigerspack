@@ -11,6 +11,7 @@ const Alert = (props) => {
     theme,
     closeIconSize,
     padding,
+    indent,
     ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
@@ -23,7 +24,7 @@ const Alert = (props) => {
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
       transition: defaultStyles.animation,
       borderRadius: defaultStyles.borderRadius,
-      marginBottom: `${padding}px`,
+      marginBottom: `${indent}px`,
       position: 'relative',
       width: '100%',
     },
@@ -62,12 +63,14 @@ Alert.propTypes = {
   dismissible: PropTypes.bool,
   outline: PropTypes.bool,
   closeIconSize: PropTypes.number,
+  indent: PropTypes.number,
   padding: PropTypes.number,
 };
 
 Alert.defaultProps = {
   closeIconSize: 28,
   padding: defaultStyles.indent,
+  indent: defaultStyles.indent,
 };
 
 export default Alert;
