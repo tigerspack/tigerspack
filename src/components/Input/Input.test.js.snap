@@ -13,6 +13,7 @@ exports[`Input Input default 1`] = `
       "marginBottom": "15px",
       "position": "relative",
       "transition": "all .4s ease",
+      "width": "100%",
     }
   }
 >
@@ -91,6 +92,7 @@ exports[`Input Input with error 1`] = `
       "marginBottom": "15px",
       "position": "relative",
       "transition": "all .4s ease",
+      "width": "100%",
     }
   }
 >
@@ -132,6 +134,7 @@ exports[`Input Input with valid value 1`] = `
       "marginBottom": "15px",
       "position": "relative",
       "transition": "all .4s ease",
+      "width": "100%",
     }
   }
 >

@@ -33,6 +33,7 @@ const Input = (props) => {
       position: 'relative',
       marginBottom: `${indent}px`,
       transition: defaultStyles.animation,
+      width: '100%',
     },
     label: {
       position: 'absolute',
