@@ -14,7 +14,7 @@ exports[`Card Card with icon 1`] = `
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
-      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+      "transition": "all .4s ease",
     }
   }
 >
@@ -78,7 +78,7 @@ exports[`Card Card without container 1`] = `
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
-      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+      "transition": "all .4s ease",
     }
   }
 >
@@ -132,7 +132,7 @@ exports[`Card Default Card 1`] = `
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
-      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+      "transition": "all .4s ease",
     }
   }
 >
@@ -164,7 +164,7 @@ exports[`Card Outline Card 1`] = `
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
-      "transition": "all 0.3s cubic-bezier(.25, .8, .25, 1)",
+      "transition": "all .4s ease",
     }
   }
 >

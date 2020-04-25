@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
+import { defaultStyles } from '../../utils/defaultStyles';
 
 const Button = (props) => {
   const {
@@ -42,23 +43,23 @@ const Button = (props) => {
   }
   switch (size) {
     case 'small': {
-      dynamicStyles.padding = '4px 10px';
+      dynamicStyles.padding = defaultStyles.smallPadding;
       dynamicStyles.iconMargin = 6;
-      dynamicStyles.fontSize = '12px';
+      dynamicStyles.fontSize = defaultStyles.smallFontSize;
       dynamicStyles.lineHeight = 1.5;
       break;
     }
     case 'large': {
-      dynamicStyles.padding = '10px 16px';
+      dynamicStyles.padding = defaultStyles.largePadding;
       dynamicStyles.iconMargin = 8;
-      dynamicStyles.fontSize = '18px';
+      dynamicStyles.fontSize = defaultStyles.largeFontSize;
       dynamicStyles.lineHeight = 1.3333333;
       break;
     }
     default: {
-      dynamicStyles.padding = '6px 16px';
+      dynamicStyles.padding = defaultStyles.mediumPadding;
       dynamicStyles.iconMargin = 8;
-      dynamicStyles.fontSize = '14px';
+      dynamicStyles.fontSize = defaultStyles.mediumFontSize;
       dynamicStyles.lineHeight = 1.52857143;
       break;
     }
@@ -69,7 +70,7 @@ const Button = (props) => {
       boxSizing: 'border-box',
       position: 'relative',
       outline: 'none',
-      transition: 'all 0.5s',
+      transition: defaultStyles.animation,
       display: 'inline-block',
       marginBottom: 0,
       fontWeight: 500,
@@ -79,7 +80,7 @@ const Button = (props) => {
       whiteSpace: 'nowrap',
       userSelect: 'none',
       cursor: 'pointer',
-      borderRadius: type !== 'rounded' ? '4px' : '20px',
+      borderRadius: type !== 'rounded' ? defaultStyles.borderRadius : '20px',
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
