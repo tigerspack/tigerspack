@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
+import { defaultStyles } from '../../utils/defaultStyles';
 
 const Card = (props) => {
   const {
@@ -21,8 +22,8 @@ const Card = (props) => {
       background: '#fff',
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
       boxSizing: 'border-box',
-      transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
-      borderRadius: '3px',
+      transition: defaultStyles.animation,
+      borderRadius: defaultStyles.borderRadius,
       marginBottom: `${padding}px`,
       overflow: 'hidden',
     },
@@ -66,7 +67,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  padding: 15,
+  padding: defaultStyles.indent,
 };
 
 export default Card;
