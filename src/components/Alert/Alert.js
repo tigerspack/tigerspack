@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
+import { defaultStyles } from '../../utils/defaultStyles';
 
 const Alert = (props) => {
   const {
@@ -20,8 +21,8 @@ const Alert = (props) => {
       border: `1px solid ${palette.color}`,
       color: palette.text,
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
-      transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
-      borderRadius: '4px',
+      transition: defaultStyles.animation,
+      borderRadius: defaultStyles.borderRadius,
       marginBottom: `${padding}px`,
       position: 'relative',
       width: '100%',
@@ -66,7 +67,7 @@ Alert.propTypes = {
 
 Alert.defaultProps = {
   closeIconSize: 28,
-  padding: 15,
+  padding: defaultStyles.indent,
 };
 
 export default Alert;

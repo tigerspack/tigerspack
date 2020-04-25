@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
+import { defaultStyles } from '../../utils/defaultStyles';
 
 const Blank = (props) => {
   const {
@@ -36,7 +37,7 @@ const Blank = (props) => {
     border: border && `1px solid ${colors[border].color}`,
     boxShadow: !border && `0 0 ${shadow}px rgba(0, 0, 0, 0.12), 0 ${shadow / 2}px ${shadow}px rgba(0, 0, 0, 0.24)`,
     boxSizing: 'border-box',
-    transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
+    transition: defaultStyles.animation,
     borderRadius: `${rounded}px`,
     padding: `${padding}px`,
     marginBottom: `${indent}px`,
@@ -64,7 +65,7 @@ Blank.propTypes = {
 };
 
 Blank.defaultProps = {
-  padding: 15,
+  padding: defaultStyles.indent,
   rounded: 3,
   shadow: 3,
   indent: 0,
