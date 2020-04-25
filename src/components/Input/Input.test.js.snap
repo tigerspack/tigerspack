@@ -2,7 +2,7 @@
 
 exports[`Input Input default 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -17,7 +17,7 @@ exports[`Input Input default 1`] = `
   }
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
@@ -33,7 +33,7 @@ exports[`Input Input default 1`] = `
     }
   >
     <EmotionCssPropInternal
-      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
       css={
         Object {
@@ -51,7 +51,7 @@ exports[`Input Input default 1`] = `
     </EmotionCssPropInternal>
   </EmotionCssPropInternal>
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="input"
     autoComplete="off"
     css={
@@ -80,7 +80,7 @@ exports[`Input Input default 1`] = `
 
 exports[`Input Input with error 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -95,7 +95,7 @@ exports[`Input Input with error 1`] = `
   }
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="input"
     autoComplete="off"
     css={
@@ -121,7 +121,7 @@ exports[`Input Input with error 1`] = `
 
 exports[`Input Input with valid value 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -136,7 +136,7 @@ exports[`Input Input with valid value 1`] = `
   }
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Input"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="input"
     autoComplete="off"
     css={
