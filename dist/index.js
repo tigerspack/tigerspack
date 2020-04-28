@@ -221,6 +221,7 @@ __webpack_require__.d(__webpack_exports__, "Grid", function() { return /* reexpo
 __webpack_require__.d(__webpack_exports__, "Input", function() { return /* reexport */ components_Input; });
 __webpack_require__.d(__webpack_exports__, "Title", function() { return /* reexport */ components_Title; });
 __webpack_require__.d(__webpack_exports__, "setColor", function() { return /* reexport */ setColor; });
+__webpack_require__.d(__webpack_exports__, "setDefaultStyles", function() { return /* reexport */ setDefaultStyles; });
 
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
 var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_require__(1);
@@ -289,6 +290,23 @@ var colors = {
 var setColor = function setColor(scheme) {
   Object.keys(scheme).forEach(function (theme) {
     colors[theme] = _objectSpread({}, colors[theme], {}, scheme[theme]);
+  });
+};
+// CONCATENATED MODULE: ./utils/defaultStyles.js
+var defaultStyles = {
+  animation: 'all .4s ease',
+  indent: 15,
+  borderRadius: '3px',
+  smallPadding: '4px 10px',
+  mediumPadding: '6px 16px',
+  largePadding: '10px 16px',
+  smallFontSize: '12px',
+  mediumFontSize: '14px',
+  largeFontSize: '18px'
+};
+var setDefaultStyles = function setDefaultStyles(newStyles) {
+  Object.keys(newStyles).forEach(function (style) {
+    defaultStyles[style] = newStyles[style];
   });
 };
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/inheritsLoose.js
@@ -1987,16 +2005,18 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 
 
 
+
 var Alert_Alert = function Alert(props) {
   var children = props.children,
       dismissible = props.dismissible,
       outline = props.outline,
       theme = props.theme,
       closeIconSize = props.closeIconSize,
-      padding = props.padding,
-      otherProps = _objectWithoutProperties(props, ["children", "dismissible", "outline", "theme", "closeIconSize", "padding"]);
+      otherProps = _objectWithoutProperties(props, ["children", "dismissible", "outline", "theme", "closeIconSize"]);
 
   var palette = colors[theme] ? colors[theme] : colors.primary;
+  var padding = props.padding || defaultStyles.indent;
+  var indent = props.indent || defaultStyles.indent;
   var styles = {
     alert: {
       padding: "".concat(padding, "px"),
@@ -2004,9 +2024,9 @@ var Alert_Alert = function Alert(props) {
       border: "1px solid ".concat(palette.color),
       color: palette.text,
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
-      transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
-      borderRadius: '4px',
-      marginBottom: "".concat(padding, "px"),
+      transition: defaultStyles.animation,
+      borderRadius: defaultStyles.borderRadius,
+      marginBottom: "".concat(indent, "px"),
       position: 'relative',
       width: '100%'
     },
@@ -2055,11 +2075,11 @@ Alert_Alert.propTypes = {
   dismissible: prop_types_default.a.bool,
   outline: prop_types_default.a.bool,
   closeIconSize: prop_types_default.a.number,
+  indent: prop_types_default.a.number,
   padding: prop_types_default.a.number
 };
 Alert_Alert.defaultProps = {
-  closeIconSize: 28,
-  padding: 15
+  closeIconSize: 28
 };
 /* harmony default export */ var components_Alert_Alert = (Alert_Alert);
 // CONCATENATED MODULE: ./components/Alert/index.js
@@ -2077,6 +2097,7 @@ function Blank_defineProperty(obj, key, value) { if (key in obj) { Object.define
 function Blank_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Blank_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function Blank_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
 
 
 
@@ -2117,8 +2138,8 @@ var Blank_Blank = function Blank(props) {
     border: border && "1px solid ".concat(colors[border].color),
     boxShadow: !border && "0 0 ".concat(shadow, "px rgba(0, 0, 0, 0.12), 0 ").concat(shadow / 2, "px ").concat(shadow, "px rgba(0, 0, 0, 0.24)"),
     boxSizing: 'border-box',
-    transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
-    borderRadius: "".concat(rounded, "px"),
+    transition: defaultStyles.animation,
+    borderRadius: rounded ? "".concat(rounded, "px") : defaultStyles.borderRadius,
     padding: "".concat(padding, "px"),
     marginBottom: "".concat(indent, "px"),
     display: 'flex',
@@ -2141,8 +2162,7 @@ Blank_Blank.propTypes = {
   padding: prop_types_default.a.number
 };
 Blank_Blank.defaultProps = {
-  padding: 15,
-  rounded: 3,
+  padding: defaultStyles.indent,
   shadow: 3,
   indent: 0
 };
@@ -2162,13 +2182,15 @@ function Button_objectWithoutPropertiesLoose(source, excluded) { if (source == n
 
 
 
+
 var Button_Button = function Button(props) {
   var children = props.children,
       icon = props.icon,
       size = props.size,
+      indent = props.indent,
       theme = props.theme,
       type = props.type,
-      otherProps = Button_objectWithoutProperties(props, ["children", "icon", "size", "theme", "type"]);
+      otherProps = Button_objectWithoutProperties(props, ["children", "icon", "size", "indent", "theme", "type"]);
 
   var palette = colors[theme] ? colors[theme] : colors.primary; // Dynamic styles
 
@@ -2209,27 +2231,27 @@ var Button_Button = function Button(props) {
   switch (size) {
     case 'small':
       {
-        dynamicStyles.padding = '4px 10px';
+        dynamicStyles.padding = defaultStyles.smallPadding;
         dynamicStyles.iconMargin = 6;
-        dynamicStyles.fontSize = '12px';
+        dynamicStyles.fontSize = defaultStyles.smallFontSize;
         dynamicStyles.lineHeight = 1.5;
         break;
       }
 
     case 'large':
       {
-        dynamicStyles.padding = '10px 16px';
+        dynamicStyles.padding = defaultStyles.largePadding;
         dynamicStyles.iconMargin = 8;
-        dynamicStyles.fontSize = '18px';
+        dynamicStyles.fontSize = defaultStyles.largeFontSize;
         dynamicStyles.lineHeight = 1.3333333;
         break;
       }
 
     default:
       {
-        dynamicStyles.padding = '6px 16px';
+        dynamicStyles.padding = defaultStyles.mediumPadding;
         dynamicStyles.iconMargin = 8;
-        dynamicStyles.fontSize = '14px';
+        dynamicStyles.fontSize = defaultStyles.mediumFontSize;
         dynamicStyles.lineHeight = 1.52857143;
         break;
       }
@@ -2241,9 +2263,9 @@ var Button_Button = function Button(props) {
       boxSizing: 'border-box',
       position: 'relative',
       outline: 'none',
-      transition: 'all 0.5s',
+      transition: defaultStyles.animation,
       display: 'inline-block',
-      marginBottom: 0,
+      marginBottom: "".concat(indent, "px"),
       fontWeight: 500,
       textAlign: 'center',
       verticalAlign: 'middle',
@@ -2251,7 +2273,7 @@ var Button_Button = function Button(props) {
       whiteSpace: 'nowrap',
       userSelect: 'none',
       cursor: 'pointer',
-      borderRadius: type !== 'rounded' ? '4px' : '20px',
+      borderRadius: type !== 'rounded' ? defaultStyles.borderRadius : '20px',
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
@@ -2289,7 +2311,11 @@ Button_Button.propTypes = {
   children: prop_types_default.a.any,
   size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
   type: prop_types_default.a.oneOf(['text', 'outline', 'rounded']),
-  icon: prop_types_default.a.any
+  icon: prop_types_default.a.any,
+  indent: prop_types_default.a.number
+};
+Button_Button.defaultProps = {
+  indent: 0
 };
 /* harmony default export */ var components_Button_Button = (Button_Button);
 // CONCATENATED MODULE: ./components/Button/index.js
@@ -2307,15 +2333,17 @@ function Card_objectWithoutPropertiesLoose(source, excluded) { if (source == nul
 
 
 
+
 var Card_Card = function Card(props) {
   var children = props.children,
       title = props.title,
       icon = props.icon,
       theme = props.theme,
       outline = props.outline,
+      indent = props.indent,
       padding = props.padding,
       withoutContainer = props.withoutContainer,
-      otherProps = Card_objectWithoutProperties(props, ["children", "title", "icon", "theme", "outline", "padding", "withoutContainer"]);
+      otherProps = Card_objectWithoutProperties(props, ["children", "title", "icon", "theme", "outline", "indent", "padding", "withoutContainer"]);
 
   var palette = colors[theme] ? colors[theme] : colors.primary;
   var styles = {
@@ -2325,9 +2353,9 @@ var Card_Card = function Card(props) {
       background: '#fff',
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
       boxSizing: 'border-box',
-      transition: 'all 0.3s cubic-bezier(.25, .8, .25, 1)',
-      borderRadius: '3px',
-      marginBottom: "".concat(padding, "px"),
+      transition: defaultStyles.animation,
+      borderRadius: defaultStyles.borderRadius,
+      marginBottom: "".concat(indent, "px"),
       overflow: 'hidden'
     },
     title: {
@@ -2363,13 +2391,15 @@ Card_Card.propTypes = {
   children: prop_types_default.a.any.isRequired,
   icon: prop_types_default.a.any,
   withoutContainer: prop_types_default.a.bool,
+  indent: prop_types_default.a.number,
   padding: prop_types_default.a.number,
   outline: prop_types_default.a.bool,
   title: prop_types_default.a.string,
   theme: prop_types_default.a.string
 };
 Card_Card.defaultProps = {
-  padding: 15
+  padding: defaultStyles.indent,
+  indent: defaultStyles.indent
 };
 /* harmony default export */ var components_Card_Card = (Card_Card);
 // CONCATENATED MODULE: ./components/Card/index.js
@@ -2511,13 +2541,15 @@ function Input_objectWithoutPropertiesLoose(source, excluded) { if (source == nu
 
 
 
+
 var Input_Input = function Input(props) {
   var className = props.className,
       placeholder = props.placeholder,
       error = props.error,
+      indent = props.indent,
       valid = props.valid,
       value = props.value,
-      otherProps = Input_objectWithoutProperties(props, ["className", "placeholder", "error", "valid", "value"]); // Config
+      otherProps = Input_objectWithoutProperties(props, ["className", "placeholder", "error", "indent", "valid", "value"]); // Config
 
 
   var inputBorderWeight = 1; // Hooks
@@ -2545,17 +2577,18 @@ var Input_Input = function Input(props) {
       borderRadius: '7px',
       border: valid ? "".concat(inputBorderWeight, "px solid ").concat(colors.success.color) : inputError,
       position: 'relative',
-      marginBottom: '15px',
-      transition: 'all .4s ease'
+      marginBottom: "".concat(indent, "px"),
+      transition: defaultStyles.animation,
+      width: '100%'
     },
     label: {
       position: 'absolute',
       background: activeLabel ? 'transparent' : '#fff',
       top: activeLabel ? '0' : "-".concat(inputBorderWeight, "px"),
-      left: '15px',
+      left: "".concat(defaultStyles.indent, "px"),
       color: '#fff',
       padding: '0 3px',
-      transition: 'all .4s ease, top 0s',
+      transition: "".concat(defaultStyles.animation, ", top 0s"),
       zIndex: 1
     },
     labelText: {
@@ -2565,7 +2598,7 @@ var Input_Input = function Input(props) {
       lineHeight: activeLabel ? '16px' : '12px',
       color: valid ? colors.success.color : labelError,
       fontWeight: '500',
-      transition: 'all .4s ease'
+      transition: defaultStyles.animation
     },
     control: {
       background: 'none',
@@ -2606,8 +2639,12 @@ Input_Input.propTypes = {
   className: prop_types_default.a.string,
   placeholder: prop_types_default.a.string,
   error: prop_types_default.a.bool,
+  indent: prop_types_default.a.number,
   valid: prop_types_default.a.bool,
   value: prop_types_default.a.string
+};
+Input_Input.defaultProps = {
+  indent: defaultStyles.indent
 };
 /* harmony default export */ var components_Input_Input = (Input_Input);
 // CONCATENATED MODULE: ./components/Input/index.js
@@ -2675,6 +2712,7 @@ Title_Title.defaultProps = {
 
 /* harmony default export */ var components_Title = (components_Title_Title);
 // CONCATENATED MODULE: ./index.js
+
 
 
 
