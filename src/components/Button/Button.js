@@ -68,7 +68,7 @@ const Button = (props) => {
       border: dynamicStyles.border,
       color: dynamicStyles.color,
       fontSize: `${size * 2 + 9}px`,
-      height: `${(size * 2 + 9) + (size * 5)}px`,
+      height: `${(size * 2 + 11) + (size * 5)}px`,
       padding: `${((size * 5) / 2) - 0.5}px ${size * 5}px ${((size * 5) / 2) + 0.5}px`,
       ':disabled': {
         opacity: 0.7,
@@ -85,8 +85,8 @@ const Button = (props) => {
       },
     },
     icon: {
-      marginLeft: `-${(size + 5) / 2}px`,
-      marginRight: children ? `${(size + 5)}px` : `-${(size + 5) / 2}px`,
+      marginLeft: `-${((size * 5) / 2) - 1}px`,
+      marginRight: children ? `${(size * 5) / 2}px` : `-${((size * 5) / 2) - 1}px`,
     },
   };
   return (
