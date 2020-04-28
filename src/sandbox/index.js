@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  Alert, Button, Blank, Card, Grid, Input, Title, setDefaultStyles,
+  Alert, Button, Blank, Card, Grid, Input, Title,
 } from '../index';
 
 const Sandbox = () => {
