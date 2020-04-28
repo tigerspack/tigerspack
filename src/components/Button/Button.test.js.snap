@@ -225,15 +225,15 @@ exports[`Button large outline button 1`] = `
       "display": "flex",
       "flexDirection": "column",
       "flexFlow": "row",
-      "fontSize": "15px",
+      "fontSize": "17px",
       "fontWeight": 500,
-      "height": "30px",
+      "height": "37px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
       "marginBottom": "0px",
       "outline": "none",
-      "padding": "7px 15px 8px",
+      "padding": "9.5px 20px 10.5px",
       "position": "relative",
       "transition": "all .4s ease",
       "userSelect": "none",
@@ -253,7 +253,7 @@ exports[`Button large outline button 1`] = `
       ],
     }
   }
-  size="large"
+  size={4}
 >
   Test button
 </EmotionCssPropInternal>
@@ -368,15 +368,15 @@ exports[`Button small text button 1`] = `
       "display": "flex",
       "flexDirection": "column",
       "flexFlow": "row",
-      "fontSize": "15px",
+      "fontSize": "13px",
       "fontWeight": 500,
-      "height": "30px",
+      "height": "23px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
       "marginBottom": "0px",
       "outline": "none",
-      "padding": "7px 15px 8px",
+      "padding": "4.5px 10px 5.5px",
       "position": "relative",
       "transition": "all .4s ease",
       "userSelect": "none",
@@ -396,7 +396,7 @@ exports[`Button small text button 1`] = `
       ],
     }
   }
-  size="small"
+  size={2}
 >
   Test button
 </EmotionCssPropInternal>
