@@ -7,13 +7,13 @@ const Button = (props) => {
   const {
     children,
     icon,
-    size,
     indent,
     theme,
     type,
     ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
+  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
   // Dynamic styles
   const dynamicStyles = {};
   switch (type) {
@@ -42,29 +42,6 @@ const Button = (props) => {
       break;
     }
   }
-  switch (size) {
-    case 'small': {
-      dynamicStyles.padding = defaultStyles.smallPadding;
-      dynamicStyles.iconMargin = 6;
-      dynamicStyles.fontSize = defaultStyles.smallFontSize;
-      dynamicStyles.lineHeight = 1.5;
-      break;
-    }
-    case 'large': {
-      dynamicStyles.padding = defaultStyles.largePadding;
-      dynamicStyles.iconMargin = 8;
-      dynamicStyles.fontSize = defaultStyles.largeFontSize;
-      dynamicStyles.lineHeight = 1.3333333;
-      break;
-    }
-    default: {
-      dynamicStyles.padding = defaultStyles.mediumPadding;
-      dynamicStyles.iconMargin = 8;
-      dynamicStyles.fontSize = defaultStyles.mediumFontSize;
-      dynamicStyles.lineHeight = 1.52857143;
-      break;
-    }
-  }
   // Styles
   const styles = {
     button: {
@@ -72,22 +49,27 @@ const Button = (props) => {
       position: 'relative',
       outline: 'none',
       transition: defaultStyles.animation,
-      display: 'inline-block',
+      display: 'flex',
+      flexDirection: 'column',
+      flexFlow: 'row',
+      alignContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      justifyItems: 'center',
       marginBottom: `${indent}px`,
       fontWeight: 500,
-      textAlign: 'center',
-      verticalAlign: 'middle',
       backgroundImage: 'none',
       whiteSpace: 'nowrap',
       userSelect: 'none',
       cursor: 'pointer',
+      lineHeight: 0,
       borderRadius: type !== 'rounded' ? defaultStyles.borderRadius : '20px',
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
-      fontSize: dynamicStyles.fontSize,
-      lineHeight: dynamicStyles.lineHeight,
-      padding: dynamicStyles.padding,
+      fontSize: `${size * 2 + 9}px`,
+      height: `${(size * 2 + 9) + (size * 5)}px`,
+      padding: `${((size * 5) / 2) - 0.5}px ${size * 5}px ${((size * 5) / 2) + 0.5}px`,
       ':disabled': {
         opacity: 0.7,
         cursor: 'not-allowed',
@@ -103,8 +85,8 @@ const Button = (props) => {
       },
     },
     icon: {
-      marginLeft: `-${dynamicStyles.iconMargin / 2}px`,
-      marginRight: children ? `${dynamicStyles.iconMargin}px` : `-${dynamicStyles.iconMargin / 2}px`,
+      marginLeft: `-${(size + 5) / 2}px`,
+      marginRight: children ? `${(size + 5)}px` : `-${(size + 5) / 2}px`,
     },
   };
   return (
@@ -118,7 +100,7 @@ const Button = (props) => {
 Button.propTypes = {
   theme: PropTypes.string,
   children: PropTypes.any,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf([1, 2, 3, 4, 5]),
   type: PropTypes.oneOf(['text', 'outline', 'rounded']),
   icon: PropTypes.any,
   indent: PropTypes.number,
