@@ -15,11 +15,11 @@ describe('Button', () => {
     expect(clickFn).toHaveBeenCalled();
   });
   it('small text button', () => {
-    const component = shallow(<Button size={'small'} type={'text'} onClick={clickFn}>Test button</Button>);
+    const component = shallow(<Button size={2} type={'text'} onClick={clickFn}>Test button</Button>);
     expect(component).toMatchSnapshot();
   });
   it('large outline button', () => {
-    const component = shallow(<Button size={'large'} type={'outline'} onClick={clickFn}>Test button</Button>);
+    const component = shallow(<Button size={4} type={'outline'} onClick={clickFn}>Test button</Button>);
     expect(component).toMatchSnapshot();
   });
   it('rounded button with icon', () => {
