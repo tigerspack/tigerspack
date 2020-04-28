@@ -8,6 +8,7 @@ const Sandbox = () => {
   const gridStyle = {
     padding: '5px',
   };
+
   return (
     <Grid flow={'column'} stretch={'width'} padding={15}>
       <Card outline title={'Alert component'}>
@@ -158,35 +159,41 @@ const Sandbox = () => {
           <Grid flow={'row'}>
             <Grid flow={'column'} align={'center'} size={4} wrap padding={10}>
               <Grid css={gridStyle}>
-                <Button size="small">Small</Button>
+                <Button size={1}>Extra-Small</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button size="medium">Medium</Button>
+                <Button size={2}>Small</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button size="large">Large</Button>
+                <Button size={3}>Medium</Button>
+              </Grid>
+              <Grid css={gridStyle}>
+                <Button size={4}>Large</Button>
+              </Grid>
+              <Grid css={gridStyle}>
+                <Button size={5}>Extra-Large</Button>
+              </Grid>
+            </Grid>
+            <Grid flow={'row'} valign={'center'} align={'center'} size={4} wrap padding={10}>
+              <Grid css={gridStyle}>
+                <Button type="outline" theme="danger" size={2}>Small</Button>
+              </Grid>
+              <Grid css={gridStyle}>
+                <Button type="outline" theme="danger" size={3}>Medium</Button>
+              </Grid>
+              <Grid css={gridStyle}>
+                <Button type="outline" theme="danger" size={4}>Large</Button>
               </Grid>
             </Grid>
             <Grid flow={'column'} align={'center'} size={4} wrap padding={10}>
               <Grid css={gridStyle}>
-                <Button type="outline" theme="danger" size="small">Small</Button>
+                <Button type="text" theme="success" size={2}>Small</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button type="outline" theme="danger" size="medium">Medium</Button>
+                <Button type="text" theme="success" size={3}>Medium</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button type="outline" theme="danger" size="large">Large</Button>
-              </Grid>
-            </Grid>
-            <Grid flow={'column'} align={'center'} size={4} wrap padding={10}>
-              <Grid css={gridStyle}>
-                <Button type="text" theme="success" size="small">Small</Button>
-              </Grid>
-              <Grid css={gridStyle}>
-                <Button type="text" theme="success" size="medium">Medium</Button>
-              </Grid>
-              <Grid css={gridStyle}>
-                <Button type="text" theme="success" size="large">Large</Button>
+                <Button type="text" theme="success" size={4}>Large</Button>
               </Grid>
             </Grid>
           </Grid>
@@ -202,6 +209,50 @@ const Sandbox = () => {
             </Grid>
             <Grid css={gridStyle}>
               <Button disabled type="text">Primary</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button disabled type="outline">Primary</Button>
+            </Grid>
+          </Grid>
+        </Blank>
+        <Title>Icons</Title>
+        <Blank border={'light'} rounded={5} shadow={3} indent={15}>
+          <Grid flow={'row'} stretch={'full'} align={'center'} valign={'center'} wrap padding={10}>
+            <Grid css={gridStyle}>
+              <Button size={1} icon={<i className="fas fa-suitcase"></i>}></Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={2} icon={<i className="fas fa-suitcase"></i>}></Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button icon={<i className="fas fa-suitcase"></i>}></Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={4} icon={<i className="fas fa-suitcase"></i>}></Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={5} icon={<i className="fas fa-suitcase"></i>}></Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={1} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={2} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={4} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={5} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button theme={'danger'} icon={<i className="fas fa-trash"></i>}>Delete</Button>
+            </Grid>
+            <Grid css={gridStyle}>
+              <Button size={4} theme={'danger'} icon={<i className="fas fa-trash"></i>}>Delete</Button>
             </Grid>
             <Grid css={gridStyle}>
               <Button disabled type="outline">Primary</Button>
