@@ -33,7 +33,7 @@ exports[`Button Button default 1`] = `
       "flexFlow": "row",
       "fontSize": "15px",
       "fontWeight": 500,
-      "height": "30px",
+      "height": "32px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
@@ -85,7 +85,7 @@ exports[`Button button with icon only 1`] = `
       "flexFlow": "row",
       "fontSize": "15px",
       "fontWeight": 500,
-      "height": "30px",
+      "height": "32px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
@@ -117,8 +117,8 @@ exports[`Button button with icon only 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
     css={
       Object {
-        "marginLeft": "-4px",
-        "marginRight": "-4px",
+        "marginLeft": "-6.5px",
+        "marginRight": "-6.5px",
       }
     }
   >
@@ -162,7 +162,7 @@ exports[`Button disabled button 1`] = `
       "flexFlow": "row",
       "fontSize": "15px",
       "fontWeight": 500,
-      "height": "30px",
+      "height": "32px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
@@ -227,7 +227,7 @@ exports[`Button large outline button 1`] = `
       "flexFlow": "row",
       "fontSize": "17px",
       "fontWeight": 500,
-      "height": "37px",
+      "height": "39px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
@@ -292,7 +292,7 @@ exports[`Button rounded button with icon 1`] = `
       "flexFlow": "row",
       "fontSize": "15px",
       "fontWeight": 500,
-      "height": "30px",
+      "height": "32px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
@@ -324,8 +324,8 @@ exports[`Button rounded button with icon 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
     css={
       Object {
-        "marginLeft": "-4px",
-        "marginRight": "8px",
+        "marginLeft": "-6.5px",
+        "marginRight": "7.5px",
       }
     }
   >
@@ -370,7 +370,7 @@ exports[`Button small text button 1`] = `
       "flexFlow": "row",
       "fontSize": "13px",
       "fontWeight": 500,
-      "height": "23px",
+      "height": "25px",
       "justifyContent": "center",
       "justifyItems": "center",
       "lineHeight": 0,
