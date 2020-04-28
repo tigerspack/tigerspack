@@ -10,8 +10,8 @@ export const defaultStyles = {
   largeFontSize: '18px',
 };
 
-export const setColor = () => {
-  // Object.keys(scheme).forEach((style) => {
-  //   defaultStyles[style] = { ...defaultStyles, ...scheme[style] };
-  // });
+export const setDefaultStyles = (newStyles) => {
+  Object.keys(newStyles).forEach((style) => {
+    defaultStyles[style] = newStyles[style];
+  });
 };
