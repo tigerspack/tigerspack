@@ -2,7 +2,7 @@
 
 exports[`Card Card with icon 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -17,26 +17,27 @@ exports[`Card Card with icon 1`] = `
       "transition": "all .4s ease",
     }
   }
+  size={3}
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "background": "",
+        "background": "inherit",
         "borderBottom": "2px solid #e7eaec",
         "boxSizing": "border-box",
-        "color": "#D15130",
-        "fontSize": "14px",
+        "color": "#304355",
+        "fontSize": "13.5px",
         "fontWeight": "600",
-        "padding": "15px",
+        "padding": "13.5px 15px",
         "textTransform": "uppercase",
         "width": "100%",
       }
     }
   >
     <EmotionCssPropInternal
-      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
       css={
         Object {
@@ -51,7 +52,7 @@ exports[`Card Card with icon 1`] = `
     Test title
   </EmotionCssPropInternal>
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
@@ -66,7 +67,7 @@ exports[`Card Card with icon 1`] = `
 
 exports[`Card Card without container 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -81,26 +82,27 @@ exports[`Card Card without container 1`] = `
       "transition": "all .4s ease",
     }
   }
+  size={3}
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "background": "",
+        "background": "inherit",
         "borderBottom": "2px solid #e7eaec",
         "boxSizing": "border-box",
-        "color": "#D15130",
-        "fontSize": "14px",
+        "color": "#304355",
+        "fontSize": "13.5px",
         "fontWeight": "600",
-        "padding": "15px",
+        "padding": "13.5px 15px",
         "textTransform": "uppercase",
         "width": "100%",
       }
     }
   >
     <EmotionCssPropInternal
-      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+      __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
       __EMOTION_TYPE_PLEASE_DO_NOT_USE__="span"
       css={
         Object {
@@ -120,7 +122,7 @@ exports[`Card Card without container 1`] = `
 
 exports[`Card Default Card 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -135,9 +137,10 @@ exports[`Card Default Card 1`] = `
       "transition": "all .4s ease",
     }
   }
+  size={3}
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
@@ -152,7 +155,7 @@ exports[`Card Default Card 1`] = `
 
 exports[`Card Outline Card 1`] = `
 <EmotionCssPropInternal
-  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+  __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
   __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
   css={
     Object {
@@ -167,19 +170,20 @@ exports[`Card Outline Card 1`] = `
       "transition": "all .4s ease",
     }
   }
+  size={3}
 >
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "background": "",
+        "background": "inherit",
         "borderBottom": "2px solid #e7eaec",
         "boxSizing": "border-box",
-        "color": "#D15130",
-        "fontSize": "14px",
+        "color": "#304355",
+        "fontSize": "13.5px",
         "fontWeight": "600",
-        "padding": "15px",
+        "padding": "13.5px 15px",
         "textTransform": "uppercase",
         "width": "100%",
       }
@@ -188,7 +192,7 @@ exports[`Card Outline Card 1`] = `
     Test title
   </EmotionCssPropInternal>
   <EmotionCssPropInternal
-    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Card"
+    __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {

@@ -14,8 +14,8 @@ const Card = (props) => {
     ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
-  const padding = props.padding || defaultStyles.indent;
   const indent = props.indent || defaultStyles.indent;
+  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
   const styles = {
     card: {
       border: outline ? 'none' : `1px solid ${palette.color}`,
@@ -30,17 +30,17 @@ const Card = (props) => {
     },
     title: {
       borderBottom: outline && '2px solid #e7eaec',
-      background: !outline ? palette.color : '',
-      color: !outline ? palette.text : palette.color,
+      background: !outline ? palette.color : 'inherit',
+      color: !outline ? palette.text : '#304355',
       width: '100%',
       boxSizing: 'border-box',
-      padding: `${padding}px`,
-      fontSize: defaultStyles.mediumFontSize,
+      padding: `${size * 2.5 + 6}px ${size * 3 + 6}px`,
+      fontSize: `${size * 1.5 + 9}px`,
       fontWeight: '600',
       textTransform: 'uppercase',
     },
     content: {
-      padding: `${padding}px`,
+      padding: `${size * 3 + 6}px`,
     },
     icon: {
       marginRight: '10px',
@@ -62,10 +62,14 @@ Card.propTypes = {
   icon: PropTypes.any,
   withoutContainer: PropTypes.bool,
   indent: PropTypes.number,
-  padding: PropTypes.number,
   outline: PropTypes.bool,
+  size: PropTypes.oneOf([1, 2, 3, 4, 5]),
   title: PropTypes.string,
   theme: PropTypes.string,
+};
+
+Card.defaultProps = {
+  size: 3,
 };
 
 export default Card;
