@@ -3,14 +3,15 @@
 exports[`Title Default Title 1`] = `
 <EmotionCssPropInternal
   __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
-  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="h2"
+  __EMOTION_TYPE_PLEASE_DO_NOT_USE__="h3"
   css={
     Object {
-      "borderBottom": "",
+      "borderBottom": "none",
+      "color": "inherit",
       "fontWeight": 500,
       "marginBottom": "15px",
       "padding": "0px",
-      "paddingBottom": "",
+      "paddingBottom": "0px",
     }
   }
 >

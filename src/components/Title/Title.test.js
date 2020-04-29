@@ -10,15 +10,26 @@ describe('Title', () => {
   it('Default Title', () => {
     const component = shallow(<Title>Test Blank</Title>);
     expect(component).toMatchSnapshot();
-    expect(component.html().substr(1, 2)).toEqual('h2');
   });
-  it('Title size', () => {
-    const component = shallow(<Title size={'large'}>Test Blank</Title>);
+  it('Title size 1', () => {
+    const component = shallow(<Title size={1}>Test Blank</Title>);
     expect(component.html().substr(1, 2)).toEqual('h1');
   });
-  it('Title small', () => {
-    const component = shallow(<Title size={'small'}>Test Blank</Title>);
+  it('Title size 2', () => {
+    const component = shallow(<Title size={2}>Test Blank</Title>);
+    expect(component.html().substr(1, 2)).toEqual('h2');
+  });
+  it('Title size 3', () => {
+    const component = shallow(<Title size={3}>Test Blank</Title>);
     expect(component.html().substr(1, 2)).toEqual('h3');
+  });
+  it('Title size 4', () => {
+    const component = shallow(<Title size={4}>Test Blank</Title>);
+    expect(component.html().substr(1, 2)).toEqual('h4');
+  });
+  it('Title size 5', () => {
+    const component = shallow(<Title size={5}>Test Blank</Title>);
+    expect(component.html().substr(1, 2)).toEqual('h5');
   });
   it('Title indent', () => {
     const component = shallow(<Title indent={testValue}>Test Blank</Title>);
@@ -31,5 +42,9 @@ describe('Title', () => {
   it('Title border', () => {
     const component = shallow(<Title border={testColor}>Test Blank</Title>);
     expect(component.get(0).props.css.borderBottom).toEqual(`1px solid ${colors[testColor].color}`);
+  });
+  it('Title theme', () => {
+    const component = shallow(<Title theme={testColor}>Test Blank</Title>);
+    expect(component.get(0).props.css.color).toEqual(`${colors[testColor].color}`);
   });
 });
