@@ -61,7 +61,7 @@ const Input = (props) => {
       outline: 'none',
       width: '100%',
       fontSize: `${size * 1.5 + 10}px`,
-      // height: `${(size * 2 + 11) + (size * 5)}px`,
+      height: `${(size * 2 + 11) + (size * 5)}px`,
       padding: `${size * 1.5 + 5}px ${size * 2.5 + 5}px`,
       boxSizing: 'border-box',
       position: 'relative',
