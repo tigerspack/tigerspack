@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../utils/colors';
+import { defaultStyles } from '../../utils/defaultStyles';
 
 const Title = (props) => {
   const {
     children,
-    indent,
     size,
     padding,
     border,
     ...otherProps
   } = props;
+
+  const indent = props.indent || defaultStyles.indent;
 
   const titleStyles = {
     fontWeight: 500,
@@ -40,7 +42,6 @@ Title.propTypes = {
 
 Title.defaultProps = {
   padding: 0,
-  indent: 10,
 };
 
 export default Title;
