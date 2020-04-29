@@ -10,12 +10,12 @@ const Card = (props) => {
     icon,
     theme,
     outline,
-    indent,
-    padding,
     withoutContainer,
     ...otherProps
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
+  const padding = props.padding || defaultStyles.indent;
+  const indent = props.indent || defaultStyles.indent;
   const styles = {
     card: {
       border: outline ? 'none' : `1px solid ${palette.color}`,
@@ -24,7 +24,7 @@ const Card = (props) => {
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
       boxSizing: 'border-box',
       transition: defaultStyles.animation,
-      borderRadius: defaultStyles.borderRadius,
+      borderRadius: `${defaultStyles.borderRadius}px`,
       marginBottom: `${indent}px`,
       overflow: 'hidden',
     },
@@ -35,7 +35,7 @@ const Card = (props) => {
       width: '100%',
       boxSizing: 'border-box',
       padding: `${padding}px`,
-      fontSize: '14px',
+      fontSize: defaultStyles.mediumFontSize,
       fontWeight: '600',
       textTransform: 'uppercase',
     },
@@ -66,11 +66,6 @@ Card.propTypes = {
   outline: PropTypes.bool,
   title: PropTypes.string,
   theme: PropTypes.string,
-};
-
-Card.defaultProps = {
-  padding: defaultStyles.indent,
-  indent: defaultStyles.indent,
 };
 
 export default Card;

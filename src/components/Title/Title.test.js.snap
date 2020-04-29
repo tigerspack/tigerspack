@@ -8,7 +8,7 @@ exports[`Title Default Title 1`] = `
     Object {
       "borderBottom": "",
       "fontWeight": 500,
-      "marginBottom": "10px",
+      "marginBottom": "15px",
       "padding": "0px",
       "paddingBottom": "",
     }

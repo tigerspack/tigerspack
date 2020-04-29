@@ -11,12 +11,11 @@ const Blank = (props) => {
     shadow,
     indent,
     rounded,
-    padding,
     ...otherProps
   } = props;
 
   const stylesObject = {};
-
+  const padding = props.padding || defaultStyles.indent;
   const posNameStab = (prop) => {
     if (prop === 'top' || prop === 'left') {
       return 'flex-start';
@@ -38,7 +37,7 @@ const Blank = (props) => {
     boxShadow: !border && `0 0 ${shadow}px rgba(0, 0, 0, 0.12), 0 ${shadow / 2}px ${shadow}px rgba(0, 0, 0, 0.24)`,
     boxSizing: 'border-box',
     transition: defaultStyles.animation,
-    borderRadius: rounded ? `${rounded}px` : defaultStyles.borderRadius,
+    borderRadius: rounded ? `${rounded}px` : `${defaultStyles.borderRadius}px`,
     padding: `${padding}px`,
     marginBottom: `${indent}px`,
     display: 'flex',
@@ -65,7 +64,6 @@ Blank.propTypes = {
 };
 
 Blank.defaultProps = {
-  padding: defaultStyles.indent,
   shadow: 3,
   indent: 0,
 };

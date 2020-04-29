@@ -6,8 +6,9 @@ import Grid from './components/Grid';
 import Input from './components/Input';
 import Title from './components/Title';
 import { setColor } from './utils/colors';
+import { setDefaultStyles } from './utils/defaultStyles';
 
 // Components
 export {
-  Alert, Blank, Button, Card, Grid, Input, Title, setColor,
+  Alert, Blank, Button, Card, Grid, Input, Title, setColor, setDefaultStyles,
 };
