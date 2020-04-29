@@ -10,8 +10,8 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 const devMode = NODE_ENV === 'development';
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
-  entry: devMode ? './sandbox/index.js' : './index.js',
+  context: __dirname,
+  entry: devMode ? './sandbox/index.js' : './src/index.js',
   output: {
     path: `${__dirname}/dist`,
     filename: './index.js',
