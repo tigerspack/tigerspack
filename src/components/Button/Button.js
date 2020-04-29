@@ -63,7 +63,7 @@ const Button = (props) => {
       userSelect: 'none',
       cursor: 'pointer',
       lineHeight: 0,
-      borderRadius: type !== 'rounded' ? defaultStyles.borderRadius : '20px',
+      borderRadius: type !== 'rounded' ? `${defaultStyles.borderRadius}px` : '20px',
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
