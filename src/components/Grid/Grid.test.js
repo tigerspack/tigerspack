@@ -52,9 +52,15 @@ describe('Grid', () => {
     expect(component.get(0).props.css.width).toEqual('100%');
     expect(component.get(0).props.css.height).toEqual('100%');
   });
-  it('Grid size', () => {
-    const component = shallow(<Grid size={1}>Test Grid</Grid>);
+  it('Grid width', () => {
+    const component = shallow(<Grid width={1}>Test Grid</Grid>);
     expect(component.get(0).props.css.minWidth).toEqual(`${(100 / 12)}%`);
+    expect(component.get(0).props.css.maxWidth).toEqual(`${(100 / 12)}%`);
+  });
+  it('Grid height', () => {
+    const component = shallow(<Grid height={1}>Test Grid</Grid>);
+    expect(component.get(0).props.css.minHeight).toEqual(`${(100 / 12)}%`);
+    expect(component.get(0).props.css.maxHeight).toEqual(`${(100 / 12)}%`);
   });
   it('Grid padding', () => {
     const component = shallow(<Grid padding={10}>Test Grid</Grid>);

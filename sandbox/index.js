@@ -13,7 +13,7 @@ const Sandbox = () => {
     <Grid flow={'column'} stretch={'width'} padding={15}>
       <Card outline title={'Alert component'}>
         <Grid flow={'row'} stretch={'width'}>
-          <Grid size={6} padding={5} flow={'column'}>
+          <Grid width={6} padding={5} flow={'column'}>
             <Grid stretch={'width'}>
               <Alert theme="danger">Danger</Alert>
             </Grid>
@@ -27,7 +27,7 @@ const Sandbox = () => {
               <Alert theme="info">Info</Alert>
             </Grid>
           </Grid>
-          <Grid size={6} padding={5} flow={'column'}>
+          <Grid width={6} padding={5} flow={'column'}>
             <Grid stretch={'width'}>
               <Alert outline theme="danger">Danger</Alert>
             </Grid>
@@ -48,7 +48,7 @@ const Sandbox = () => {
         <Title>Colors</Title>
         <Blank border={'light'} rounded={5} shadow={3} indent={15}>
           <Grid wrap>
-            <Grid flow={'row'} size={6} stretch={'full'} align={'center'} wrap padding={10}>
+            <Grid flow={'row'} width={6} stretch={'full'} align={'center'} wrap padding={10}>
               <Grid css={gridStyle}>
                 <Button theme="primary">Primary</Button>
               </Grid>
@@ -74,7 +74,7 @@ const Sandbox = () => {
                 <Button theme="light">Light</Button>
               </Grid>
             </Grid>
-            <Grid flow={'row'} size={6} stretch={'full'} align={'center'} wrap padding={10}>
+            <Grid flow={'row'} width={6} stretch={'full'} align={'center'} wrap padding={10}>
               <Grid css={gridStyle}>
                 <Button type={'rounded'} theme="primary">Primary</Button>
               </Grid>
@@ -100,7 +100,7 @@ const Sandbox = () => {
                 <Button type={'rounded'} theme="light">Light</Button>
               </Grid>
             </Grid>
-            <Grid flow={'row'} size={6} stretch={'full'} align={'center'} wrap padding={10}>
+            <Grid flow={'row'} width={6} stretch={'full'} align={'center'} wrap padding={10}>
               <Grid css={gridStyle}>
                 <Button type="text" theme="primary">Primary</Button>
               </Grid>
@@ -126,7 +126,7 @@ const Sandbox = () => {
                 <Button type="text" theme="light">Light</Button>
               </Grid>
             </Grid>
-            <Grid flow={'row'} size={6} stretch={'full'} align={'center'} wrap padding={10}>
+            <Grid flow={'row'} width={6} stretch={'full'} align={'center'} wrap padding={10}>
               <Grid css={gridStyle}>
                 <Button type="outline" theme="primary">Primary</Button>
               </Grid>
@@ -157,43 +157,43 @@ const Sandbox = () => {
         <Title>Sizes</Title>
         <Blank border={'light'} rounded={5} shadow={3} indent={15}>
           <Grid flow={'row'}>
-            <Grid flow={'column'} align={'center'} size={4} wrap padding={10}>
+            <Grid flow={'column'} align={'center'} width={4} wrap padding={10}>
               <Grid css={gridStyle}>
-                <Button size={1}>Extra-Small</Button>
+                <Button width={1}>Extra-Small</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button size={2}>Small</Button>
+                <Button width={2}>Small</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button size={3}>Medium</Button>
+                <Button width={3}>Medium</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button size={4}>Large</Button>
+                <Button width={4}>Large</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button size={5}>Extra-Large</Button>
-              </Grid>
-            </Grid>
-            <Grid flow={'row'} valign={'center'} align={'center'} size={4} wrap padding={10}>
-              <Grid css={gridStyle}>
-                <Button type="outline" theme="danger" size={2}>Small</Button>
-              </Grid>
-              <Grid css={gridStyle}>
-                <Button type="outline" theme="danger" size={3}>Medium</Button>
-              </Grid>
-              <Grid css={gridStyle}>
-                <Button type="outline" theme="danger" size={4}>Large</Button>
+                <Button width={5}>Extra-Large</Button>
               </Grid>
             </Grid>
-            <Grid flow={'column'} align={'center'} size={4} wrap padding={10}>
+            <Grid flow={'row'} valign={'center'} align={'center'} width={4} wrap padding={10}>
               <Grid css={gridStyle}>
-                <Button type="text" theme="success" size={2}>Small</Button>
+                <Button type="outline" theme="danger" width={2}>Small</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button type="text" theme="success" size={3}>Medium</Button>
+                <Button type="outline" theme="danger" width={3}>Medium</Button>
               </Grid>
               <Grid css={gridStyle}>
-                <Button type="text" theme="success" size={4}>Large</Button>
+                <Button type="outline" theme="danger" width={4}>Large</Button>
+              </Grid>
+            </Grid>
+            <Grid flow={'column'} align={'center'} width={4} wrap padding={10}>
+              <Grid css={gridStyle}>
+                <Button type="text" theme="success" width={2}>Small</Button>
+              </Grid>
+              <Grid css={gridStyle}>
+                <Button type="text" theme="success" width={3}>Medium</Button>
+              </Grid>
+              <Grid css={gridStyle}>
+                <Button type="text" theme="success" width={4}>Large</Button>
               </Grid>
             </Grid>
           </Grid>
@@ -219,40 +219,40 @@ const Sandbox = () => {
         <Blank border={'light'} rounded={5} shadow={3} indent={15}>
           <Grid flow={'row'} stretch={'full'} align={'center'} valign={'center'} wrap padding={10}>
             <Grid css={gridStyle}>
-              <Button size={1} icon={<i className="fas fa-suitcase"></i>}></Button>
+              <Button width={1} icon={<i className="fas fa-suitcase"></i>}></Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={2} icon={<i className="fas fa-suitcase"></i>}></Button>
+              <Button width={2} icon={<i className="fas fa-suitcase"></i>}></Button>
             </Grid>
             <Grid css={gridStyle}>
               <Button icon={<i className="fas fa-suitcase"></i>}></Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={4} icon={<i className="fas fa-suitcase"></i>}></Button>
+              <Button width={4} icon={<i className="fas fa-suitcase"></i>}></Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={5} icon={<i className="fas fa-suitcase"></i>}></Button>
+              <Button width={5} icon={<i className="fas fa-suitcase"></i>}></Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={1} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+              <Button width={1} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={2} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+              <Button width={2} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
             </Grid>
             <Grid css={gridStyle}>
               <Button theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={4} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+              <Button width={4} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={5} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
+              <Button width={5} theme={'success'} icon={<i className="fas fa-plus"></i>}>Add</Button>
             </Grid>
             <Grid css={gridStyle}>
               <Button theme={'danger'} icon={<i className="fas fa-trash"></i>}>Delete</Button>
             </Grid>
             <Grid css={gridStyle}>
-              <Button size={4} theme={'danger'} icon={<i className="fas fa-trash"></i>}>Delete</Button>
+              <Button width={4} theme={'danger'} icon={<i className="fas fa-trash"></i>}>Delete</Button>
             </Grid>
             <Grid css={gridStyle}>
               <Button disabled type="outline">Primary</Button>
@@ -263,22 +263,22 @@ const Sandbox = () => {
 
       <Card outline title={'input component'}>
         <Grid flow={'row'} stretch={'width'} wrap>
-          <Grid size={4} padding={5}>
+          <Grid width={4} padding={5}>
             <Input placeholder='First name'/>
           </Grid>
-          <Grid size={4} padding={5}>
+          <Grid width={4} padding={5}>
             <Input placeholder='Last name'/>
           </Grid>
-          <Grid size={4} padding={5}>
+          <Grid width={4} padding={5}>
             <Input placeholder='Country' value={'United States'}/>
           </Grid>
-          <Grid size={4} padding={5}>
+          <Grid width={4} padding={5}>
             <Input valid placeholder='Email' value='test@test.ru'/>
           </Grid>
-          <Grid size={4} padding={5}>
+          <Grid width={4} padding={5}>
             <Input error placeholder='Phone' value='+787267333'/>
           </Grid>
-          <Grid size={4} padding={5}>
+          <Grid width={4} padding={5}>
             <Input error placeholder='Password' type={'password'} value='test@test'/>
           </Grid>
         </Grid>
@@ -287,44 +287,44 @@ const Sandbox = () => {
       <Card outline title={'grid component'}>
         <Blank>
           <Grid wrap>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
-            <Grid padding={5} size={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
+            <Grid padding={5} width={1}><Blank align={'center'}>size=1</Blank></Grid>
           </Grid>
           <Grid wrap>
-            <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
-            <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
-            <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
-            <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
-            <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
-            <Grid padding={5} size={2}><Blank align={'center'}>size=2</Blank></Grid>
+            <Grid padding={5} width={2}><Blank align={'center'}>size=2</Blank></Grid>
+            <Grid padding={5} width={2}><Blank align={'center'}>size=2</Blank></Grid>
+            <Grid padding={5} width={2}><Blank align={'center'}>size=2</Blank></Grid>
+            <Grid padding={5} width={2}><Blank align={'center'}>size=2</Blank></Grid>
+            <Grid padding={5} width={2}><Blank align={'center'}>size=2</Blank></Grid>
+            <Grid padding={5} width={2}><Blank align={'center'}>size=2</Blank></Grid>
           </Grid>
           <Grid wrap>
-            <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
-            <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
-            <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
-            <Grid padding={5} size={3}><Blank align={'center'}>size=3</Blank></Grid>
+            <Grid padding={5} width={3}><Blank align={'center'}>size=3</Blank></Grid>
+            <Grid padding={5} width={3}><Blank align={'center'}>size=3</Blank></Grid>
+            <Grid padding={5} width={3}><Blank align={'center'}>size=3</Blank></Grid>
+            <Grid padding={5} width={3}><Blank align={'center'}>size=3</Blank></Grid>
           </Grid>
           <Grid wrap>
-            <Grid padding={5} size={4}><Blank align={'center'}>size=4</Blank></Grid>
-            <Grid padding={5} size={4}><Blank align={'center'}>size=4</Blank></Grid>
-            <Grid padding={5} size={4}><Blank align={'center'}>size=4</Blank></Grid>
+            <Grid padding={5} width={4}><Blank align={'center'}>size=4</Blank></Grid>
+            <Grid padding={5} width={4}><Blank align={'center'}>size=4</Blank></Grid>
+            <Grid padding={5} width={4}><Blank align={'center'}>size=4</Blank></Grid>
           </Grid>
           <Grid wrap>
-            <Grid padding={5} size={6}><Blank align={'center'}>size=6</Blank></Grid>
-            <Grid padding={5} size={6}><Blank align={'center'}>size=6</Blank></Grid>
+            <Grid padding={5} width={6}><Blank align={'center'}>size=6</Blank></Grid>
+            <Grid padding={5} width={6}><Blank align={'center'}>size=6</Blank></Grid>
           </Grid>
           <Grid wrap>
-            <Grid padding={5} size={12}><Blank align={'center'}>size=12</Blank></Grid>
+            <Grid padding={5} width={12}><Blank align={'center'}>size=12</Blank></Grid>
           </Grid>
         </Blank>
       </Card>
