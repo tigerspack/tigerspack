@@ -6,38 +6,36 @@ import { defaultStyles } from '../../utils/defaultStyles';
 const Title = (props) => {
   const {
     children,
-    size,
     padding,
     border,
+    theme,
     ...otherProps
   } = props;
 
   const indent = props.indent || defaultStyles.indent;
+  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
 
   const titleStyles = {
     fontWeight: 500,
     padding: `${padding}px`,
+    color: theme ? `${colors[theme].color}` : 'inherit',
     marginBottom: `${indent}px`,
-    borderBottom: border ? `1px solid ${colors[border].color}` : '',
-    paddingBottom: border ? `${indent}px` : '',
+    borderBottom: border ? `1px solid ${colors[border].color}` : 'none',
+    paddingBottom: border ? `${indent / 2}px` : `${padding}px`,
   };
 
-  switch (size) {
-    case 'large':
-      return <h1 css={titleStyles} {...otherProps}>{children}</h1>;
-    case 'small':
-      return <h3 css={titleStyles} {...otherProps}>{children}</h3>;
-    default:
-      return <h2 css={titleStyles} {...otherProps}>{children}</h2>;
-  }
+  const TagName = `h${size}`;
+
+  return <TagName css={titleStyles} {...otherProps}>{children}</TagName>;
 };
 
 Title.propTypes = {
   children: PropTypes.any.isRequired,
   indent: PropTypes.number,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf([1, 2, 3, 4, 5]),
   padding: PropTypes.number,
   border: PropTypes.string,
+  theme: PropTypes.string,
 };
 
 Title.defaultProps = {
