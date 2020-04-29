@@ -28,7 +28,7 @@ const Input = (props) => {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
-      borderRadius: '7px',
+      borderRadius: `${defaultStyles.borderRadius}px`,
       border: valid ? `${inputBorderWeight}px solid ${colors.success.color}` : inputError,
       position: 'relative',
       marginBottom: `${indent}px`,
@@ -89,7 +89,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  indent: defaultStyles.indent,
+  indent: 0,
 };
 
 export default Input;
