@@ -13,6 +13,7 @@ const Input = (props) => {
     value,
     ...otherProps
   } = props;
+  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
   // Config
   const inputBorderWeight = 1;
   // Hooks
@@ -39,17 +40,17 @@ const Input = (props) => {
       position: 'absolute',
       background: activeLabel ? 'transparent' : '#fff',
       top: activeLabel ? '0' : `-${inputBorderWeight}px`,
-      left: `${defaultStyles.indent}px`,
+      left: `${size * 2.5 + 5}px`,
       color: '#fff',
       padding: '0 3px',
       transition: `${defaultStyles.animation}, top 0s`,
       zIndex: 1,
     },
     labelText: {
-      marginTop: activeLabel ? '17px' : '-6px',
-      fontSize: activeLabel ? '16px' : '12px',
-      height: activeLabel ? '16px' : '12px',
-      lineHeight: activeLabel ? '16px' : '12px',
+      marginTop: activeLabel ? `${size * 1.5 + 5}px` : '-6px',
+      fontSize: activeLabel ? `${size * 1.5 + 10}px` : '12px',
+      height: activeLabel ? `${size * 1.5 + 10}px` : '12px',
+      lineHeight: activeLabel ? `${size * 1.5 + 10}px` : '12px',
       color: valid ? colors.success.color : labelError,
       fontWeight: '500',
       transition: defaultStyles.animation,
@@ -58,9 +59,10 @@ const Input = (props) => {
       background: 'none',
       border: 'none',
       outline: 'none',
-      fontSize: '16px',
       width: '100%',
-      padding: '17px 14px',
+      fontSize: `${size * 1.5 + 10}px`,
+      // height: `${(size * 2 + 11) + (size * 5)}px`,
+      padding: `${size * 1.5 + 5}px ${size * 2.5 + 5}px`,
       boxSizing: 'border-box',
       position: 'relative',
       zIndex: 2,
@@ -84,6 +86,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   error: PropTypes.bool,
   indent: PropTypes.number,
+  size: PropTypes.oneOf([1, 2, 3, 4, 5]),
   valid: PropTypes.bool,
   value: PropTypes.string,
 };
