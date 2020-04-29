@@ -3,7 +3,6 @@ export const defaultStyles = {
   indent: 15,
   buttonSize: 3,
   borderRadius: 3,
-  mediumFontSize: '14px',
 };
 
 export const setDefaultStyles = (newStyles) => {
