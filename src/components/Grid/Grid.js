@@ -8,7 +8,8 @@ const Grid = (props) => {
     flow,
     stretch,
     padding,
-    size,
+    width,
+    height,
     valign,
     wrap,
     ...otherProps
@@ -56,9 +57,14 @@ const Grid = (props) => {
     }
   }
 
-  if (size < 13) {
-    stylesObject.minWidth = `${(100 / 12) * size}%`;
-    stylesObject.maxWidth = `${(100 / 12) * size}%`;
+  if (width < 13) {
+    stylesObject.minWidth = `${(100 / 12) * width}%`;
+    stylesObject.maxWidth = `${(100 / 12) * width}%`;
+  }
+
+  if (height < 13) {
+    stylesObject.minHeight = `${(100 / 12) * height}%`;
+    stylesObject.maxHeight = `${(100 / 12) * height}%`;
   }
 
   const gridStyle = {
@@ -84,7 +90,8 @@ Grid.propTypes = {
   flow: PropTypes.oneOf(['row', 'column']),
   padding: PropTypes.number,
   stretch: PropTypes.oneOf(['width', 'height', 'full']),
-  size: PropTypes.number,
+  width: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  height: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   wrap: PropTypes.bool,
 };
 
