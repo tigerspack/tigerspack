@@ -45,7 +45,7 @@ const Sandbox = () => {
       </Card>
 
       <Card outline title={'Button component'}>
-        <Title>Colors</Title>
+        <Title theme={'danger'} border={'danger'}>Colors</Title>
         <Blank border={'light'} rounded={5} shadow={3} indent={15}>
           <Grid wrap>
             <Grid flow={'row'} width={6} stretch={'full'} align={'center'} wrap padding={10}>
