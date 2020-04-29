@@ -14,15 +14,19 @@ jobs:
         node-version: [13.x]
     steps:
       - uses: actions/checkout@master
-      - name: install
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
         run: yarn install
-      - name: lint
+      - name: Lint
         run: yarn lint
-      - name: build
+      - name: Build
         run: yarn build
         env:
           CI: true
-      - name: test
+      - name: Test
         run: yarn test
       - name: Coveralls
         uses: coverallsapp/github-action@master
