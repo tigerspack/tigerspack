@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   Alert, Button, Blank, Card, Grid, Input, Title,
-} from '../index';
+} from '../src';
 
 const Sandbox = () => {
   const gridStyle = {
