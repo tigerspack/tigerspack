@@ -14,14 +14,16 @@ jobs:
         node-version: [13.x]
     steps:
       - uses: actions/checkout@master
-      - name: install, lint, build and test
-        run: |
-          yarn install
-          yarn lint
-          yarn build
-          yarn test
+      - name: install
+        run: yarn install
+      - name: lint
+        run: yarn lint
+      - name: build
+        run: yarn build
         env:
           CI: true
+      - name: test
+        run: yarn test
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
