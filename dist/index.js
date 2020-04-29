@@ -226,11 +226,11 @@ __webpack_require__.d(__webpack_exports__, "setDefaultStyles", function() { retu
 // EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
 var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_require__(1);
 
-// EXTERNAL MODULE: ../node_modules/prop-types/index.js
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(0);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
-// CONCATENATED MODULE: ./utils/colors.js
+// CONCATENATED MODULE: ./src/utils/colors.js
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -292,28 +292,24 @@ var setColor = function setColor(scheme) {
     colors[theme] = _objectSpread({}, colors[theme], {}, scheme[theme]);
   });
 };
-// CONCATENATED MODULE: ./utils/defaultStyles.js
+// CONCATENATED MODULE: ./src/utils/defaultStyles.js
 var defaultStyles = {
   animation: 'all .4s ease',
   indent: 15,
-  borderRadius: '3px',
-  smallPadding: '4px 10px',
-  mediumPadding: '6px 16px',
-  largePadding: '10px 16px',
-  smallFontSize: '12px',
-  mediumFontSize: '14px',
-  largeFontSize: '18px'
+  buttonSize: 3,
+  borderRadius: 3,
+  mediumFontSize: '14px'
 };
 var setDefaultStyles = function setDefaultStyles(newStyles) {
   Object.keys(newStyles).forEach(function (style) {
     defaultStyles[style] = newStyles[style];
   });
 };
-// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/inheritsLoose.js
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/inheritsLoose.js
 var inheritsLoose = __webpack_require__(2);
 var inheritsLoose_default = /*#__PURE__*/__webpack_require__.n(inheritsLoose);
 
-// CONCATENATED MODULE: ../node_modules/@emotion/sheet/dist/sheet.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/sheet/dist/sheet.browser.esm.js
 /*
 
 Based off glamor's StyleSheet, thanks Sunil ❤️
@@ -445,7 +441,7 @@ var StyleSheet = /*#__PURE__*/function () {
 }();
 
 
-// CONCATENATED MODULE: ../node_modules/@emotion/stylis/dist/stylis.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/stylis/dist/stylis.browser.esm.js
 function stylis_min(W) {
   function M(d, c, e, h, a) {
     for (var m = 0, b = 0, v = 0, n = 0, q, g, x = 0, K = 0, k, u = k = q = 0, l = 0, r = 0, I = 0, t = 0, B = e.length, J = B - 1, y, f = '', p = '', F = '', G = '', C; l < B;) {
@@ -1060,7 +1056,7 @@ function stylis_min(W) {
 }
 
 /* harmony default export */ var stylis_browser_esm = (stylis_min);
-// CONCATENATED MODULE: ../node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js
 var weakMemoize = function weakMemoize(func) {
   // $FlowFixMe flow doesn't include all non-primitive types as allowed for weakmaps
   var cache = new WeakMap();
@@ -1077,7 +1073,7 @@ var weakMemoize = function weakMemoize(func) {
 };
 
 /* harmony default export */ var weak_memoize_browser_esm = (weakMemoize);
-// CONCATENATED MODULE: ../node_modules/@emotion/cache/dist/cache.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/cache/dist/cache.browser.esm.js
 
 
  // https://github.com/thysultan/stylis.js/tree/master/plugins/rule-sheet
@@ -1229,7 +1225,7 @@ var cache_browser_esm_createCache = function createCache(options) {
 };
 
 /* harmony default export */ var cache_browser_esm = (cache_browser_esm_createCache);
-// CONCATENATED MODULE: ../node_modules/@emotion/utils/dist/utils.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/utils/dist/utils.browser.esm.js
 var isBrowser = "object" !== 'undefined';
 
 function getRegisteredStyles(registered, registeredStyles, classNames) {
@@ -1271,7 +1267,7 @@ var insertStyles = function insertStyles(cache, serialized, isStringTag) {
 };
 
 
-// CONCATENATED MODULE: ../node_modules/@emotion/hash/dist/hash.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/hash/dist/hash.browser.esm.js
 /* eslint-disable */
 // Inspired by https://github.com/garycourt/murmurhash-js
 // Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
@@ -1327,7 +1323,7 @@ function murmur2(str) {
 }
 
 /* harmony default export */ var hash_browser_esm = (murmur2);
-// CONCATENATED MODULE: ../node_modules/@emotion/unitless/dist/unitless.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/unitless/dist/unitless.browser.esm.js
 var unitlessKeys = {
   animationIterationCount: 1,
   borderImageOutset: 1,
@@ -1377,7 +1373,7 @@ var unitlessKeys = {
   strokeWidth: 1
 };
 /* harmony default export */ var unitless_browser_esm = (unitlessKeys);
-// CONCATENATED MODULE: ../node_modules/@emotion/memoize/dist/memoize.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/memoize/dist/memoize.browser.esm.js
 function memoize(fn) {
   var cache = {};
   return function (arg) {
@@ -1387,7 +1383,7 @@ function memoize(fn) {
 }
 
 /* harmony default export */ var memoize_browser_esm = (memoize);
-// CONCATENATED MODULE: ../node_modules/@emotion/serialize/dist/serialize.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/serialize/dist/serialize.browser.esm.js
 
 
 
@@ -1640,7 +1636,7 @@ var serialize_browser_esm_serializeStyles = function serializeStyles(args, regis
 };
 
 
-// CONCATENATED MODULE: ../node_modules/@emotion/css/dist/css.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/css/dist/css.browser.esm.js
 
 
 function css_browser_esm_css() {
@@ -1652,7 +1648,7 @@ function css_browser_esm_css() {
 }
 
 /* harmony default export */ var css_browser_esm = (css_browser_esm_css);
-// CONCATENATED MODULE: ../node_modules/@emotion/core/dist/core.browser.esm.js
+// CONCATENATED MODULE: ./node_modules/@emotion/core/dist/core.browser.esm.js
 
 
 
@@ -1981,7 +1977,7 @@ var ClassNames = core_browser_esm_withEmotionCache(function (props, context) {
   });
 });
 
-// CONCATENATED MODULE: ./components/Alert/Alert.js
+// CONCATENATED MODULE: ./src/components/Alert/Alert.js
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -2025,7 +2021,7 @@ var Alert_Alert = function Alert(props) {
       color: palette.text,
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
       transition: defaultStyles.animation,
-      borderRadius: defaultStyles.borderRadius,
+      borderRadius: "".concat(defaultStyles.borderRadius, "px"),
       marginBottom: "".concat(indent, "px"),
       position: 'relative',
       width: '100%'
@@ -2082,10 +2078,10 @@ Alert_Alert.defaultProps = {
   closeIconSize: 28
 };
 /* harmony default export */ var components_Alert_Alert = (Alert_Alert);
-// CONCATENATED MODULE: ./components/Alert/index.js
+// CONCATENATED MODULE: ./src/components/Alert/index.js
 
 /* harmony default export */ var components_Alert = (components_Alert_Alert);
-// CONCATENATED MODULE: ./components/Blank/Blank.js
+// CONCATENATED MODULE: ./src/components/Blank/Blank.js
 function Blank_extends() { Blank_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Blank_extends.apply(this, arguments); }
 
 function Blank_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2111,10 +2107,10 @@ var Blank_Blank = function Blank(props) {
       shadow = props.shadow,
       indent = props.indent,
       rounded = props.rounded,
-      padding = props.padding,
-      otherProps = Blank_objectWithoutProperties(props, ["align", "border", "children", "shadow", "indent", "rounded", "padding"]);
+      otherProps = Blank_objectWithoutProperties(props, ["align", "border", "children", "shadow", "indent", "rounded"]);
 
   var stylesObject = {};
+  var padding = props.padding || defaultStyles.indent;
 
   var posNameStab = function posNameStab(prop) {
     if (prop === 'top' || prop === 'left') {
@@ -2139,7 +2135,7 @@ var Blank_Blank = function Blank(props) {
     boxShadow: !border && "0 0 ".concat(shadow, "px rgba(0, 0, 0, 0.12), 0 ").concat(shadow / 2, "px ").concat(shadow, "px rgba(0, 0, 0, 0.24)"),
     boxSizing: 'border-box',
     transition: defaultStyles.animation,
-    borderRadius: rounded ? "".concat(rounded, "px") : defaultStyles.borderRadius,
+    borderRadius: rounded ? "".concat(rounded, "px") : "".concat(defaultStyles.borderRadius, "px"),
     padding: "".concat(padding, "px"),
     marginBottom: "".concat(indent, "px"),
     display: 'flex',
@@ -2162,15 +2158,14 @@ Blank_Blank.propTypes = {
   padding: prop_types_default.a.number
 };
 Blank_Blank.defaultProps = {
-  padding: defaultStyles.indent,
   shadow: 3,
   indent: 0
 };
 /* harmony default export */ var components_Blank_Blank = (Blank_Blank);
-// CONCATENATED MODULE: ./components/Blank/index.js
+// CONCATENATED MODULE: ./src/components/Blank/index.js
 
 /* harmony default export */ var components_Blank = (components_Blank_Blank);
-// CONCATENATED MODULE: ./components/Button/Button.js
+// CONCATENATED MODULE: ./src/components/Button/Button.js
 function Button_extends() { Button_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Button_extends.apply(this, arguments); }
 
 function Button_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Button_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -2186,13 +2181,13 @@ function Button_objectWithoutPropertiesLoose(source, excluded) { if (source == n
 var Button_Button = function Button(props) {
   var children = props.children,
       icon = props.icon,
-      size = props.size,
       indent = props.indent,
       theme = props.theme,
       type = props.type,
-      otherProps = Button_objectWithoutProperties(props, ["children", "icon", "size", "indent", "theme", "type"]);
+      otherProps = Button_objectWithoutProperties(props, ["children", "icon", "indent", "theme", "type"]);
 
-  var palette = colors[theme] ? colors[theme] : colors.primary; // Dynamic styles
+  var palette = colors[theme] ? colors[theme] : colors.primary;
+  var size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize; // Dynamic styles
 
   var dynamicStyles = {};
 
@@ -2226,35 +2221,6 @@ var Button_Button = function Button(props) {
         dynamicStyles.colorHover = palette.text;
         break;
       }
-  }
-
-  switch (size) {
-    case 'small':
-      {
-        dynamicStyles.padding = defaultStyles.smallPadding;
-        dynamicStyles.iconMargin = 6;
-        dynamicStyles.fontSize = defaultStyles.smallFontSize;
-        dynamicStyles.lineHeight = 1.5;
-        break;
-      }
-
-    case 'large':
-      {
-        dynamicStyles.padding = defaultStyles.largePadding;
-        dynamicStyles.iconMargin = 8;
-        dynamicStyles.fontSize = defaultStyles.largeFontSize;
-        dynamicStyles.lineHeight = 1.3333333;
-        break;
-      }
-
-    default:
-      {
-        dynamicStyles.padding = defaultStyles.mediumPadding;
-        dynamicStyles.iconMargin = 8;
-        dynamicStyles.fontSize = defaultStyles.mediumFontSize;
-        dynamicStyles.lineHeight = 1.52857143;
-        break;
-      }
   } // Styles
 
 
@@ -2264,22 +2230,27 @@ var Button_Button = function Button(props) {
       position: 'relative',
       outline: 'none',
       transition: defaultStyles.animation,
-      display: 'inline-block',
+      display: 'flex',
+      flexDirection: 'column',
+      flexFlow: 'row',
+      alignContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+      justifyItems: 'center',
       marginBottom: "".concat(indent, "px"),
       fontWeight: 500,
-      textAlign: 'center',
-      verticalAlign: 'middle',
       backgroundImage: 'none',
       whiteSpace: 'nowrap',
       userSelect: 'none',
       cursor: 'pointer',
-      borderRadius: type !== 'rounded' ? defaultStyles.borderRadius : '20px',
+      lineHeight: 0,
+      borderRadius: type !== 'rounded' ? "".concat(defaultStyles.borderRadius, "px") : '20px',
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
-      fontSize: dynamicStyles.fontSize,
-      lineHeight: dynamicStyles.lineHeight,
-      padding: dynamicStyles.padding,
+      fontSize: "".concat(size * 2 + 9, "px"),
+      height: "".concat(size * 2 + 11 + size * 5, "px"),
+      padding: "".concat(size * 5 / 2 - 0.5, "px ").concat(size * 5, "px ").concat(size * 5 / 2 + 0.5, "px"),
       ':disabled': {
         opacity: 0.7,
         cursor: 'not-allowed',
@@ -2295,8 +2266,8 @@ var Button_Button = function Button(props) {
       }
     },
     icon: {
-      marginLeft: "-".concat(dynamicStyles.iconMargin / 2, "px"),
-      marginRight: children ? "".concat(dynamicStyles.iconMargin, "px") : "-".concat(dynamicStyles.iconMargin / 2, "px")
+      marginLeft: "-".concat(size * 5 / 2 - 1, "px"),
+      marginRight: children ? "".concat(size * 5 / 2, "px") : "-".concat(size * 5 / 2 - 1, "px")
     }
   };
   return core_browser_esm_jsx("button", Button_extends({
@@ -2309,7 +2280,7 @@ var Button_Button = function Button(props) {
 Button_Button.propTypes = {
   theme: prop_types_default.a.string,
   children: prop_types_default.a.any,
-  size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
+  size: prop_types_default.a.oneOf([1, 2, 3, 4, 5]),
   type: prop_types_default.a.oneOf(['text', 'outline', 'rounded']),
   icon: prop_types_default.a.any,
   indent: prop_types_default.a.number
@@ -2318,10 +2289,10 @@ Button_Button.defaultProps = {
   indent: 0
 };
 /* harmony default export */ var components_Button_Button = (Button_Button);
-// CONCATENATED MODULE: ./components/Button/index.js
+// CONCATENATED MODULE: ./src/components/Button/index.js
 
 /* harmony default export */ var components_Button = (components_Button_Button);
-// CONCATENATED MODULE: ./components/Card/Card.js
+// CONCATENATED MODULE: ./src/components/Card/Card.js
 function Card_extends() { Card_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Card_extends.apply(this, arguments); }
 
 function Card_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Card_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -2340,12 +2311,12 @@ var Card_Card = function Card(props) {
       icon = props.icon,
       theme = props.theme,
       outline = props.outline,
-      indent = props.indent,
-      padding = props.padding,
       withoutContainer = props.withoutContainer,
-      otherProps = Card_objectWithoutProperties(props, ["children", "title", "icon", "theme", "outline", "indent", "padding", "withoutContainer"]);
+      otherProps = Card_objectWithoutProperties(props, ["children", "title", "icon", "theme", "outline", "withoutContainer"]);
 
   var palette = colors[theme] ? colors[theme] : colors.primary;
+  var padding = props.padding || defaultStyles.indent;
+  var indent = props.indent || defaultStyles.indent;
   var styles = {
     card: {
       border: outline ? 'none' : "1px solid ".concat(palette.color),
@@ -2354,7 +2325,7 @@ var Card_Card = function Card(props) {
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12)',
       boxSizing: 'border-box',
       transition: defaultStyles.animation,
-      borderRadius: defaultStyles.borderRadius,
+      borderRadius: "".concat(defaultStyles.borderRadius, "px"),
       marginBottom: "".concat(indent, "px"),
       overflow: 'hidden'
     },
@@ -2365,7 +2336,7 @@ var Card_Card = function Card(props) {
       width: '100%',
       boxSizing: 'border-box',
       padding: "".concat(padding, "px"),
-      fontSize: '14px',
+      fontSize: defaultStyles.mediumFontSize,
       fontWeight: '600',
       textTransform: 'uppercase'
     },
@@ -2397,15 +2368,11 @@ Card_Card.propTypes = {
   title: prop_types_default.a.string,
   theme: prop_types_default.a.string
 };
-Card_Card.defaultProps = {
-  padding: defaultStyles.indent,
-  indent: defaultStyles.indent
-};
 /* harmony default export */ var components_Card_Card = (Card_Card);
-// CONCATENATED MODULE: ./components/Card/index.js
+// CONCATENATED MODULE: ./src/components/Card/index.js
 
 /* harmony default export */ var components_Card = (components_Card_Card);
-// CONCATENATED MODULE: ./components/Grid/Grid.js
+// CONCATENATED MODULE: ./src/components/Grid/Grid.js
 function Grid_extends() { Grid_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Grid_extends.apply(this, arguments); }
 
 function Grid_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2514,10 +2481,10 @@ Grid_Grid.defaultProps = {
   padding: 0
 };
 /* harmony default export */ var components_Grid_Grid = (Grid_Grid);
-// CONCATENATED MODULE: ./components/Grid/index.js
+// CONCATENATED MODULE: ./src/components/Grid/index.js
 
 /* harmony default export */ var components_Grid = (components_Grid_Grid);
-// CONCATENATED MODULE: ./components/Input/Input.js
+// CONCATENATED MODULE: ./src/components/Input/Input.js
 function Input_extends() { Input_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Input_extends.apply(this, arguments); }
 
 function Input_slicedToArray(arr, i) { return Input_arrayWithHoles(arr) || Input_iterableToArrayLimit(arr, i) || Input_unsupportedIterableToArray(arr, i) || Input_nonIterableRest(); }
@@ -2574,7 +2541,7 @@ var Input_Input = function Input(props) {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
-      borderRadius: '7px',
+      borderRadius: "".concat(defaultStyles.borderRadius, "px"),
       border: valid ? "".concat(inputBorderWeight, "px solid ").concat(colors.success.color) : inputError,
       position: 'relative',
       marginBottom: "".concat(indent, "px"),
@@ -2644,13 +2611,13 @@ Input_Input.propTypes = {
   value: prop_types_default.a.string
 };
 Input_Input.defaultProps = {
-  indent: defaultStyles.indent
+  indent: 0
 };
 /* harmony default export */ var components_Input_Input = (Input_Input);
-// CONCATENATED MODULE: ./components/Input/index.js
+// CONCATENATED MODULE: ./src/components/Input/index.js
 
 /* harmony default export */ var components_Input = (components_Input_Input);
-// CONCATENATED MODULE: ./components/Title/Title.js
+// CONCATENATED MODULE: ./src/components/Title/Title.js
 function Title_extends() { Title_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Title_extends.apply(this, arguments); }
 
 function Title_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = Title_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -2662,14 +2629,15 @@ function Title_objectWithoutPropertiesLoose(source, excluded) { if (source == nu
 
 
 
+
 var Title_Title = function Title(props) {
   var children = props.children,
-      indent = props.indent,
       size = props.size,
       padding = props.padding,
       border = props.border,
-      otherProps = Title_objectWithoutProperties(props, ["children", "indent", "size", "padding", "border"]);
+      otherProps = Title_objectWithoutProperties(props, ["children", "size", "padding", "border"]);
 
+  var indent = props.indent || defaultStyles.indent;
   var titleStyles = {
     fontWeight: 500,
     padding: "".concat(padding, "px"),
@@ -2704,14 +2672,13 @@ Title_Title.propTypes = {
   border: prop_types_default.a.string
 };
 Title_Title.defaultProps = {
-  padding: 0,
-  indent: 10
+  padding: 0
 };
 /* harmony default export */ var components_Title_Title = (Title_Title);
-// CONCATENATED MODULE: ./components/Title/index.js
+// CONCATENATED MODULE: ./src/components/Title/index.js
 
 /* harmony default export */ var components_Title = (components_Title_Title);
-// CONCATENATED MODULE: ./index.js
+// CONCATENATED MODULE: ./src/index.js
 
 
 
