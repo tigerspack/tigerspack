@@ -297,8 +297,7 @@ var defaultStyles = {
   animation: 'all .4s ease',
   indent: 15,
   buttonSize: 3,
-  borderRadius: 3,
-  mediumFontSize: '14px'
+  borderRadius: 3
 };
 var setDefaultStyles = function setDefaultStyles(newStyles) {
   Object.keys(newStyles).forEach(function (style) {
@@ -2243,12 +2242,12 @@ var Button_Button = function Button(props) {
       whiteSpace: 'nowrap',
       userSelect: 'none',
       cursor: 'pointer',
-      lineHeight: 0,
       borderRadius: type !== 'rounded' ? "".concat(defaultStyles.borderRadius, "px") : '20px',
       backgroundColor: dynamicStyles.background,
       border: dynamicStyles.border,
       color: dynamicStyles.color,
       fontSize: "".concat(size * 2 + 9, "px"),
+      lineHeight: "".concat(size * 2 + 9, "px"),
       height: "".concat(size * 2 + 11 + size * 5, "px"),
       padding: "".concat(size * 5 / 2 - 0.5, "px ").concat(size * 5, "px ").concat(size * 5 / 2 + 0.5, "px"),
       ':disabled': {
@@ -2315,8 +2314,8 @@ var Card_Card = function Card(props) {
       otherProps = Card_objectWithoutProperties(props, ["children", "title", "icon", "theme", "outline", "withoutContainer"]);
 
   var palette = colors[theme] ? colors[theme] : colors.primary;
-  var padding = props.padding || defaultStyles.indent;
   var indent = props.indent || defaultStyles.indent;
+  var size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
   var styles = {
     card: {
       border: outline ? 'none' : "1px solid ".concat(palette.color),
@@ -2331,17 +2330,17 @@ var Card_Card = function Card(props) {
     },
     title: {
       borderBottom: outline && '2px solid #e7eaec',
-      background: !outline ? palette.color : '',
-      color: !outline ? palette.text : palette.color,
+      background: !outline ? palette.color : 'inherit',
+      color: !outline ? palette.text : '#304355',
       width: '100%',
       boxSizing: 'border-box',
-      padding: "".concat(padding, "px"),
-      fontSize: defaultStyles.mediumFontSize,
+      padding: "".concat(size * 2.5 + 6, "px ").concat(size * 3 + 6, "px"),
+      fontSize: "".concat(size * 1.5 + 9, "px"),
       fontWeight: '600',
       textTransform: 'uppercase'
     },
     content: {
-      padding: "".concat(padding, "px")
+      padding: "".concat(size * 3 + 6, "px")
     },
     icon: {
       marginRight: '10px'
@@ -2363,10 +2362,13 @@ Card_Card.propTypes = {
   icon: prop_types_default.a.any,
   withoutContainer: prop_types_default.a.bool,
   indent: prop_types_default.a.number,
-  padding: prop_types_default.a.number,
   outline: prop_types_default.a.bool,
+  size: prop_types_default.a.oneOf([1, 2, 3, 4, 5]),
   title: prop_types_default.a.string,
   theme: prop_types_default.a.string
+};
+Card_Card.defaultProps = {
+  size: 3
 };
 /* harmony default export */ var components_Card_Card = (Card_Card);
 // CONCATENATED MODULE: ./src/components/Card/index.js
@@ -2395,10 +2397,11 @@ var Grid_Grid = function Grid(props) {
       flow = props.flow,
       stretch = props.stretch,
       padding = props.padding,
-      size = props.size,
+      width = props.width,
+      height = props.height,
       valign = props.valign,
       wrap = props.wrap,
-      otherProps = Grid_objectWithoutProperties(props, ["align", "children", "flow", "stretch", "padding", "size", "valign", "wrap"]);
+      otherProps = Grid_objectWithoutProperties(props, ["align", "children", "flow", "stretch", "padding", "width", "height", "valign", "wrap"]);
 
   var stylesObject = {};
 
@@ -2449,9 +2452,14 @@ var Grid_Grid = function Grid(props) {
     }
   }
 
-  if (size < 13) {
-    stylesObject.minWidth = "".concat(100 / 12 * size, "%");
-    stylesObject.maxWidth = "".concat(100 / 12 * size, "%");
+  if (width < 13) {
+    stylesObject.minWidth = "".concat(100 / 12 * width, "%");
+    stylesObject.maxWidth = "".concat(100 / 12 * width, "%");
+  }
+
+  if (height < 13) {
+    stylesObject.minHeight = "".concat(100 / 12 * height, "%");
+    stylesObject.maxHeight = "".concat(100 / 12 * height, "%");
   }
 
   var gridStyle = Grid_objectSpread({
@@ -2474,7 +2482,8 @@ Grid_Grid.propTypes = {
   flow: prop_types_default.a.oneOf(['row', 'column']),
   padding: prop_types_default.a.number,
   stretch: prop_types_default.a.oneOf(['width', 'height', 'full']),
-  size: prop_types_default.a.number,
+  width: prop_types_default.a.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+  height: prop_types_default.a.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   wrap: prop_types_default.a.bool
 };
 Grid_Grid.defaultProps = {
@@ -2516,8 +2525,9 @@ var Input_Input = function Input(props) {
       indent = props.indent,
       valid = props.valid,
       value = props.value,
-      otherProps = Input_objectWithoutProperties(props, ["className", "placeholder", "error", "indent", "valid", "value"]); // Config
+      otherProps = Input_objectWithoutProperties(props, ["className", "placeholder", "error", "indent", "valid", "value"]);
 
+  var size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize; // Config
 
   var inputBorderWeight = 1; // Hooks
 
@@ -2552,17 +2562,17 @@ var Input_Input = function Input(props) {
       position: 'absolute',
       background: activeLabel ? 'transparent' : '#fff',
       top: activeLabel ? '0' : "-".concat(inputBorderWeight, "px"),
-      left: "".concat(defaultStyles.indent, "px"),
+      left: "".concat(size * 2.5 + 5, "px"),
       color: '#fff',
       padding: '0 3px',
       transition: "".concat(defaultStyles.animation, ", top 0s"),
       zIndex: 1
     },
     labelText: {
-      marginTop: activeLabel ? '17px' : '-6px',
-      fontSize: activeLabel ? '16px' : '12px',
-      height: activeLabel ? '16px' : '12px',
-      lineHeight: activeLabel ? '16px' : '12px',
+      marginTop: activeLabel ? "".concat(size * 1.5 + 5, "px") : '-6px',
+      fontSize: activeLabel ? "".concat(size * 1.5 + 10, "px") : '12px',
+      height: activeLabel ? "".concat(size * 1.5 + 10, "px") : '12px',
+      lineHeight: activeLabel ? "".concat(size * 1.5 + 10, "px") : '12px',
       color: valid ? colors.success.color : labelError,
       fontWeight: '500',
       transition: defaultStyles.animation
@@ -2571,9 +2581,10 @@ var Input_Input = function Input(props) {
       background: 'none',
       border: 'none',
       outline: 'none',
-      fontSize: '16px',
       width: '100%',
-      padding: '17px 14px',
+      fontSize: "".concat(size * 1.5 + 10, "px"),
+      height: "".concat(size * 2 + 11 + size * 5, "px"),
+      padding: "".concat(size * 1.5 + 5, "px ").concat(size * 2.5 + 5, "px"),
       boxSizing: 'border-box',
       position: 'relative',
       zIndex: 2
@@ -2607,6 +2618,7 @@ Input_Input.propTypes = {
   placeholder: prop_types_default.a.string,
   error: prop_types_default.a.bool,
   indent: prop_types_default.a.number,
+  size: prop_types_default.a.oneOf([1, 2, 3, 4, 5]),
   valid: prop_types_default.a.bool,
   value: prop_types_default.a.string
 };
@@ -2632,44 +2644,34 @@ function Title_objectWithoutPropertiesLoose(source, excluded) { if (source == nu
 
 var Title_Title = function Title(props) {
   var children = props.children,
-      size = props.size,
       padding = props.padding,
       border = props.border,
-      otherProps = Title_objectWithoutProperties(props, ["children", "size", "padding", "border"]);
+      theme = props.theme,
+      otherProps = Title_objectWithoutProperties(props, ["children", "padding", "border", "theme"]);
 
   var indent = props.indent || defaultStyles.indent;
+  var size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
   var titleStyles = {
     fontWeight: 500,
     padding: "".concat(padding, "px"),
+    color: theme ? "".concat(colors[theme].color) : 'inherit',
     marginBottom: "".concat(indent, "px"),
-    borderBottom: border ? "1px solid ".concat(colors[border].color) : '',
-    paddingBottom: border ? "".concat(indent, "px") : ''
+    borderBottom: border ? "1px solid ".concat(colors[border].color) : 'none',
+    paddingBottom: border ? "".concat(indent / 2, "px") : "".concat(padding, "px")
   };
-
-  switch (size) {
-    case 'large':
-      return core_browser_esm_jsx("h1", Title_extends({
-        css: titleStyles
-      }, otherProps), children);
-
-    case 'small':
-      return core_browser_esm_jsx("h3", Title_extends({
-        css: titleStyles
-      }, otherProps), children);
-
-    default:
-      return core_browser_esm_jsx("h2", Title_extends({
-        css: titleStyles
-      }, otherProps), children);
-  }
+  var TagName = "h".concat(size);
+  return core_browser_esm_jsx(TagName, Title_extends({
+    css: titleStyles
+  }, otherProps), children);
 };
 
 Title_Title.propTypes = {
   children: prop_types_default.a.any.isRequired,
   indent: prop_types_default.a.number,
-  size: prop_types_default.a.oneOf(['small', 'medium', 'large']),
+  size: prop_types_default.a.oneOf([1, 2, 3, 4, 5]),
   padding: prop_types_default.a.number,
-  border: prop_types_default.a.string
+  border: prop_types_default.a.string,
+  theme: prop_types_default.a.string
 };
 Title_Title.defaultProps = {
   padding: 0
