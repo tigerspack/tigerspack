@@ -46,7 +46,7 @@ const Sandbox = () => {
 
       <Card outline icon={<i className={'fas fa-suitcase '} />} title={'Button component'}>
         <Title theme={'danger'} border={'danger'}>Colors</Title>
-        <Blank border={'light'} rounded={5} shadow={3} indent={15}>
+        <Blank border={'danger'} rounded={5} shadow={0} indent={15}>
           <Grid wrap>
             <Grid flow={'row'} width={6} stretch={'full'} align={'center'} wrap padding={10}>
               <Grid css={gridStyle}>
