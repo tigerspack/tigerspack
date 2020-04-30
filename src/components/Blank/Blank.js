@@ -8,7 +8,6 @@ const Blank = (props) => {
     align,
     border,
     children,
-    shadow,
     indent,
     rounded,
     ...otherProps
@@ -16,6 +15,7 @@ const Blank = (props) => {
 
   const stylesObject = {};
   const padding = props.padding || defaultStyles.indent;
+  const shadow = props.shadow < 6 ? props.shadow : defaultStyles.boxShadow;
   const posNameStab = (prop) => {
     if (prop === 'top' || prop === 'left') {
       return 'flex-start';
@@ -33,7 +33,7 @@ const Blank = (props) => {
 
   const blankStyles = {
     background: '#fff',
-    border: border && `1px solid ${colors[border].color}`,
+    border: border ? `1px solid ${colors[border].color}` : '1px solid transparent',
     boxShadow: !border && `0 0 ${shadow}px rgba(0, 0, 0, 0.12), 0 ${shadow / 2}px ${shadow}px rgba(0, 0, 0, 0.24)`,
     boxSizing: 'border-box',
     transition: defaultStyles.animation,
@@ -41,6 +41,7 @@ const Blank = (props) => {
     padding: `${padding}px`,
     marginBottom: `${indent}px`,
     display: 'flex',
+    flexDirection: 'column',
     flexFlow: 'column',
     width: '100%',
     ...stylesObject,
@@ -58,13 +59,12 @@ Blank.propTypes = {
   border: PropTypes.string,
   children: PropTypes.any.isRequired,
   indent: PropTypes.number,
-  shadow: PropTypes.number,
+  shadow: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
   rounded: PropTypes.number,
   padding: PropTypes.number,
 };
 
 Blank.defaultProps = {
-  shadow: 3,
   indent: 0,
 };
 

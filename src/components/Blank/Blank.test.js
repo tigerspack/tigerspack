@@ -23,6 +23,21 @@ describe('Blank', () => {
     const component = shallow(<Blank indent={testValue}>Test Blank</Blank>);
     expect(component.get(0).props.css.marginBottom).toEqual(`${testValue}px`);
   });
+  it('Blank align center', () => {
+    const component = shallow(<Blank align={'center'}>Test Blank</Blank>);
+    expect(component.get(0).props.css.alignItems).toEqual('center');
+    expect(component.get(0).props.css.alignContent).toEqual('center');
+  });
+  it('Blank align left', () => {
+    const component = shallow(<Blank align={'left'}>Test Blank</Blank>);
+    expect(component.get(0).props.css.alignItems).toEqual('flex-start');
+    expect(component.get(0).props.css.alignContent).toEqual('flex-start');
+  });
+  it('Blank align right', () => {
+    const component = shallow(<Blank align={'right'}>Test Blank</Blank>);
+    expect(component.get(0).props.css.alignItems).toEqual('flex-end');
+    expect(component.get(0).props.css.alignContent).toEqual('flex-end');
+  });
   it('Blank padding', () => {
     const component = shallow(<Blank padding={testValue}>Test Blank</Blank>);
     expect(component.get(0).props.css.padding).toEqual(`${testValue}px`);

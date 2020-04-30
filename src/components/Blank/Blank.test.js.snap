@@ -7,11 +7,12 @@ exports[`Blank Default Blank 1`] = `
   css={
     Object {
       "background": "#fff",
-      "border": undefined,
+      "border": "1px solid transparent",
       "borderRadius": "3px",
       "boxShadow": "0 0 3px rgba(0, 0, 0, 0.12), 0 1.5px 3px rgba(0, 0, 0, 0.24)",
       "boxSizing": "border-box",
       "display": "flex",
+      "flexDirection": "column",
       "flexFlow": "column",
       "marginBottom": "0px",
       "padding": "15px",
