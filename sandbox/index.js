@@ -11,7 +11,7 @@ const Sandbox = () => {
 
   return (
     <Grid flow={'column'} stretch={'width'} padding={15}>
-      <Card outline title={'Alert component'}>
+      <Card title={'Alert component'} theme={'light'} shadow={0}>
         <Grid flow={'row'} stretch={'width'}>
           <Grid width={6} padding={5} flow={'column'}>
             <Grid stretch={'width'}>
