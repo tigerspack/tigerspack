@@ -13,7 +13,7 @@ const Input = (props) => {
     value,
     ...otherProps
   } = props;
-  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
+  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.inputSize;
   // Config
   const inputBorderWeight = 1;
   // Hooks
