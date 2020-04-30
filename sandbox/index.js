@@ -269,22 +269,22 @@ const Sandbox = () => {
 
       <Card outline title={'input component'}>
         <Grid flow={'row'} stretch={'width'} wrap>
-          <Grid width={4} padding={5}>
+          <Grid width={4} padding={10}>
             <Input placeholder='First name'/>
           </Grid>
-          <Grid width={4} padding={5}>
+          <Grid width={4} padding={10}>
             <Input placeholder='Last name'/>
           </Grid>
-          <Grid width={4} padding={5}>
+          <Grid width={4} padding={10}>
             <Input placeholder='Country' value={'United States'}/>
           </Grid>
-          <Grid width={4} padding={5}>
+          <Grid width={4} padding={10}>
             <Input valid placeholder='Email' value='test@test.ru'/>
           </Grid>
-          <Grid width={4} padding={5}>
+          <Grid width={4} padding={10}>
             <Input error placeholder='Phone' value='+787267333'/>
           </Grid>
-          <Grid width={4} padding={5}>
+          <Grid width={4} padding={10}>
             <Input error placeholder='Password' type={'password'} value='test@test'/>
           </Grid>
         </Grid>

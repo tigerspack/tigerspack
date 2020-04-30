@@ -25,7 +25,7 @@ describe('Input', () => {
   it('Input on size', () => {
     const component = shallow(<Input size={sizeValue}/>);
     expect(component.childAt(0).get(0).props.css.fontSize).toEqual(`${sizeValue * 1.5 + 10}px`);
-    expect(component.childAt(0).get(0).props.css.height).toEqual(`${(sizeValue * 2 + 11) + (sizeValue * 5)}px`);
+    expect(component.childAt(0).get(0).props.css.height).toEqual(`${(sizeValue * 1.5 + 10) + ((sizeValue * 1.5 + 5) * 2)}px`);
     expect(component.childAt(0).get(0).props.css.padding).toEqual(`${sizeValue * 1.5 + 5}px ${sizeValue * 2.5 + 5}px`);
   });
   it('Input on blur', () => {
