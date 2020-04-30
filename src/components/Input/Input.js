@@ -14,23 +14,25 @@ const Input = (props) => {
     ...otherProps
   } = props;
   const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.inputSize;
-  // Config
-  const inputBorderWeight = 1;
+  const border = props.border < 3 ? props.border : defaultStyles.inputBorder;
   // Hooks
   const [focus, setFocus] = useState(false);
   const [inputValue, setInputValue] = useState(value || '');
   // Different states
   const labelColor = focus ? colors.primary.color : '#cfd1d7';
   const labelError = error ? colors.danger.color : labelColor;
-  const inputError = error ? `${inputBorderWeight}px solid ${colors.danger.color}` : `${inputBorderWeight}px solid ${focus ? colors.primary.color : '#cfd1d7'}`;
+  const inputError = error ? `${border}px solid ${colors.danger.color}` : `${border}px solid ${focus ? colors.primary.color : '#cfd1d7'}`;
+  const inputErrorWithoutBorder = error ? `1px solid ${colors.danger.color}` : `1px solid ${focus ? colors.primary.color : '#cfd1d7'}`;
+  const inputErrorWithoutBorderCondition = valid ? `1px solid ${colors.success.color}` : inputErrorWithoutBorder;
   const activeLabel = inputValue.length === 0 && !focus;
   // Styles
   const styles = {
     input: {
       boxSizing: 'border-box',
       background: '#fff',
-      borderRadius: `${defaultStyles.borderRadius}px`,
-      border: valid ? `${inputBorderWeight}px solid ${colors.success.color}` : inputError,
+      borderRadius: border !== 0 ? `${defaultStyles.borderRadius}px` : 0,
+      border: valid ? `${border}px solid ${colors.success.color}` : inputError,
+      borderBottom: border === 0 && inputErrorWithoutBorderCondition,
       position: 'relative',
       marginBottom: `${indent}px`,
       transition: defaultStyles.animation,
@@ -39,10 +41,10 @@ const Input = (props) => {
     label: {
       position: 'absolute',
       background: activeLabel ? 'transparent' : '#fff',
-      top: activeLabel ? '0' : `-${inputBorderWeight}px`,
-      left: `${size * 2.5 + 5}px`,
+      top: activeLabel ? '0' : `-${border}px`,
+      left: `${border !== 0 ? size * 2.5 + 5 : 0}px`,
       color: '#fff',
-      padding: '0 3px',
+      padding: border !== 0 ? '0 3px' : 0,
       transition: `${defaultStyles.animation}, top 0s`,
       zIndex: 1,
     },
@@ -61,8 +63,8 @@ const Input = (props) => {
       outline: 'none',
       width: '100%',
       fontSize: `${size * 1.5 + 10}px`,
-      height: `${(size * 2 + 11) + (size * 5)}px`,
-      padding: `${size * 1.5 + 5}px ${size * 2.5 + 5}px`,
+      height: `${(size * 1.5 + 10) + ((size * 1.5 + 5) * 2)}px`,
+      padding: `${size * 1.5 + 5}px ${border !== 0 ? size * 2.5 + 5 : 0}px`,
       boxSizing: 'border-box',
       position: 'relative',
       zIndex: 2,
@@ -86,6 +88,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   error: PropTypes.bool,
   indent: PropTypes.number,
+  border: PropTypes.oneOf([0, 1, 2]),
   size: PropTypes.oneOf([1, 2, 3, 4, 5]),
   valid: PropTypes.bool,
   value: PropTypes.string,
