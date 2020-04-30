@@ -10,14 +10,14 @@ exports[`Card Card with icon 1`] = `
       "border": "none",
       "borderRadius": "3px",
       "borderTop": "3px solid #D15130",
-      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxShadow": "0 0 3px rgba(0, 0, 0, 0.12), 0 1.5px 3px rgba(0, 0, 0, 0.24)",
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
       "transition": "all .4s ease",
     }
   }
-  size={3}
+  size={4}
 >
   <EmotionCssPropInternal
     __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
@@ -28,9 +28,9 @@ exports[`Card Card with icon 1`] = `
         "borderBottom": "2px solid #e7eaec",
         "boxSizing": "border-box",
         "color": "#304355",
-        "fontSize": "13.5px",
+        "fontSize": "15px",
         "fontWeight": "600",
-        "padding": "13.5px 15px",
+        "padding": "16px 18px",
         "textTransform": "uppercase",
         "width": "100%",
       }
@@ -56,7 +56,7 @@ exports[`Card Card with icon 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "padding": "15px",
+        "padding": "18px",
       }
     }
   >
@@ -75,7 +75,7 @@ exports[`Card Card without container 1`] = `
       "border": "none",
       "borderRadius": "3px",
       "borderTop": "3px solid #D15130",
-      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxShadow": "0 0 3px rgba(0, 0, 0, 0.12), 0 1.5px 3px rgba(0, 0, 0, 0.24)",
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
@@ -130,7 +130,7 @@ exports[`Card Default Card 1`] = `
       "border": "1px solid #3F88C5",
       "borderRadius": "3px",
       "borderTop": undefined,
-      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxShadow": "0 0 3px rgba(0, 0, 0, 0.12), 0 1.5px 3px rgba(0, 0, 0, 0.24)",
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
@@ -163,14 +163,15 @@ exports[`Card Outline Card 1`] = `
       "border": "none",
       "borderRadius": "3px",
       "borderTop": "3px solid #D15130",
-      "boxShadow": "0 1px 3px rgba(0, 0, 0, 0.12)",
+      "boxShadow": "0 0 1px rgba(0, 0, 0, 0.12), 0 0.5px 1px rgba(0, 0, 0, 0.24)",
       "boxSizing": "border-box",
       "marginBottom": "15px",
       "overflow": "hidden",
       "transition": "all .4s ease",
     }
   }
-  size={3}
+  shadow={1}
+  size={2}
 >
   <EmotionCssPropInternal
     __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Component"
@@ -181,9 +182,9 @@ exports[`Card Outline Card 1`] = `
         "borderBottom": "2px solid #e7eaec",
         "boxSizing": "border-box",
         "color": "#304355",
-        "fontSize": "13.5px",
+        "fontSize": "12px",
         "fontWeight": "600",
-        "padding": "13.5px 15px",
+        "padding": "11px 12px",
         "textTransform": "uppercase",
         "width": "100%",
       }
@@ -196,7 +197,7 @@ exports[`Card Outline Card 1`] = `
     __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
     css={
       Object {
-        "padding": "15px",
+        "padding": "12px",
       }
     }
   >
