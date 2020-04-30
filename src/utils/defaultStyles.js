@@ -3,6 +3,7 @@ export const defaultStyles = {
   indent: 15,
   buttonSize: 3,
   cardSize: 3,
+  inputSize: 3,
   borderRadius: 3,
   boxShadow: 3,
 };
