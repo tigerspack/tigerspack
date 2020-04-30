@@ -25,7 +25,7 @@ exports[`Card Card with icon 1`] = `
     css={
       Object {
         "background": "inherit",
-        "borderBottom": "2px solid #e7eaec",
+        "borderBottom": "2px solid #E5E8EC",
         "boxSizing": "border-box",
         "color": "#304355",
         "fontSize": "15px",
@@ -90,7 +90,7 @@ exports[`Card Card without container 1`] = `
     css={
       Object {
         "background": "inherit",
-        "borderBottom": "2px solid #e7eaec",
+        "borderBottom": "2px solid #E5E8EC",
         "boxSizing": "border-box",
         "color": "#304355",
         "fontSize": "13.5px",
@@ -179,7 +179,7 @@ exports[`Card Outline Card 1`] = `
     css={
       Object {
         "background": "inherit",
-        "borderBottom": "2px solid #e7eaec",
+        "borderBottom": "2px solid #E5E8EC",
         "boxSizing": "border-box",
         "color": "#304355",
         "fontSize": "12px",
