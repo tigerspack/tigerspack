@@ -15,7 +15,7 @@ const Card = (props) => {
   } = props;
   const palette = colors[theme] ? colors[theme] : colors.primary;
   const indent = props.indent || defaultStyles.indent;
-  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.buttonSize;
+  const size = props.size > 0 && props.size < 6 ? props.size : defaultStyles.cardSize;
   const styles = {
     card: {
       border: outline ? 'none' : `1px solid ${palette.color}`,
