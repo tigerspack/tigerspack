@@ -4,6 +4,7 @@ export const defaultStyles = {
   buttonSize: 3,
   cardSize: 3,
   inputSize: 3,
+  inputBorder: 1,
   borderRadius: 3,
   boxShadow: 3,
 };
