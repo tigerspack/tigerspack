@@ -30,9 +30,9 @@ const Card = (props) => {
       overflow: 'hidden',
     },
     title: {
-      borderBottom: outline ? '2px solid #e7eaec' : '2px solid transparent',
+      borderBottom: outline ? `2px solid ${colors.light.color}` : '1px solid transparent',
       background: !outline ? palette.color : 'inherit',
-      color: !outline ? palette.text : '#304355',
+      color: !outline ? palette.text : colors.dark.color,
       width: '100%',
       boxSizing: 'border-box',
       padding: `${size * 2.5 + 6}px ${size * 3 + 6}px`,
